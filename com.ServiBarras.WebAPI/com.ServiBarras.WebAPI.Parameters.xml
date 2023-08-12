@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="ServiBarras" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Proyecto\ TecnoCEDI\\TecnoCEDI\ Services\ API\ Controller\\com\.ServiBarras\.WebAPI\\obj\\Debug\\netcoreapp2\.2\\PubTmp\\Out\\$" />
+  </parameter>
+  <parameter name="com.ServiBarras.Infrastructure.Models.TecnoCEDI_bdContext" description="" value="" tags="dbfullsql">
+    <parameterEntry kind="ProviderPath" scope="dbfullsql" match="^C:\\Proyecto\ TecnoCEDI\\TecnoCEDI\ Services\ API\ Controller\\com\.ServiBarras\.WebAPI\\obj\\Debug\\netcoreapp2\.2\\PubTmp\\EFSQLScripts\\com\.ServiBarras\.Infrastructure\.Models\.TecnoCEDI_bdContext\.sql$" />
+  </parameter>
+</parameters>
