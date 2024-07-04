@@ -109,6 +109,115 @@ namespace com.ServiBarras.Infrastructure.DataAccess
             }
         }
 
+        public DataSet getUsuarios()
+        {
+            var dataSet = new DataSet();
+            using (var connection = new SqlConnection(dbcontext.Database.GetDbConnection().ConnectionString))
+            {
+                connection.Open();
+                try
+                {
+
+                    using (var command = new SqlCommand("[dbo].[sp_GET_Usuarios]", connection))
+                    {
+                        command.CommandType = System.Data.CommandType.StoredProcedure;
+                        command.CommandTimeout = 0;
+                        var adapter = new SqlDataAdapter(command);
+                        adapter.Fill(dataSet);
+
+                    }
+                    return dataSet;
+                }
+                catch (System.Exception ex)
+                {
+                    LogEvent log = new LogEvent();
+                    log.LogWrite(ex.Message);
+
+                    return null;
+                }
+
+                finally
+                {
+                    connection.Close();
+                }
+            }
+        }
+
+        public DataSet getRoles()
+        {
+            var dataSet = new DataSet();
+            using (var connection = new SqlConnection(dbcontext.Database.GetDbConnection().ConnectionString))
+            {
+                connection.Open();
+                try
+                {
+
+                    using (var command = new SqlCommand("[dbo].[sp_GET_Roles]", connection))
+                    {
+                        command.CommandType = System.Data.CommandType.StoredProcedure;
+                        command.CommandTimeout = 0;
+                        var adapter = new SqlDataAdapter(command);
+                        adapter.Fill(dataSet);
+
+                    }
+                    return dataSet;
+                }
+                catch (System.Exception ex)
+                {
+                    LogEvent log = new LogEvent();
+                    log.LogWrite(ex.Message);
+
+                    return null;
+                }
+
+                finally
+                {
+                    connection.Close();
+                }
+            }
+        }
+
+        public DataSet setActualizacionCreacionUsuario(UsuarioGuardarDTO parametrosUsuario)
+        {
+            var dataSet = new DataSet();
+            using (var connection = new SqlConnection(dbcontext.Database.GetDbConnection().ConnectionString))
+            {
+                connection.Open();
+                try
+                {
+
+                    using (var command = new SqlCommand("[dbo].[sp_SET_ActualizacionCreacionUsuarios]", connection))
+                    {
+                        command.CommandType = System.Data.CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@usuarioUser", parametrosUsuario.usuarioUser);
+                        command.Parameters.AddWithValue("@usuarioNombre", parametrosUsuario.usuarioNombre);
+                        command.Parameters.AddWithValue("@usuarioApellido", parametrosUsuario.usuarioApellido);
+                        command.Parameters.AddWithValue("@usuarioIdentificacion", parametrosUsuario.usuarioIdentificacion);
+                        command.Parameters.AddWithValue("@usuarioPassword", parametrosUsuario.usuarioPassword);
+
+                        command.Parameters.AddWithValue("@rolId", parametrosUsuario.rolId);
+
+                        command.CommandTimeout = 0;
+                        var adapter = new SqlDataAdapter(command);
+                        adapter.Fill(dataSet);
+
+                    }
+                    return dataSet;
+                }
+                catch (System.Exception ex)
+                {
+                    LogEvent log = new LogEvent();
+                    log.LogWrite(ex.Message);
+
+                    return null;
+                }
+
+                finally
+                {
+                    connection.Close();
+                }
+            }
+        }
 
 
     }

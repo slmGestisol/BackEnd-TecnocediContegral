@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Tjb3ddz2J+PgTztwOzjEk0sK056ZrSfdEKY9FK9oFp4Xq/02FEvTEHswtSplAeqtIaEOAjVhjGS4gfA9wCKUrw==",
+  "dgSpecHash": "y7yls0fyMJGe4tP2pqfIVTWdw8N4MpE/BZBHcEsnVFAh71iQDvbZWMi3kNdnIRkOZouOOM+G6CwXAuE/O6pgFA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\SebastiánLopezMazo\\Desktop\\GESTISOL\\PROYECTOS\\TRAZABILIDAD\\BackEnd\\TecnoCEDI Services API Controller\\com.ServiBarras.Infrastructure\\com.ServiBarras.Infrastructure.csproj",
+  "projectFilePath": "C:\\Users\\SebastiánLopezMazo\\Desktop\\GESTISOL\\PROYECTOS\\CONTEGRAL\\BackEnd\\TecnoCEDI Services API Controller\\com.ServiBarras.Infrastructure\\com.ServiBarras.Infrastructure.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\SebastiánLopezMazo\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\SebastiánLopezMazo\\.nuget\\packages\\microsoft.entityframeworkcore\\2.2.6\\microsoft.entityframeworkcore.2.2.6.nupkg.sha512",

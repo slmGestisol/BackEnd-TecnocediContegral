@@ -28,5 +28,7 @@ namespace com.Servibarras.ApplicationCore.BusinessLogic.Interfaces
         DataSet setCerrarEstibaRecepcionCalidad(JObject parametrosRecepcionCalidad);
         DataSet getTXOrdenEmpaqueById(long ordenEmpaqueId);
         DataSet setImprimirOrdenEmpaqueById(long txOrdenEmpaqueId);
+        DataSet setEstadosPromociones(JObject parametros);
+        DataSet getPromocionesOrdenesEmpaque();
     }
 }

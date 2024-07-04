@@ -3565,19 +3565,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\SebastiánLopezMazo\\.nuget\\packages\\": {}
+    "C:\\Users\\SebastiánLopezMazo\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\SebastiánLopezMazo\\Desktop\\GESTISOL\\PROYECTOS\\TRAZABILIDAD\\BackEnd\\TecnoCEDI Services API Controller\\com.Servibarras.Security\\com.Servibarras.Security.csproj",
+      "projectUniqueName": "C:\\Users\\SebastiánLopezMazo\\Desktop\\GESTISOL\\PROYECTOS\\CONTEGRAL\\BackEnd\\TecnoCEDI Services API Controller\\com.Servibarras.Security\\com.Servibarras.Security.csproj",
       "projectName": "com.Servibarras.Security",
-      "projectPath": "C:\\Users\\SebastiánLopezMazo\\Desktop\\GESTISOL\\PROYECTOS\\TRAZABILIDAD\\BackEnd\\TecnoCEDI Services API Controller\\com.Servibarras.Security\\com.Servibarras.Security.csproj",
+      "projectPath": "C:\\Users\\SebastiánLopezMazo\\Desktop\\GESTISOL\\PROYECTOS\\CONTEGRAL\\BackEnd\\TecnoCEDI Services API Controller\\com.Servibarras.Security\\com.Servibarras.Security.csproj",
       "packagesPath": "C:\\Users\\SebastiánLopezMazo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\SebastiánLopezMazo\\Desktop\\GESTISOL\\PROYECTOS\\TRAZABILIDAD\\BackEnd\\TecnoCEDI Services API Controller\\com.Servibarras.Security\\obj\\",
+      "outputPath": "C:\\Users\\SebastiánLopezMazo\\Desktop\\GESTISOL\\PROYECTOS\\CONTEGRAL\\BackEnd\\TecnoCEDI Services API Controller\\com.Servibarras.Security\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
         "C:\\Users\\SebastiánLopezMazo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

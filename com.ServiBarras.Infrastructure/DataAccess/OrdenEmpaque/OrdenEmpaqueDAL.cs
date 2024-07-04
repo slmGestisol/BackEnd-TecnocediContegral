@@ -1170,5 +1170,92 @@ namespace com.ServiBarras.Infrastructure.DataAccess
 
         }
 
+        public DataSet setEstadosPromociones(EstadoPromocionDTO estadoPromocionDTO)
+        {
+            if (estadoPromocionDTO == null) return null;
+
+            var dataSet = new DataSet();
+
+            using (var connection = new SqlConnection(dbcontext.Database.GetDbConnection().ConnectionString))
+            {
+                connection.Open();
+
+                try
+                {
+
+                    using (var command = new SqlCommand("[dbo].[sp_SET_EstadoPromocionesOrdenEmpaque]", connection))
+                    {
+                        command.CommandType = System.Data.CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@promocionId", estadoPromocionDTO.promocionId);
+                        command.Parameters.AddWithValue("@ordenEmpaqueId", estadoPromocionDTO.ordenEmpaqueId);
+
+                        command.Parameters.AddWithValue("@usuarioId", estadoPromocionDTO.usuarioId);
+                        command.Parameters.AddWithValue("@estado", estadoPromocionDTO.estado);
+
+                        command.CommandTimeout = 0;
+
+                        var adapter = new SqlDataAdapter(command);
+
+                        adapter.Fill(dataSet);
+
+                    }
+                    return dataSet;
+                }
+                catch (System.Exception ex)
+                {
+                    LogEvent log = new LogEvent();
+                    log.LogWrite(ex.Message);
+
+                    return null;
+                }
+                finally
+                {
+                    connection.Close();
+                }
+
+            }
+
+        }
+
+        public DataSet getPromocionesOrdenesEmpaque()
+        {
+            var dataSet = new DataSet();
+
+            using (var connection = new SqlConnection(dbcontext.Database.GetDbConnection().ConnectionString))
+            {
+                connection.Open();
+
+                try
+                {
+
+                    using (var command = new SqlCommand("[dbo].[sp_GET_PromocionesOrdenesEmpaque]", connection))
+                    {
+                        command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                        command.CommandTimeout = 0;
+
+                        var adapter = new SqlDataAdapter(command);
+
+                        adapter.Fill(dataSet);
+
+                    }
+                    return dataSet;
+                }
+                catch (System.Exception ex)
+                {
+                    LogEvent log = new LogEvent();
+                    log.LogWrite(ex.Message);
+
+                    return null;
+                }
+                finally
+                {
+                    connection.Close();
+                }
+
+            }
+
+        }
+
     }
 }

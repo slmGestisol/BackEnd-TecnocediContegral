@@ -75,7 +75,6 @@ namespace com.ServiBarras.Shared.ModelDTO
         public string LoteFechaVencimiento { get; set; }
         public long usuarioId { get; set; }
     }
-
     public class cerrarEstibaRecepcionCalidadDTO
     {
 
@@ -85,6 +84,15 @@ namespace com.ServiBarras.Shared.ModelDTO
         public string loteCodigo { get; set; }
         public string productoCodigoValidacion { get; set; }
         public string estadoCalidad { get; set; }
+
+    }
+    public class EstadoPromocionDTO
+    {
+
+        public long promocionId { get; set; }
+        public long ordenEmpaqueId { get; set; }
+        public long usuarioId { get; set; }
+        public Boolean estado { get; set; }
 
     }
 }

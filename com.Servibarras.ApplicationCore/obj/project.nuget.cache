@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ZEbKRL00kg4rlkfyUtyc75d64QCiIUDsCo5YedL6XBGHTeYUkxqK5ymxnST+N466VJbl/B/PuEMpNg7T5dUTAA==",
+  "dgSpecHash": "a0Vuc3j7gT7ZjH3qTSGG7p2NhbVe+9UjsrclESmEofY9S5lYFlX//UjBo2JQVtt+mYImBvdWD2fvf6GW5bWoaA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\SebastiánLopezMazo\\Desktop\\GESTISOL\\PROYECTOS\\TRAZABILIDAD\\BackEnd\\TecnoCEDI Services API Controller\\com.Servibarras.ApplicationCore\\com.Servibarras.ApplicationCore.csproj",
+  "projectFilePath": "C:\\Users\\SebastiánLopezMazo\\Desktop\\GESTISOL\\PROYECTOS\\CONTEGRAL\\BackEnd\\TecnoCEDI Services API Controller\\com.Servibarras.ApplicationCore\\com.Servibarras.ApplicationCore.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\SebastiánLopezMazo\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\SebastiánLopezMazo\\.nuget\\packages\\microsoft.aspnetcore.authentication.core\\2.2.0\\microsoft.aspnetcore.authentication.core.2.2.0.nupkg.sha512",

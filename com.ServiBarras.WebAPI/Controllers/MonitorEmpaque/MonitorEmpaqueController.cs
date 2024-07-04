@@ -647,5 +647,43 @@ namespace com.ServiBarras.WebAPI.Controllers.MonitorEmpaque
 
             return json;
         }
+
+        [Route("api/setEstadosPromocionesOrdenEmpaqueById/")]
+        [HttpPost]
+        public JsonResult setEstadosPromociones([FromBody] JObject parametros)
+        {
+
+            DataSet result = new DataSet();
+            result = this._ordenEmpaqueBL.setEstadosPromociones(parametros);
+            JsonResult json = new JsonResult(result);
+            if (json.Value == null)
+            {
+                json.StatusCode = 500;
+                json.Value = "Error al consumir el servicio, revise el log de eventos en la carpeta (C:\\EventLogTecnoCEDI\\Utils\\)";
+            }
+            else
+                json.StatusCode = 200;
+
+            return json;
+        }
+
+        [Route("api/getPromocionesOrdenesEmpaque/")]
+        [HttpGet]
+        public JsonResult getPromocionesOrdenesEmpaque()
+        {
+
+            DataSet result = new DataSet();
+            result = this._ordenEmpaqueBL.getPromocionesOrdenesEmpaque();
+            JsonResult json = new JsonResult(result);
+            if (json.Value == null)
+            {
+                json.StatusCode = 500;
+                json.Value = "Error al consumir el servicio, revise el log de eventos en la carpeta (C:\\EventLogTecnoCEDI\\Utils\\)";
+            }
+            else
+                json.StatusCode = 200;
+
+            return json;
+        }
     }
 }

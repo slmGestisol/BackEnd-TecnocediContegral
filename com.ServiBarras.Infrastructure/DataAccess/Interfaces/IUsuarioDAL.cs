@@ -10,6 +10,10 @@ namespace com.ServiBarras.Infrastructure.DataAccess.Interfaces
         Task<Usuarios> GetUsuarioAsync(long usuarioId); 
         Task<Usuarios> GetUsuarioLoginAsync(UsuarioDTO usuario);
         DataSet getPermisosByUsuarioId(long usuarioId);
+        DataSet getUsuarios();
+        DataSet getRoles();
+        DataSet setActualizacionCreacionUsuario(UsuarioGuardarDTO parametrosUsuario);
+
 
     }
 

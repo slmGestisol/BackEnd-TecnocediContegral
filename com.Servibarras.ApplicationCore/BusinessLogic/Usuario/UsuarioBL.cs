@@ -34,5 +34,22 @@ namespace com.Servibarras.ApplicationCore.BusinessLogic
             return this._usuarioDAL.getPermisosByUsuarioId(usuarioId);
         }
 
+        public DataSet getUsuarios()
+        {
+            return this._usuarioDAL.getUsuarios();
+        }
+
+
+        public DataSet getRoles()
+        {
+            return this._usuarioDAL.getRoles();
+        }
+        public DataSet setActualizacionCreacionUsuario(JObject parametrosUsuario)
+        {
+            var usuarioAux = JsonConvert.DeserializeObject<UsuarioGuardarDTO>(parametrosUsuario.ToString());
+
+            return this._usuarioDAL.setActualizacionCreacionUsuario(usuarioAux);
+        }
+
     }
 }

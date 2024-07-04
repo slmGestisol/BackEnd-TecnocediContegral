@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "qxODpsauLiPum2y8RymrQHAodDG8ioQMDUw19iWxG1lPrj4FMjHO/w1HLL3ADZ+x96a07kqZvH6O7rE8DviFEQ==",
+  "dgSpecHash": "3MFZhb97onNADqUWRvr3EfuuNIU7MkAha6avFamigYwqUqxNtLkjoCio0qAof5iSVPM8yTxX1PtH6tgOWRyd2Q==",
   "success": true,
-  "projectFilePath": "C:\\Users\\SebastiánLopezMazo\\Desktop\\GESTISOL\\PROYECTOS\\TRAZABILIDAD\\BackEnd\\TecnoCEDI Services API Controller\\com.ServiBarras.Shared\\com.ServiBarras.Shared.csproj",
+  "projectFilePath": "C:\\Users\\SebastiánLopezMazo\\Desktop\\GESTISOL\\PROYECTOS\\CONTEGRAL\\BackEnd\\TecnoCEDI Services API Controller\\com.ServiBarras.Shared\\com.ServiBarras.Shared.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\SebastiánLopezMazo\\.nuget\\packages\\microsoft.entityframeworkcore\\2.2.6\\microsoft.entityframeworkcore.2.2.6.nupkg.sha512",
     "C:\\Users\\SebastiánLopezMazo\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\2.2.6\\microsoft.entityframeworkcore.abstractions.2.2.6.nupkg.sha512",

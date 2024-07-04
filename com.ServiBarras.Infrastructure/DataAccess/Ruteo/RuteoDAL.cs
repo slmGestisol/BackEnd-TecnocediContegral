@@ -377,7 +377,9 @@ namespace com.ServiBarras.Infrastructure.DataAccess
                         command.Parameters.AddWithValue("@ruteoId", ruteoAux.ruteoId);
                         command.Parameters.AddWithValue("@bahiaId", (ruteoAux.bahiaId == null) ? 0 : ruteoAux.bahiaId);
                         command.Parameters.AddWithValue("@productoId", (ruteoAux.productoId == null) ? 0 : ruteoAux.productoId);
-                      
+                        command.Parameters.AddWithValue("@parcial", (ruteoAux.parcial == null) ? false : ruteoAux.parcial);
+
+
                         command.CommandTimeout = 0;
 
                         var adapter = new SqlDataAdapter(command);
@@ -588,40 +590,47 @@ namespace com.ServiBarras.Infrastructure.DataAccess
                 var ruteoDetalleItems = dbcontext.RuteosDetalle.Where(x => x.ruteoId == preRuteoId).ToListAsync();
                 int cantRutas = rutasRuteoGroup.Count();
 
-                foreach (var rutaItem in rutasRuteoGroup)
+                if (ruteoDetalleItems.Result.Count > 0)
                 {
-                    int registrosxRuta = ruteoDetalleItems.Result.Count / cantRutas;
-
-
-                    if (cantRutas == 1)
+                    foreach (var rutaItem in rutasRuteoGroup)
                     {
-                        var rutaItems = rutaItem.ToList();
-                        //int cantRuteoDetalle = registrosxRuta/ rutaItem.Count();
-                        int cantidadDistribuidaGrupo = 0;
-                        int cantidadRestante = 0;
-                        cantidadDistribuidaGrupo = registrosxRuta / rutaItem.Count();
+                        int registrosxRuta = ruteoDetalleItems.Result.Count / cantRutas;
 
-                        cantidadRestante = registrosxRuta - (cantidadDistribuidaGrupo * rutaItem.Count());
 
-                        while (cantidadRestante > 0)
+                        if (cantRutas == 1)
                         {
-                            for (int i = 0; i < rutaItem.Count(); i++)
+                            var rutaItems = rutaItem.ToList();
+                            //int cantRuteoDetalle = registrosxRuta/ rutaItem.Count();
+                            int cantidadDistribuidaGrupo = 0;
+                            int cantidadRestante = 0;
+                            cantidadDistribuidaGrupo = registrosxRuta / rutaItem.Count();
+
+                            cantidadRestante = registrosxRuta - (cantidadDistribuidaGrupo * rutaItem.Count());
+
+                            while (cantidadRestante > 0)
                             {
-                                if (cantidadRestante == 0) break;
-                                rutaItems[i].grupoCantidad += 1;
-                                cantidadRestante -= 1;
+                                for (int i = 0; i < rutaItem.Count(); i++)
+                                {
+                                    if (cantidadRestante == 0) break;
+                                    rutaItems[i].grupoCantidad += 1;
+                                    cantidadRestante -= 1;
+                                }
                             }
+
+                            for (int i = 0; i < rutaItems.Count(); i++)
+                            {
+                                rutaItems[i].grupoCantidad += cantidadDistribuidaGrupo;
+                                rutaItems[i].rutaId = rutaItem.Key;
+
+                                SetAssigningGrupoRuteo(preRuteoId, rutaItems[i]);
+                            }
+
                         }
-
-                        for (int i = 0; i < rutaItems.Count(); i++)
-                        {
-                            rutaItems[i].grupoCantidad += cantidadDistribuidaGrupo;
-                            rutaItems[i].rutaId = rutaItem.Key;
-
-                            SetAssigningGrupoRuteo(preRuteoId, rutaItems[i]);
-                        }
-
                     }
+                }
+                else
+                {
+                    AddRuteosPedidosDetalleEstado(preRuteoId);
                 }
             }
             catch (System.Exception ex)

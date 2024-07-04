@@ -119,7 +119,10 @@ namespace com.ServiBarras.Shared.ModelDTO
         [JsonProperty("productoId")]
         public long? productoId { get; set; }
 
-      
+        [JsonProperty("parcial")]
+        public bool? parcial { get; set; }
+
+
 
     }
 

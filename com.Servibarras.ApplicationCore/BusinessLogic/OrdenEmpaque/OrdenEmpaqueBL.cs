@@ -150,5 +150,18 @@ namespace com.Servibarras.ApplicationCore.BusinessLogic
             return this._ordenEmpaqueDAL.setImprimirOrdenEmpaqueById(txOrdenEmpaqueId);
 
         }
+
+        public DataSet setEstadosPromociones(JObject parametros)
+        {
+            var parametroAUX = JsonConvert.DeserializeObject<EstadoPromocionDTO>(parametros.ToString());
+            return this._ordenEmpaqueDAL.setEstadosPromociones(parametroAUX);
+
+        }
+
+        public DataSet getPromocionesOrdenesEmpaque()
+        {
+            return this._ordenEmpaqueDAL.getPromocionesOrdenesEmpaque();
+        }
+
     }
 }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "nJ2orAe3cDXUT69dY1LIcxnCjGmdC0AYMAFSQuyB+ySX7My8e9Zbgqeuj9+b4nmEcFyJ6HIPmV6CWOdt/XYjdA==",
+  "dgSpecHash": "kdF9kiAmbhQGZfERH2Slmn3DjQgPDtvKM2Ai2TF5enwLhylBleTCDjxcBbW4C0j6okXWpMRzCfvgqqGLuJWzAw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\SebastiánLopezMazo\\Desktop\\GESTISOL\\PROYECTOS\\TRAZABILIDAD\\BackEnd\\TecnoCEDI Services API Controller\\com.ServiBarras.WebAPI\\com.ServiBarras.WebAPI.csproj",
+  "projectFilePath": "C:\\Users\\SebastiánLopezMazo\\Desktop\\GESTISOL\\PROYECTOS\\CONTEGRAL\\BackEnd\\TecnoCEDI Services API Controller\\com.ServiBarras.WebAPI\\com.ServiBarras.WebAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\SebastiánLopezMazo\\.nuget\\packages\\microsoft.aspnet.webapi.client\\5.2.6\\microsoft.aspnet.webapi.client.5.2.6.nupkg.sha512",
     "C:\\Users\\SebastiánLopezMazo\\.nuget\\packages\\microsoft.aspnetcore\\2.2.0\\microsoft.aspnetcore.2.2.0.nupkg.sha512",

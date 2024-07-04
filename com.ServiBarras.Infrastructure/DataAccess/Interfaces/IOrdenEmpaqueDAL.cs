@@ -28,5 +28,8 @@ namespace com.ServiBarras.Infrastructure.DataAccess.Interfaces
         DataSet setCerrarEstibaRecepcionCalidad(cerrarEstibaRecepcionCalidadDTO parametrosRecepcionCalidad);
         DataSet getTXOrdenEmpaqueById(long ordenEmpaqueId);
         DataSet setImprimirOrdenEmpaqueById(long txOrdenEmpaqueId);
+        DataSet setEstadosPromociones(EstadoPromocionDTO estadoPromocionDTO);
+        DataSet getPromocionesOrdenesEmpaque();
+
     }
 }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "1p0QIrnbUKTUYdHTv6PydzCPtNYp+pEcmmw7ZVz4U2qvTbyxK4b1jioBfA1cPLncifJ9IowhLJD/Y3DzheMrlQ==",
+  "dgSpecHash": "4pfSM1qHSNVO/DqYcT276JaBJ3QPhUOc9bG7FpVLrnb8eLTADQyikiUUlyMiDoOFx7HebV1bqQMXTvEuUby9xA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\SebastiánLopezMazo\\Desktop\\GESTISOL\\PROYECTOS\\TRAZABILIDAD\\BackEnd\\TecnoCEDI Services API Controller\\com.Servibarras.Security\\com.Servibarras.Security.csproj",
+  "projectFilePath": "C:\\Users\\SebastiánLopezMazo\\Desktop\\GESTISOL\\PROYECTOS\\CONTEGRAL\\BackEnd\\TecnoCEDI Services API Controller\\com.Servibarras.Security\\com.Servibarras.Security.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\SebastiánLopezMazo\\.nuget\\packages\\microsoft.entityframeworkcore\\2.2.6\\microsoft.entityframeworkcore.2.2.6.nupkg.sha512",
     "C:\\Users\\SebastiánLopezMazo\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\2.2.6\\microsoft.entityframeworkcore.abstractions.2.2.6.nupkg.sha512",

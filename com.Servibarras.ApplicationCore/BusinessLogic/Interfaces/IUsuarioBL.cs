@@ -10,6 +10,9 @@ namespace com.Servibarras.ApplicationCore.BusinessLogic.Interfaces
         Task<Usuarios> GetUsuarioAsync(long UsuarioId);
         Task<Usuarios> GetUsuarioLoginAsync(JObject usuarioJson);
         DataSet getPermisosByUsuarioId(long usuarioId);
+        DataSet getUsuarios();
+        DataSet getRoles();
+        DataSet setActualizacionCreacionUsuario(JObject parametrosUsuario);
 
     }
 }
