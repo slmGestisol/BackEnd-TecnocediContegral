@@ -63,6 +63,50 @@ namespace com.ServiBarras.Infrastructure.DataAccess
 
             }
         }
+
+        /// <summary>
+        ///  Método que consulta los productos existente
+        /// </summary>
+        /// <returns></returns>
+        public DataSet getproductosByCodigo(string productoCodigo)
+        {
+            var dataSet = new DataSet();
+
+            using (var connection = new SqlConnection(dbcontext.Database.GetDbConnection().ConnectionString))
+            {
+                connection.Open();
+
+                try
+                {
+
+                    using (var command = new SqlCommand("[dbo].[sp_GET_ProductosByCodigo]", connection))
+                    {
+
+                        command.CommandType = System.Data.CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@productoCodigo", productoCodigo);
+                        command.CommandTimeout = 0;
+                        var adapter = new SqlDataAdapter(command);
+
+                        adapter.Fill(dataSet);
+
+                    }
+                    return dataSet;
+                }
+                catch (System.Exception ex)
+                {
+                    LogEvent log = new LogEvent();
+                    log.LogWrite(ex.Message);
+
+                    return null;
+                }
+                finally
+                {
+                    connection.Close();
+                }
+
+            }
+        }
+
         /// <summary>
         /// Método que consulta los productos existente por productoId
         /// </summary>

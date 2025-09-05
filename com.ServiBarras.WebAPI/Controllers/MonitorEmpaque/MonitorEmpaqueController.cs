@@ -260,6 +260,36 @@ namespace com.ServiBarras.WebAPI.Controllers.MonitorEmpaque
 
         }
 
+        [Route("api/SetSiesaPlanoInventarioRecepcion")]
+        [HttpPost]
+        public JsonResult SetSiesaPlanoInventarioRecepcion([FromBody] JObject parametrosOrden)
+        {
+
+            DataSet result = new DataSet();
+            result = this._ordenEmpaqueBL.SetSiesaPlanoInventarioRecepcion(parametrosOrden);
+            if (result == null)
+            {
+                result = new DataSet();
+                DataTable dt = new DataTable("table");
+                dt.Columns.Add(new DataColumn("resultado", typeof(string)));
+                DataRow dr = dt.NewRow();
+                dr["resultado"] = "Error al consumir el servicio, revise el log de eventos en la carpeta (C:\\EventLogTecnoCEDI\\Utils\\)";
+                dt.Rows.Add(dr);
+                result.Tables.Add(dt);
+            }
+            JsonResult json = new JsonResult(result);
+            if (json.Value == null)
+            {
+                json.StatusCode = 500;
+                json.Value = "Error al consumir el servicio, revise el log de eventos en la carpeta (C:\\EventLogTecnoCEDI\\Utils\\)";
+            }
+            else
+                json.StatusCode = 200;
+
+            return json;
+
+        }
+
         [Route("api/getOrdenesEmpaque/")]
         [HttpGet]
         public JsonResult getOrdenesEmpaque()
@@ -459,13 +489,13 @@ namespace com.ServiBarras.WebAPI.Controllers.MonitorEmpaque
 
         }
 
-        [Route("api/setCerrarEstibaRecepcion")]
+        [Route("api/setRecepcion")]
         [HttpPost]
-        public JsonResult setCerrarEstibaRecepcion([FromBody] JObject parametroCerrar)
+        public JsonResult setRecepcion([FromBody] JObject parametroCerrar)
         {
 
             DataSet result = new DataSet();
-            result = this._ordenEmpaqueBL.setCerrarEstibaRecepcion(parametroCerrar);
+            result = this._ordenEmpaqueBL.setRecepcion(parametroCerrar);
             JsonResult json = new JsonResult(result);
             if (json.Value == null)
             {
@@ -667,6 +697,25 @@ namespace com.ServiBarras.WebAPI.Controllers.MonitorEmpaque
             return json;
         }
 
+        [Route("api/setEstadosAddBarcodeOrdenEmpaqueById/")]
+        [HttpPost]
+        public JsonResult setEstadosAddBarcodeOrdenEmpaqueById([FromBody] JObject parametros)
+        {
+
+            DataSet result = new DataSet();
+            result = this._ordenEmpaqueBL.setEstadosAddBarcodeOrdenEmpaqueById(parametros);
+            JsonResult json = new JsonResult(result);
+            if (json.Value == null)
+            {
+                json.StatusCode = 500;
+                json.Value = "Error al consumir el servicio, revise el log de eventos en la carpeta (C:\\EventLogTecnoCEDI\\Utils\\)";
+            }
+            else
+                json.StatusCode = 200;
+
+            return json;
+        }
+
         [Route("api/getPromocionesOrdenesEmpaque/")]
         [HttpGet]
         public JsonResult getPromocionesOrdenesEmpaque()
@@ -674,6 +723,26 @@ namespace com.ServiBarras.WebAPI.Controllers.MonitorEmpaque
 
             DataSet result = new DataSet();
             result = this._ordenEmpaqueBL.getPromocionesOrdenesEmpaque();
+            JsonResult json = new JsonResult(result);
+            if (json.Value == null)
+            {
+                json.StatusCode = 500;
+                json.Value = "Error al consumir el servicio, revise el log de eventos en la carpeta (C:\\EventLogTecnoCEDI\\Utils\\)";
+            }
+            else
+                json.StatusCode = 200;
+
+            return json;
+        }
+
+
+        [Route("api/getValidarDocExternoOrdenEmpaque/{documento}")]
+        [HttpGet]
+        public JsonResult getValidarDocExternoOrdenEmpaque(string documento)
+        {
+
+            DataSet result = new DataSet();
+            result = this._ordenEmpaqueBL.getValidarDocExternoOrdenEmpaque(documento);
             JsonResult json = new JsonResult(result);
             if (json.Value == null)
             {

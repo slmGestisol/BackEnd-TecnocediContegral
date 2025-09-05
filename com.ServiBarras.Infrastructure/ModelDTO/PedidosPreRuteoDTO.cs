@@ -37,4 +37,13 @@ namespace com.ServiBarras.Infrastructure.ModelDTO
         public bool estado { get; set; }
 
     }
+
+    public class ConsolidacionPedidosResponse
+    {
+        public int Estado { get; set; }
+        public string Mensaje { get; set; }
+        public Guid NewUniqueProcessId { get; set; }
+        public long? PedidoIdConsolidado { get; set; }
+        public int? PedidoConsecutivo { get; set; }
+    }
 }

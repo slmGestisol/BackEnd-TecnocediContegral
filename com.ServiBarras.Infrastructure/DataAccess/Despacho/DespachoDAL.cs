@@ -724,6 +724,8 @@ namespace com.ServiBarras.Infrastructure.DataAccess
                         command.CommandType = System.Data.CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@puertaUbicacionId", despachoBahiaRuteoDTO.puertaUbicacionId);                       
                         command.Parameters.AddWithValue("@usuarioId", despachoBahiaRuteoDTO.usuarioId);
+                        command.Parameters.AddWithValue("@cerrarDocumentosAsociados", despachoBahiaRuteoDTO.cerrarDocumentosAsociados);
+
                         command.CommandTimeout = 0;
 
 

@@ -55,6 +55,8 @@ namespace com.ServiBarras.Infrastructure.DataAccess
                         command.Parameters.AddWithValue("@valorProductoLoteIdAux", pickingDTO.valorProductoLoteIdAux);
                         command.Parameters.AddWithValue("@ubicacionIdAux", pickingDTO.ubicacionIdAux);
                         command.Parameters.AddWithValue("@continuidadActivada", pickingDTO.continuidadActivada);
+                        command.Parameters.AddWithValue("@checkExportacion", pickingDTO.isExportacion);
+
                         //command.Parameters.AddWithValue("@productoId", pickingDTO.productoId);
                         command.CommandTimeout = 0;
 

@@ -265,11 +265,17 @@ namespace com.ServiBarras.Infrastructure.DataAccess
                     item.Estado = false;
                 }
 
-                
                 //.Estado = false;// --.All(x => x.Estado = false);
 
                 DataTable pedidosSeleccionados = ConverterObject.CreateDataTable(pedidosPreRuteolist);
                 SqlObjectData.BulkInsertDataTable("PedidosPreRuteo", pedidosSeleccionados, dbcontext.Database.GetDbConnection().ConnectionString);
+
+
+
+
+
+
+
             }
 #pragma warning disable CS0168 // The variable 'ex' is declared but never used
             catch (System.Exception ex)
@@ -337,7 +343,45 @@ namespace com.ServiBarras.Infrastructure.DataAccess
                 connection.Open();
                 try
                 {
+                    /* agrupacion de pedidos */
+                     /* 
+                    // Llamado a sp_SET_ConsolidacionPedidosPreruteo_ConversionUnidades
+                    using (var commandConsolidacion = new SqlCommand("[dbo].[sp_SET_ConsolidacionPedidosPreruteo_ConversionUnidades]", connection))
+                    {
+                        commandConsolidacion.CommandType = CommandType.StoredProcedure;
+                        commandConsolidacion.Parameters.AddWithValue("@usuarioId", preRuteoDTO.usuarioId);
+                        commandConsolidacion.Parameters.AddWithValue("@uniqueProcessId", preRuteoDTO.uniqueProcessId);
 
+
+                        using (var reader = commandConsolidacion.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                int estado = reader.GetInt32(reader.GetOrdinal("Estado"));
+                                string mensaje = reader.GetString(reader.GetOrdinal("Mensaje"));
+
+                                // Verificar si hay un NewUniqueProcessId, si no, usar el original
+                                Guid newUniqueProcessId = reader.IsDBNull(reader.GetOrdinal("NewUniqueProcessId"))
+                                    ? preRuteoDTO.uniqueProcessId
+                                    : reader.GetGuid(reader.GetOrdinal("NewUniqueProcessId"));
+
+                                // Si el estado es 1, actualizamos el UniqueProcessId
+                                if (estado == 1)
+                                {
+                                    preRuteoDTO.uniqueProcessId = newUniqueProcessId;
+                                }
+                                else
+                                {
+                                    // Si hay un error en la consolidación, registramos el mensaje y terminamos el proceso
+                                    LogEvent log = new LogEvent();
+                                    log.LogWrite($"Error en consolidación: {mensaje}");
+                                    return null;
+                                }
+
+                            }
+                        }
+                    }
+                    */
 
                     using (var command = new SqlCommand("[dbo].[SP_SET_PreRuteo]", connection))
                     {
@@ -380,6 +424,68 @@ namespace com.ServiBarras.Infrastructure.DataAccess
 
             }
         }
+
+        public async Task<ConsolidacionPedidosResponse> ConsolidarPedidosAsync(long usuarioId, Guid uniqueProcessId, int titularId)
+        {
+            ConsolidacionPedidosResponse response = new ConsolidacionPedidosResponse();
+
+            try
+            {
+                using (var connection = new SqlConnection(dbcontext.Database.GetDbConnection().ConnectionString))
+                {
+                    connection.Open();
+
+                    using (SqlCommand cmd = new SqlCommand("sp_SET_ConsolidacionPedidosPreruteo_ConversionUnidades", connection))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        // Parámetros de entrada
+                        cmd.Parameters.AddWithValue("@usuarioId", usuarioId);
+                        cmd.Parameters.AddWithValue("@uniqueProcessId", uniqueProcessId);
+                        cmd.Parameters.AddWithValue("@TitularId", titularId);
+
+                        // Ejecutar el procedimiento
+                        using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
+                        {
+                            if (reader.Read())
+                            {
+                                response.Estado = reader.GetInt32(reader.GetOrdinal("Estado"));
+                                response.Mensaje = reader.GetString(reader.GetOrdinal("Mensaje"));
+
+                                // Verificar si tiene los valores adicionales
+                                if (reader.FieldCount > 2)
+                                {
+                                    response.NewUniqueProcessId = reader.IsDBNull(reader.GetOrdinal("NewUniqueProcessId"))
+                                        ? uniqueProcessId // Si no hay un nuevo GUID, se mantiene el anterior
+                                        : reader.GetGuid(reader.GetOrdinal("NewUniqueProcessId"));
+
+                                    response.PedidoIdConsolidado = reader.IsDBNull(reader.GetOrdinal("PedidoIdConsolidado"))
+                                        ? (long?)null
+                                        : reader.GetInt64(reader.GetOrdinal("PedidoIdConsolidado"));
+
+                                    response.PedidoConsecutivo = reader.IsDBNull(reader.GetOrdinal("PedidoConsecutivo"))
+                                        ? (int?)null
+                                        : reader.GetInt32(reader.GetOrdinal("PedidoConsecutivo"));
+                                }
+                                else
+                                {
+                                    response.NewUniqueProcessId = uniqueProcessId; // Si no viene el GUID nuevo, devolvemos el mismo
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                response.Estado = 0;
+                response.Mensaje = $"Error al consolidar pedidos: {ex.Message}";
+            }
+
+            return response;
+        }
+
+
         private string sqlDatoToJson(SqlDataReader dataReader)
         {
             var dataTable = new DataTable();

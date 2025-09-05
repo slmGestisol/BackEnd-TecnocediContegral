@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("com.Servibarras.Security")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+80fb30c97b96404b7756f98f888035b6174d9ae5")]
 [assembly: System.Reflection.AssemblyProductAttribute("com.Servibarras.Security")]
 [assembly: System.Reflection.AssemblyTitleAttribute("com.Servibarras.Security")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

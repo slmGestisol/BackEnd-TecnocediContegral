@@ -589,7 +589,10 @@
           "Newtonsoft.Json": "12.0.2"
         },
         "runtime": {
-          "com.ServiBarras.Shared.dll": {}
+          "com.ServiBarras.Shared.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       }
     }

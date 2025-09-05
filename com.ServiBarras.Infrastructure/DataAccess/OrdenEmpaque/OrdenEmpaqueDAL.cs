@@ -452,6 +452,89 @@ namespace com.ServiBarras.Infrastructure.DataAccess
             }
         }
 
+        public DataSet SetSiesaPlanoInventarioRecepcion(OrdenEmpaqueDTO empaqueDTO)
+        {
+            if (empaqueDTO == null) return null;
+
+            string writeLog = "";
+
+            var dataSet = new DataSet();
+
+            using (var connection = new SqlConnection(dbcontext.Database.GetDbConnection().ConnectionString))
+            {
+                connection.Open();
+
+                try
+                {
+
+                    using (var command = new SqlCommand("[dbo].[SP_SET_Siesa_Plano_Inventario_Recepcion]", connection))
+                    {
+                        command.CommandType = System.Data.CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@ubicacionId", empaqueDTO.ubicacionId);
+                        command.Parameters.AddWithValue("@ordenEmpaqueId", empaqueDTO.ordenEmpaqueId);
+
+                        //command.Parameters.AddWithValue("@estacionId", empaqueDTO.estacionId);
+                        //command.Parameters.AddWithValue("@presentacionId", empaqueDTO.presentacionId);
+                        //command.Parameters.AddWithValue("@usuarioId", empaqueDTO.usuarioId);
+                        command.CommandTimeout = 0;
+                        var adapter = new SqlDataAdapter(command);
+
+                        adapter.Fill(dataSet);
+
+                    }
+
+                    if (dataSet != null)
+                    {
+                        if (dataSet.Tables.Count > 0)
+                        {
+                            if (dataSet.Tables.Count > 1)
+                            {
+
+                                if (dataSet.Tables[1].Columns.Count > 4)
+                                {
+                                    writeLog = WriteDataToFile.DataTableData(dataSet.Tables[1]);
+                                }
+
+
+
+                                if (!string.IsNullOrEmpty(writeLog))
+                                {
+                                    writeLog += ", UbicacionId: " + empaqueDTO.ubicacionId +
+                                        ", ordenEmpaqueId: " + empaqueDTO.ordenEmpaqueId +
+                                        ", usuarioId: " + empaqueDTO.usuarioId;
+
+                                    LogEvent logWriteDataToFile = new LogEvent();
+                                    logWriteDataToFile.LogWrite(writeLog);
+
+                                }
+                                dataSet.Tables.RemoveAt(1);
+
+
+
+                            }
+
+                        }
+                    }
+
+                    return dataSet;
+
+
+                }
+                catch (System.Exception ex)
+                {
+                    LogEvent log = new LogEvent();
+                    log.LogWrite(ex.Message);
+
+                    return null;
+                }
+                finally
+                {
+                    connection.Close();
+                }
+
+            }
+        }
+
 
         public DataSet getOrdenesEmpaque()
         {
@@ -519,8 +602,11 @@ namespace com.ServiBarras.Infrastructure.DataAccess
                         command.Parameters.AddWithValue("@estacionId", generarOrdenEmpaqueDTO.estacionId);
                         command.Parameters.AddWithValue("@usuarioId", generarOrdenEmpaqueDTO.usuarioId);
                         command.Parameters.AddWithValue("@loteCodigo", generarOrdenEmpaqueDTO.loteCodigo);
+                        command.Parameters.AddWithValue("@placa", generarOrdenEmpaqueDTO.placa);
                         command.Parameters.AddWithValue("@tipoOperacion", generarOrdenEmpaqueDTO.tipo); 
                         command.Parameters.AddWithValue("@docExterno", generarOrdenEmpaqueDTO.docExterno);
+                        command.Parameters.AddWithValue("@docIntegracion", generarOrdenEmpaqueDTO.docIntegracion);
+
                         command.CommandTimeout = 0;
 
                         var adapter = new SqlDataAdapter(command);
@@ -634,10 +720,6 @@ namespace com.ServiBarras.Infrastructure.DataAccess
                         return result;
                     }
 
-                    OrdenEmpaque.ordenEmpaqueEstado = 171;
-                    dbcontext.SaveChanges();
-
-
                     using (var command = new SqlCommand("[dbo].[SP_SET_CerrarOrdenEmpaque]", connection))
                     {
                         command.CommandType = System.Data.CommandType.StoredProcedure;
@@ -648,11 +730,28 @@ namespace com.ServiBarras.Infrastructure.DataAccess
 
                         adapter.Fill(dataSet);
 
+                        // Validar si el DataSet tiene tablas y filas
+                        if (dataSet.Tables.Count > 0 && dataSet.Tables[0].Rows.Count > 0)
+                        {
+                            var firstTable = dataSet.Tables[0];
+
+                            // Verificar si la columna "resultado" existe
+                            if (firstTable.Columns.Contains("resultado"))
+                            {
+                                // Obtener el valor de la columna "resultado" en la primera fila
+                                var resultadoValue = firstTable.Rows[0]["resultado"];
+                                return resultadoValue != DBNull.Value ? resultadoValue.ToString() : "Columna 'resultado' está vacía";
+                            }
+                            else
+                            {
+                                return "La columna 'resultado' no existe en el DataSet.";
+                            }
+                        }
+                        else
+                        {
+                            return "El DataSet no contiene datos.";
+                        }
                     }
-
-                    result = "Se la orden se cerro correctamente";
-
-                    return result;
                 }
                 catch (System.Exception ex)
                 {
@@ -800,7 +899,7 @@ namespace com.ServiBarras.Infrastructure.DataAccess
 
         }
 
-        public DataSet setCerrarEstibaRecepcion(cerrarRecpcecionDTO parametrosCerrarRecepcion)
+        public DataSet setRecepcion(cerrarRecpcecionDTO parametrosCerrarRecepcion)
         {
 
             if (parametrosCerrarRecepcion == null) return null;
@@ -814,7 +913,7 @@ namespace com.ServiBarras.Infrastructure.DataAccess
                 try
                 {
 
-                    using (var command = new SqlCommand("[dbo].[SP_SET_CerrarEstibaRecepcion]", connection))
+                    using (var command = new SqlCommand("[dbo].[SP_SET_Recepcion]", connection))
                     {
                         command.CommandType = System.Data.CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@ubicacionId", parametrosCerrarRecepcion.ubicacionId);
@@ -824,6 +923,7 @@ namespace com.ServiBarras.Infrastructure.DataAccess
                         command.Parameters.AddWithValue("@LoteCodigo", parametrosCerrarRecepcion.loteCodigo);
                         command.Parameters.AddWithValue("@FechaVencimientoLote", parametrosCerrarRecepcion.LoteFechaVencimiento);
                         command.Parameters.AddWithValue("@usuarioId", parametrosCerrarRecepcion.usuarioId);
+                        command.Parameters.AddWithValue("@ImpresoraId", parametrosCerrarRecepcion.impresoraId);
 
 
                         command.CommandTimeout = 0;
@@ -1217,6 +1317,51 @@ namespace com.ServiBarras.Infrastructure.DataAccess
 
         }
 
+        public DataSet setEstadosAddBarcodeOrdenEmpaqueById(ordenEmpaqueAddBarcodeDTO ordenEmpaqueAddBarcodeDTO)
+        {
+            if (ordenEmpaqueAddBarcodeDTO == null) return null;
+
+            var dataSet = new DataSet();
+
+            using (var connection = new SqlConnection(dbcontext.Database.GetDbConnection().ConnectionString))
+            {
+                connection.Open();
+
+                try
+                {
+
+                    using (var command = new SqlCommand("[dbo].[sp_SET_EstadoAddBarcodeOrdenEmpaque]", connection))
+                    {
+                        command.CommandType = System.Data.CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@ordenEmpaqueId", ordenEmpaqueAddBarcodeDTO.ordenEmpaqueId);
+                        command.Parameters.AddWithValue("@usuarioId", ordenEmpaqueAddBarcodeDTO.usuarioId);
+                        command.Parameters.AddWithValue("@estado", ordenEmpaqueAddBarcodeDTO.estado);
+
+                        command.CommandTimeout = 0;
+
+                        var adapter = new SqlDataAdapter(command);
+
+                        adapter.Fill(dataSet);
+
+                    }
+                    return dataSet;
+                }
+                catch (System.Exception ex)
+                {
+                    LogEvent log = new LogEvent();
+                    log.LogWrite(ex.Message);
+
+                    return null;
+                }
+                finally
+                {
+                    connection.Close();
+                }
+
+            }
+
+        }
+
         public DataSet getPromocionesOrdenesEmpaque()
         {
             var dataSet = new DataSet();
@@ -1231,6 +1376,46 @@ namespace com.ServiBarras.Infrastructure.DataAccess
                     using (var command = new SqlCommand("[dbo].[sp_GET_PromocionesOrdenesEmpaque]", connection))
                     {
                         command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                        command.CommandTimeout = 0;
+
+                        var adapter = new SqlDataAdapter(command);
+
+                        adapter.Fill(dataSet);
+
+                    }
+                    return dataSet;
+                }
+                catch (System.Exception ex)
+                {
+                    LogEvent log = new LogEvent();
+                    log.LogWrite(ex.Message);
+
+                    return null;
+                }
+                finally
+                {
+                    connection.Close();
+                }
+
+            }
+
+        }
+        public DataSet getValidarDocExternoOrdenEmpaque(string doc)
+        {
+            var dataSet = new DataSet();
+
+            using (var connection = new SqlConnection(dbcontext.Database.GetDbConnection().ConnectionString))
+            {
+                connection.Open();
+
+                try
+                {
+
+                    using (var command = new SqlCommand("[dbo].[sp_GET_validarDocExternoOrdenEmpaque]", connection))
+                    {
+                        command.CommandType = System.Data.CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@docExterno", doc);
 
                         command.CommandTimeout = 0;
 

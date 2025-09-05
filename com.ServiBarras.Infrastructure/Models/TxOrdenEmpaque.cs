@@ -30,7 +30,8 @@ namespace com.ServiBarras.Infrastructure.Models
         public string txOrdenEmpaquePlano { get; set; }
         public DateTime? txOrdenEmpaqueFechaCierre { get; set; }
         public int? txOrdenEmpaqueTurno { get; set; }
-
-        public virtual Contenedores contenedor { get; set; }
+        public int? Integrado { get; set; }
+        public DateTime? FechaIntegrado { get; set; }
+        public int? IntegradoValidacion { get; set; }
     }
 }

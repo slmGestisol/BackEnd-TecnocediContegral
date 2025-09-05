@@ -22,6 +22,7 @@ namespace com.ServiBarras.Shared.ModelDTO
         public long presentacionId { get; set; }
         public DateTime @FechaSaldo { get; set; }
         public long usuarioId { get; set; }
+        public long isExportacion { get; set; }
 
     }
 
@@ -30,6 +31,8 @@ namespace com.ServiBarras.Shared.ModelDTO
         public long? bahiaPadreId { get; set; }
 
         public bool? esDespacho { get; set; }
+        public long? instalacionId { get; set; }
+
     }
 
 

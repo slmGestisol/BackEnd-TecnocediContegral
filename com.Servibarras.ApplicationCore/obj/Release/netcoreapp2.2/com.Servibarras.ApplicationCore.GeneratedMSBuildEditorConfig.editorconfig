@@ -1,3 +1,5 @@
 is_global = true
 build_property.RootNamespace = com.Servibarras.ApplicationCore
 build_property.ProjectDir = C:\Users\SebastiánLopezMazo\Desktop\GESTISOL\PROYECTOS\CONTEGRAL\BackEnd\TecnoCEDI Services API Controller\com.Servibarras.ApplicationCore\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 

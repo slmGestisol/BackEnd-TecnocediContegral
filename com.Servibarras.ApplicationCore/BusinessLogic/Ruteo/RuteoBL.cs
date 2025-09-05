@@ -28,9 +28,9 @@ namespace com.Servibarras.ApplicationCore.BusinessLogic
             return await this._ruteoDAL.GetRuteosAsync();
         }
 
-        public DataSet GetRuteosByInstalacionIdAsync(long instalacionId)
+        public DataSet GetRuteosByInstalacionIdAsync(long instalacionId, long isExportacion)
         {
-            return  this._ruteoDAL.GetRuteosByInstalacionIdAsync(instalacionId);
+            return  this._ruteoDAL.GetRuteosByInstalacionIdAsync(instalacionId,isExportacion);
         }
 
 
@@ -100,8 +100,27 @@ namespace com.Servibarras.ApplicationCore.BusinessLogic
 
             var dataSet = new DataSet();
             var ruteoAux = JsonConvert.DeserializeObject<RuteoDTO>(responseText);
-            dataSet = this._ruteoDAL.SP_Add_Ruteo(ruteoAux.preRuteoId, ruteoAux.usuarioId);
 
+
+            // Aqui va el llamado a la validacion de placa
+            string resultadoValidacion = this._ruteoDAL.SP_GET_ValidacionPlacaBahia(ruteoAux.placa, ruteoAux.pedidosOrdenBahiaInfo[0].pedidoUbicacionBahiaId);
+            if (!string.IsNullOrWhiteSpace(resultadoValidacion))
+            {
+                // Si hay un mensaje de error, lo convertimos en un DataSet con mensaje de error y devolvemos
+                var errorTable = new DataTable("Error");
+                errorTable.Columns.Add("Error", typeof(string));
+                errorTable.Rows.Add(resultadoValidacion);
+
+                var errorDataSet = new DataSet();
+                errorDataSet.Tables.Add(errorTable);
+                return errorDataSet;
+            }
+
+            Console.WriteLine(ruteoAux.confirmacionesPlaca);
+
+
+            dataSet = this._ruteoDAL.SP_Add_Ruteo(ruteoAux.preRuteoId, ruteoAux.usuarioId, ruteoAux.placa);
+            
             if (dataSet != null)
             {
                 if (dataSet.Tables.Count > 0)
@@ -109,7 +128,10 @@ namespace com.Servibarras.ApplicationCore.BusinessLogic
                     long ruteoId = (long)dataSet.Tables[0].Rows[0].ItemArray[0];
                     this._ruteoDAL.SP_Update_RuteoPedidosOrdenBahias(ruteoId, ruteoAux.pedidosOrdenBahiaInfo);
                     this._ruteoDAL.SP_Update_RuteoGrupos(ruteoId, ruteoAux.ruteosGrupos);
-                    // ruteoDAL.AddRuteosPedidosDetalleEstado(ruteoId);
+                    this._ruteoDAL.SP_Insert_PlacaConfirmaciones(ruteoId, ruteoAux.placa, ruteoAux.usuarioId, ruteoAux.confirmacionesPlaca);
+                    this._ruteoDAL.AddRuteosPedidosDetalleEstado(ruteoId);
+
+                    Console.WriteLine(ruteoAux.confirmacionesPlaca);
                     // dataSet = ruteoDAL.SP_Add_RuteoDetalle(ruteoId, ruteoAux.usuarioId);
                 }
 

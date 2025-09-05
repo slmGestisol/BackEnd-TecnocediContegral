@@ -28,7 +28,6 @@ namespace com.ServiBarras.Infrastructure.Models
         public bool? continuidadActivada { get; set; }
 
         public virtual BodegasLogicas bodegaLogica { get; set; }
-        public virtual Contenedores contenedor { get; set; }
         public virtual Identificaciones identificacion { get; set; }
         public virtual Novedades novedad { get; set; }
         public virtual Presentaciones presentacion { get; set; }

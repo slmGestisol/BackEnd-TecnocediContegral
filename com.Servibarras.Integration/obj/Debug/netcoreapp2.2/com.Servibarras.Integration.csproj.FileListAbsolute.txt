@@ -67,5 +67,6 @@ C:\Users\SebastiánLopezMazo\Desktop\GESTISOL\PROYECTOS\CONTEGRAL\BackEnd\TecnoC
 C:\Users\SebastiánLopezMazo\Desktop\GESTISOL\PROYECTOS\CONTEGRAL\BackEnd\TecnoCEDI Services API Controller\com.Servibarras.Integration\obj\Debug\netcoreapp2.2\com.Servibarras.Integration.AssemblyInfoInputs.cache
 C:\Users\SebastiánLopezMazo\Desktop\GESTISOL\PROYECTOS\CONTEGRAL\BackEnd\TecnoCEDI Services API Controller\com.Servibarras.Integration\obj\Debug\netcoreapp2.2\com.Servibarras.Integration.AssemblyInfo.cs
 C:\Users\SebastiánLopezMazo\Desktop\GESTISOL\PROYECTOS\CONTEGRAL\BackEnd\TecnoCEDI Services API Controller\com.Servibarras.Integration\obj\Debug\netcoreapp2.2\com.Servibarras.Integration.csproj.CoreCompileInputs.cache
+C:\Users\SebastiánLopezMazo\Desktop\GESTISOL\PROYECTOS\CONTEGRAL\BackEnd\TecnoCEDI Services API Controller\com.Servibarras.Integration\obj\Debug\netcoreapp2.2\com.Servibarras.Integration.sourcelink.json
 C:\Users\SebastiánLopezMazo\Desktop\GESTISOL\PROYECTOS\CONTEGRAL\BackEnd\TecnoCEDI Services API Controller\com.Servibarras.Integration\obj\Debug\netcoreapp2.2\com.Servibarras.Integration.dll
 C:\Users\SebastiánLopezMazo\Desktop\GESTISOL\PROYECTOS\CONTEGRAL\BackEnd\TecnoCEDI Services API Controller\com.Servibarras.Integration\obj\Debug\netcoreapp2.2\com.Servibarras.Integration.pdb

@@ -21,12 +21,31 @@ namespace com.ServiBarras.WebAPI.Controllers.Saldos
         }
 
         // GET: api/getSaldoDetalleByUbicacionId
-        [Route("api/getSaldoDetalleByUbicacionId/{ubicacionId}/{contenedorId}")]
+        [Route("api/getSaldoDetalleByUbicacionId/{ubicacionId}")]
         [HttpGet]
-        public JsonResult GetSaldoDetalleByUbicacionId(long ubicacionId, long contenedorId)
+        public JsonResult GetSaldoDetalleByUbicacionId(long ubicacionId)
         {
             DataSet result = new DataSet();
-            result = this._saldoBL.GetSaldoDetalleByUbicacionId(ubicacionId,  contenedorId);
+            result = this._saldoBL.GetSaldoDetalleByUbicacionId(ubicacionId);
+            JsonResult json = new JsonResult(result);
+            if (json.Value == null)
+            {
+                json.StatusCode = 500;
+                json.Value = "Error al consumir el servicio, revise el log de eventos en la carpeta (C:\\EventLogTecnoCEDI\\Utils\\)";
+            }
+            else
+                json.StatusCode = 200;
+
+            return json;
+        }
+
+        // GET: api/getSaldoDetalleByUbicacionId
+        [Route("api/GetSaldoDetalleByUbicacionUbicacionCodigo/{ubicacionId}/{ubicacionCodigo}")]
+        [HttpGet]
+        public JsonResult GetSaldoDetalleByUbicacionUbicacionCodigo(long ubicacionId, string ubicacionCodigo)
+        {
+            DataSet result = new DataSet();
+            result = this._saldoBL.GetSaldoDetalleByUbicacionUbicacionCodigo(ubicacionId, ubicacionCodigo);
             JsonResult json = new JsonResult(result);
             if (json.Value == null)
             {
@@ -199,13 +218,13 @@ namespace com.ServiBarras.WebAPI.Controllers.Saldos
 
 
 
-        [Route("api/setReubicacionSaldoParcial")]
+        [Route("api/setReubicacionSaldoParcial/{proceso}")]
         [HttpPost]
-        public JsonResult setReubicacionSaldoParcial([FromBody] JArray parametrosReubicacionParcial)
+        public JsonResult setReubicacionSaldoParcial(string proceso,[FromBody] JArray parametrosReubicacionParcial)
         {
 
             DataSet result = new DataSet();
-            result = this._saldoBL.setReubicacionSaldoParcial(parametrosReubicacionParcial);
+            result = this._saldoBL.setReubicacionSaldoParcial(proceso,parametrosReubicacionParcial);
             if (result == null)
             {
                 result = new DataSet();

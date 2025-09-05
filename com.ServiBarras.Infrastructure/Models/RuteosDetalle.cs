@@ -33,6 +33,7 @@ namespace com.ServiBarras.Infrastructure.Models
         public long? ubicacionBahiaId { get; set; }
         public long? usuarioId { get; set; }
         public DateTime? ruteoDetalleFechaCierreRuteo { get; set; }
+        public string origenLinea { get; set; }
 
         public virtual BodegasLogicas bodegaLogica { get; set; }
         public virtual Coordenadas contenedor { get; set; }

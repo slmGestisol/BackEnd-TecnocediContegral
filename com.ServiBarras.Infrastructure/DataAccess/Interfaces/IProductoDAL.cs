@@ -12,6 +12,7 @@ namespace com.ServiBarras.Infrastructure.DataAccess.Interfaces
         void DeleteProducto(long productoId);
         Task<Productos> GetProductoAsync(long productoId);
         DataSet GetProductosAsync();
+        DataSet getproductosByCodigo(string productoCodigo);
         bool ProductoExists(long productoId);
         Task UpdateProductoAsync(long productoId, Productos producto);
 

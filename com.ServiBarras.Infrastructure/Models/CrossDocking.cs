@@ -12,6 +12,6 @@ namespace com.ServiBarras.Infrastructure.Models
         public decimal? cantidadSolicitada { get; set; }
         public decimal? cantidadPreparada { get; set; }
         public decimal? cantidadRestante { get; set; }
-        public byte? estado { get; set; }
+        public int estado { get; set; }
     }
 }

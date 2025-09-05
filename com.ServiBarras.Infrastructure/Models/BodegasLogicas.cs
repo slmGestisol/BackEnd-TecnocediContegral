@@ -7,6 +7,7 @@ namespace com.ServiBarras.Infrastructure.Models
     {
         public BodegasLogicas()
         {
+            ARC_SaldosDetalle = new HashSet<ARC_SaldosDetalle>();
             DocumentosbodegaLogica = new HashSet<Documentos>();
             DocumentosbodegaLogicaCombo = new HashSet<Documentos>();
             Estaciones = new HashSet<Estaciones>();
@@ -29,6 +30,7 @@ namespace com.ServiBarras.Infrastructure.Models
         public string bodegaLogicaDescripcion { get; set; }
 
         public virtual BodegasERP bodegaErp { get; set; }
+        public virtual ICollection<ARC_SaldosDetalle> ARC_SaldosDetalle { get; set; }
         public virtual ICollection<Documentos> DocumentosbodegaLogica { get; set; }
         public virtual ICollection<Documentos> DocumentosbodegaLogicaCombo { get; set; }
         public virtual ICollection<Estaciones> Estaciones { get; set; }

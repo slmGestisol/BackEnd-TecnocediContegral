@@ -6,7 +6,8 @@ namespace com.ServiBarras.Infrastructure.DataAccess.Interfaces
 {
     public interface ISaldoDAL
     {
-        DataSet GetSaldoDetalleByUbicacionId(long ubicacionId, long contenedorId);
+        DataSet GetSaldoDetalleByUbicacionId(long ubicacionId);
+        DataSet GetSaldoDetalleByUbicacionUbicacionCodigo(long ubicacionId, string ubicacionCodigo);
         DataSet SetSaldoReubicacion(SaldoReubicacionDTO saldoReubicacionAux);
         DataSet ValidarSaldoCargaUsuario(long usuarioId);
         DataSet GetUbicacionesProductoSugerida(UbicacionProductoDTO ubicacionProductoDTO);
@@ -15,7 +16,7 @@ namespace com.ServiBarras.Infrastructure.DataAccess.Interfaces
         DataSet SetDescargaSaldoParcial(DescargaSaldoDTO saldoAux);
         DataSet ValidarSaldoUsuarioReubicacionBarcode(long usuarioId);
         DataSet SetSaldoReubicacionBarcode(SaldoReubicacionDTO saldoReubicacionAux);
-        DataSet setReubicacionSaldoParcial(SaldoReubicacionParcialDTO parametrosReubicacionParcial);
+        DataSet setReubicacionSaldoParcial(string proceso, List<SaldoReubicacionParcialDTO> parametrosReubicacionParcial);
         DataSet setDescomprometerUbicacion(SaldoDescomprometerUbicacionDTO saldoDescomprometerUbicacion);
         DataSet setReubicarEstiba(ReubicacionEstibaDTO reubicacionEstibaDTO);
         DataSet setLimpiarEstiba(LimpiarEstibaDTO limpiarEstibaDTO);

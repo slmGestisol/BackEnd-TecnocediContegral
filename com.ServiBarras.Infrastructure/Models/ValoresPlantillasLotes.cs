@@ -7,6 +7,7 @@ namespace com.ServiBarras.Infrastructure.Models
     {
         public ValoresPlantillasLotes()
         {
+            ARC_SaldosDetalle = new HashSet<ARC_SaldosDetalle>();
             SaldosDetalle = new HashSet<SaldosDetalle>();
         }
 
@@ -20,6 +21,7 @@ namespace com.ServiBarras.Infrastructure.Models
         public DateTime? FechaAjuste { get; set; }
 
         public virtual Productos producto { get; set; }
+        public virtual ICollection<ARC_SaldosDetalle> ARC_SaldosDetalle { get; set; }
         public virtual ICollection<SaldosDetalle> SaldosDetalle { get; set; }
     }
 }

@@ -47,11 +47,12 @@ namespace com.ServiBarras.WebAPI.Controllers.Ubicacion
 
 
         [Route("api/GetCodigoUbicacionByUsuarioId/{usuarioId}")]
+        [Route("api/GetCodigoUbicacionByUsuarioId/{usuarioId}/{isExportacion}")]
         [HttpGet]
-        public JsonResult GetCodigoUbicacionByUsuarioId(long usuarioId)
+        public JsonResult GetCodigoUbicacionByUsuarioId(long usuarioId,int isExportacion = 0)
         {
             DataSet result = new DataSet();
-            result = this._ubicacionBL.GetCodigoUbicacionByUsuarioId(usuarioId);
+            result = this._ubicacionBL.GetCodigoUbicacionByUsuarioId(usuarioId, isExportacion);
             JsonResult json = new JsonResult(result);
             if (json.Value == null)
             {
@@ -66,11 +67,12 @@ namespace com.ServiBarras.WebAPI.Controllers.Ubicacion
 
 
         [Route("api/GetCodigoReubicacionByUsuarioId/{usuarioId}")]
+        [Route("api/GetCodigoReubicacionByUsuarioId/{usuarioId}/{isExportacion}")]
         [HttpGet]
-        public JsonResult GetCodigoReubicacionByUsuarioId(long usuarioId)
+        public JsonResult GetCodigoReubicacionByUsuarioId(long usuarioId, int isExportacion = 0)
         {
             DataSet result = new DataSet();
-            result = this._ubicacionBL.GetCodigoReubicacionByUsuarioId(usuarioId);
+            result = this._ubicacionBL.GetCodigoReubicacionByUsuarioId(usuarioId, isExportacion);
             JsonResult json = new JsonResult(result);
             if (json.Value == null)
             {
@@ -168,12 +170,12 @@ namespace com.ServiBarras.WebAPI.Controllers.Ubicacion
             return json;
         }
 
-        [Route("api/getUbicacionByUbicacionCodigo/{ubicacionCodigo}")]
+        [Route("api/getUbicacionByUbicacionCodigo/{ubicacionCodigo}/{instalacionId}")]
         [HttpGet]
-        public JsonResult GetUbicacionByUbicacionCodigo(string ubicacionCodigo)
+        public JsonResult GetUbicacionByUbicacionCodigo(string ubicacionCodigo,long instalacionId)
         {
             DataSet result = new DataSet();
-            result = this._ubicacionBL.GetUbicacionByUbicacionCodigo(ubicacionCodigo);
+            result = this._ubicacionBL.GetUbicacionByUbicacionCodigo(ubicacionCodigo,instalacionId);
             JsonResult json = new JsonResult(result);
             if (json.Value == null)
             {
@@ -224,12 +226,12 @@ namespace com.ServiBarras.WebAPI.Controllers.Ubicacion
         }
 
 
-        [Route("api/getUbicacionByUbicacionCodigoBarcode/{ubicacionCodigo}")]
+        [Route("api/getUbicacionByUbicacionCodigoBarcode/{ubicacionCodigo}/{proceso}/{instalacionId}/{usuarioId}")]
         [HttpGet]
-        public JsonResult GetUbicacionByUbicacionCodigoBarcode(string ubicacionCodigo)
+        public JsonResult GetUbicacionByUbicacionCodigoBarcode(string ubicacionCodigo, string proceso,long instalacionId, long usuarioId)
         {
             DataSet result = new DataSet();
-            result = this._ubicacionBL.GetUbicacionByUbicacionCodigoBarcode(ubicacionCodigo);
+            result = this._ubicacionBL.GetUbicacionByUbicacionCodigoBarcode(ubicacionCodigo, proceso, instalacionId, usuarioId);
             JsonResult json = new JsonResult(result);
             if (json.Value == null)
             {

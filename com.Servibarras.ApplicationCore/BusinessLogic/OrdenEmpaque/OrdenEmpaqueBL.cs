@@ -61,6 +61,13 @@ namespace com.Servibarras.ApplicationCore.BusinessLogic
             return this._ordenEmpaqueDAL.OrdenEmpaqueContenedorUbicacion(ordenEmpaqueAux);
         }
 
+        public DataSet SetSiesaPlanoInventarioRecepcion(JObject parametrosOrdenEmpaque)
+        {
+            var ordenEmpaqueAux = JsonConvert.DeserializeObject<OrdenEmpaqueDTO>(parametrosOrdenEmpaque.ToString());
+            return this._ordenEmpaqueDAL.SetSiesaPlanoInventarioRecepcion(ordenEmpaqueAux);
+        }
+        
+
         public DataSet SetSiesaPlanoInventario(JObject parametrosOrden)
         {
             var ordenAux = JsonConvert.DeserializeObject<OrdenEmpaqueDTO>(parametrosOrden.ToString());
@@ -109,10 +116,10 @@ namespace com.Servibarras.ApplicationCore.BusinessLogic
             return this._ordenEmpaqueDAL.setEstacionLoteCambiarEstado(ordenAux);
 
         }
-        public DataSet setCerrarEstibaRecepcion(JObject parametrosCerrarRecepcion)
+        public DataSet setRecepcion(JObject parametrosCerrarRecepcion)
         {
             var ordenAux = JsonConvert.DeserializeObject<cerrarRecpcecionDTO>(parametrosCerrarRecepcion.ToString());
-            return this._ordenEmpaqueDAL.setCerrarEstibaRecepcion(ordenAux);
+            return this._ordenEmpaqueDAL.setRecepcion(ordenAux);
 
         }
         public DataSet getOrdenesExternas(string documento)
@@ -158,10 +165,21 @@ namespace com.Servibarras.ApplicationCore.BusinessLogic
 
         }
 
+        public DataSet setEstadosAddBarcodeOrdenEmpaqueById(JObject parametros)
+        {
+            var parametroAUX = JsonConvert.DeserializeObject<ordenEmpaqueAddBarcodeDTO>(parametros.ToString());
+            return this._ordenEmpaqueDAL.setEstadosAddBarcodeOrdenEmpaqueById(parametroAUX);
+
+        }
+
         public DataSet getPromocionesOrdenesEmpaque()
         {
             return this._ordenEmpaqueDAL.getPromocionesOrdenesEmpaque();
         }
-
+        public DataSet getValidarDocExternoOrdenEmpaque(string doc)
+        {
+            return this._ordenEmpaqueDAL.getValidarDocExternoOrdenEmpaque(doc);
+        }
+        
     }
 }

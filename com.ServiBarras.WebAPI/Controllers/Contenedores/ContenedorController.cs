@@ -116,6 +116,25 @@ namespace com.ServiBarras.WebAPI.Controllers.Contenedores
 
         }
 
+        [Route("api/getContenedoresAsociadosByContenedorCodigo/{contenedorCodigo}")]
+        [HttpGet]
+        public JsonResult GetContenedoresAsociadosByContenedorCodigo(string contenedorCodigo)
+        {
+
+            DataSet result = new DataSet();
+            result = this._contenedorBL.GetContenedoresAsociadosByContenedorCodigo(contenedorCodigo);
+            JsonResult json = new JsonResult(result);
+            if (json.Value == null)
+            {
+                json.StatusCode = 500;
+                json.Value = "Error al consumir el servicio, revise el log de eventos en la carpeta (C:\\EventLogTecnoCEDI\\Utils\\)";
+            }
+            else
+                json.StatusCode = 200;
+
+            return json;
+
+        }
 
 
     }

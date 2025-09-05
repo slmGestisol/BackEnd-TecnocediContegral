@@ -12,7 +12,8 @@ namespace com.Servibarras.ApplicationCore.BusinessLogic.Interfaces
         Task AddProducto(JObject productoJson);
         void DeleteProducto(long productoId);
         Task<Productos> GetProductoAsync(long productoId);
-        DataSet  GetProductosAsync();
+        DataSet GetProductosAsync();
+        DataSet getproductosByCodigo(string productoCodigo);
         bool ProductoExists(long productoId);
 
         Task<List<DetalleProducto>> GetDetalleProductosAsync();

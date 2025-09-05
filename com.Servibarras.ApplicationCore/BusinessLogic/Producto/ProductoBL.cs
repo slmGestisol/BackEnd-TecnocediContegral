@@ -28,6 +28,16 @@ namespace com.Servibarras.ApplicationCore.BusinessLogic
         {
             return  this._productoDAL.GetProductosAsync();
         }
+
+        /// <summary>
+        ///  Método que consulta los productos existente
+        /// </summary>
+        /// <returns></returns>
+        public DataSet getproductosByCodigo(string productoCodigo)
+        {
+            return this._productoDAL.getproductosByCodigo(productoCodigo);
+        }
+
         /// <summary>
         /// Método que consulta los productos existente por productoId
         /// </summary>

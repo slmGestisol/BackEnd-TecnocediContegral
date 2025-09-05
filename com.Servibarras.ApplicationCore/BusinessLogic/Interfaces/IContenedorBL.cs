@@ -17,5 +17,6 @@ namespace com.Servibarras.ApplicationCore.BusinessLogic.Interfaces
         DataSet GetValidarContenedorByUbicacion(JObject parametrosContenedor);
         DataSet GetContenedoresByContenedorCodigoBarcode(string contenedorCodigo);
         DataSet GetValidarContenedorExterno(JObject parametrosContenedor);
+        DataSet GetContenedoresAsociadosByContenedorCodigo(string contenedorCodigo);
     }
 }

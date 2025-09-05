@@ -17,5 +17,7 @@ namespace com.ServiBarras.Infrastructure.DataAccess.Interfaces
         DataSet GetValidarContenedorByUbicacion(ContenedorUbicacionParcialDTO contenedor);
         DataSet GetContenedoresByContenedorCodigoBarcode(string contenedorCodigo);
         DataSet GetValidarContenedorExterno(ContenedorUbicacionParcialDTO contenedorAux);
+        DataSet GetContenedoresAsociadosByContenedorCodigo(string contenedorCodigo);
+
     }
 }

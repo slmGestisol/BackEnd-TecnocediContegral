@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>com.Servibarras.ApplicationCore</id>
+    <version>1.0.0</version>
+    <authors>com.Servibarras.ApplicationCore</authors>
+    <description>Package Description</description>
+    <repository type="git" commit="80fb30c97b96404b7756f98f888035b6174d9ae5" />
+    <dependencies>
+      <group targetFramework=".NETCoreApp2.2">
+        <dependency id="com.ServiBarras.Infrastructure" version="1.0.0" exclude="Build,Analyzers" />
+        <dependency id="com.ServiBarras.Shared" version="1.0.0" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.AspNetCore.Mvc.Formatters.Json" version="2.2.0" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.EntityFrameworkCore" version="2.2.6" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.EntityFrameworkCore.SqlServer" version="2.2.6" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.EntityFrameworkCore.SqlServer.Design" version="1.1.6" exclude="Build,Analyzers" />
+        <dependency id="Newtonsoft.Json" version="12.0.2" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="C:\Users\SebastiánLopezMazo\Desktop\GESTISOL\PROYECTOS\CONTEGRAL\BackEnd\TecnoCEDI Services API Controller\com.Servibarras.ApplicationCore\bin\Debug\netcoreapp2.2\com.Servibarras.ApplicationCore.dll" target="lib\netcoreapp2.2\com.Servibarras.ApplicationCore.dll" />
+  </files>
+</package>

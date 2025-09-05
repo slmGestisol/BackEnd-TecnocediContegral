@@ -26,7 +26,7 @@ namespace com.ServiBarras.Infrastructure.DataAccess
         }
 
 
-        public DataSet GetSaldoDetalleByUbicacionId(long ubicacionId,long contenedorId)
+        public DataSet GetSaldoDetalleByUbicacionId(long ubicacionId)
         {
             var dataSet = new DataSet();
             using (var connection = new SqlConnection(dbcontext.Database.GetDbConnection().ConnectionString))
@@ -38,7 +38,41 @@ namespace com.ServiBarras.Infrastructure.DataAccess
                     {
                         command.CommandType = System.Data.CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@ubicacionId", ubicacionId);
-                        command.Parameters.AddWithValue("@contenedorId", contenedorId);
+
+                        command.CommandTimeout = 0;
+                        var adapter = new SqlDataAdapter(command);
+                        adapter.Fill(dataSet);
+                    }
+                    return dataSet;
+                }
+                catch (System.Exception ex)
+                {
+                    LogEvent log = new LogEvent();
+                    log.LogWrite(ex.Message);
+
+                    return null;
+                }
+
+                finally
+                {
+                    connection.Close();
+                }
+            }
+        }
+
+        public DataSet GetSaldoDetalleByUbicacionUbicacionCodigo(long ubicacionId, string ubicacionCodigo)
+        {
+            var dataSet = new DataSet();
+            using (var connection = new SqlConnection(dbcontext.Database.GetDbConnection().ConnectionString))
+            {
+                connection.Open();
+                try
+                {
+                    using (var command = new SqlCommand("[dbo].[SP_GET_SaldoDetalleByUbicacionCodigo]", connection))
+                    {
+                        command.CommandType = System.Data.CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@ubicacionId", ubicacionId);
+                        command.Parameters.AddWithValue("@ubicacionCodigo", ubicacionCodigo);
 
                         command.CommandTimeout = 0;
                         var adapter = new SqlDataAdapter(command);
@@ -134,26 +168,31 @@ namespace com.ServiBarras.Infrastructure.DataAccess
         }
 
 
-        public DataSet setReubicacionSaldoParcial(SaldoReubicacionParcialDTO SaldoReubicacionParcialDTO)
+        public DataSet setReubicacionSaldoParcial(string proceso,List<SaldoReubicacionParcialDTO> SaldoReubicacionParcialDTO)
         {
             var dataSet = new DataSet();
             using (var connection = new SqlConnection(dbcontext.Database.GetDbConnection().ConnectionString))
             {
                 connection.Open();
+
                 try
                 {
+                    DataTable dataInsert = ConverterObject.CreateDataTable(SaldoReubicacionParcialDTO);
+                    SqlObjectData sqlObjectData = new SqlObjectData();
+                    sqlObjectData.BulkInsertDataTable("[dbo].[contenedoresReubicacionaParcial]", dataInsert, dbcontext.Database.GetDbConnection().ConnectionString);
+                    dbcontext.SaveChanges();
+
                     using (var command = new SqlCommand("[dbo].[sp_SET_ReubicacionParcial]", connection))
                     {
                         command.CommandType = System.Data.CommandType.StoredProcedure;
-                        command.Parameters.AddWithValue("@UsuarioId", SaldoReubicacionParcialDTO.usuarioId);
-                        command.Parameters.AddWithValue("@ContenedorId", SaldoReubicacionParcialDTO.contenedorId);
-                        command.Parameters.AddWithValue("@ubicacionId", SaldoReubicacionParcialDTO.ubicacionId);
-                        command.Parameters.AddWithValue("@tipoMovimiento", SaldoReubicacionParcialDTO.tipoMovimiento);
+                        command.Parameters.AddWithValue("@uniqueProcessId", SaldoReubicacionParcialDTO[0].uniqueProcessId);
+                        command.Parameters.AddWithValue("@proceso",proceso);
                         command.CommandTimeout = 0;
                         var adapter = new SqlDataAdapter(command);
                         adapter.Fill(dataSet);
                     }
                     return dataSet;
+
                 }
                 catch (System.Exception ex)
                 {
@@ -353,6 +392,8 @@ namespace com.ServiBarras.Infrastructure.DataAccess
                         command.Parameters.AddWithValue("@tipoMovimientoSaldo", saldoReubicacionAux.tipoMovimientoSaldo);
                         command.Parameters.AddWithValue("@sugeridoPosicionSeleccionada", saldoReubicacionAux.sugeridoPosicionSeleccionada);
                         command.Parameters.AddWithValue("@contenedorId", saldoReubicacionAux.contenedorId);
+                        command.Parameters.AddWithValue("@checkExportacion", saldoReubicacionAux.isExportacion);
+
 
                         command.CommandTimeout = 0;
                         var adapter = new SqlDataAdapter(command);
@@ -424,6 +465,7 @@ namespace com.ServiBarras.Infrastructure.DataAccess
                         command.Parameters.AddWithValue("@presentacionId", ubicacionProductoDTO.presentacionId);
                         command.Parameters.AddWithValue("@FechaSaldo", ubicacionProductoDTO.FechaSaldo);
                         command.Parameters.AddWithValue("@usuarioId", ubicacionProductoDTO.usuarioId);
+                        command.Parameters.AddWithValue("@checkExportacion", ubicacionProductoDTO.isExportacion);
 
                         command.CommandTimeout = 0;
                         var adapter = new SqlDataAdapter(command);
@@ -465,6 +507,7 @@ namespace com.ServiBarras.Infrastructure.DataAccess
                         command.Parameters.AddWithValue("@novedadAccionId", saldoReubicacionAux.novedadAccionId);
                         command.Parameters.AddWithValue("@usuarioId", saldoReubicacionAux.usuarioId);
                         command.Parameters.AddWithValue("@tipoMovimientoSaldo", saldoReubicacionAux.tipoMovimientoSaldo);
+                        command.Parameters.AddWithValue("@proceso", saldoReubicacionAux.proceso);
                         command.Parameters.AddWithValue("@sugeridoPosicionSeleccionada", saldoReubicacionAux.sugeridoPosicionSeleccionada);
 
                         command.CommandTimeout = 0;

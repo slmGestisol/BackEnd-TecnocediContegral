@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Numerics;
 using System.Threading.Tasks;
 using com.ServiBarras.Infrastructure.DataAccess.Interfaces;
 using com.ServiBarras.Infrastructure.Models;
@@ -33,7 +34,7 @@ namespace com.ServiBarras.Infrastructure.DataAccess
             return await dbcontext.Ruteos.Where(x => x.ruteoPedidoEstado == 0).ToListAsync();
         }
 
-        public DataSet GetRuteosByInstalacionIdAsync(long instalacionId)
+        public DataSet GetRuteosByInstalacionIdAsync(long instalacionId, long isExportacion)
         {
 
             var dataSet = new DataSet();
@@ -48,6 +49,7 @@ namespace com.ServiBarras.Infrastructure.DataAccess
 
                         command.CommandType = System.Data.CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@instalacionId", instalacionId);
+                        command.Parameters.AddWithValue("@isExportacion", isExportacion);
                         command.CommandTimeout = 0;
                         var adapter = new SqlDataAdapter(command);
                         adapter.Fill(dataSet);
@@ -498,7 +500,7 @@ namespace com.ServiBarras.Infrastructure.DataAccess
             }
         }
 
-        public DataSet SP_Add_Ruteo(long preRuteoId, long usuarioId)
+        public DataSet SP_Add_Ruteo(long preRuteoId, long usuarioId,string placa)
         {
             var dataSet = new DataSet();
             using (var connection = new SqlConnection(dbcontext.Database.GetDbConnection().ConnectionString))
@@ -511,6 +513,8 @@ namespace com.ServiBarras.Infrastructure.DataAccess
                         command.CommandType = System.Data.CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@preRuteoId", preRuteoId);
                         command.Parameters.AddWithValue("@usuarioId", usuarioId);
+                        command.Parameters.AddWithValue("@placaVehiculo", placa);
+
                         command.CommandTimeout = 0;
 
                         var adapter = new SqlDataAdapter(command);
@@ -627,10 +631,6 @@ namespace com.ServiBarras.Infrastructure.DataAccess
 
                         }
                     }
-                }
-                else
-                {
-                    AddRuteosPedidosDetalleEstado(preRuteoId);
                 }
             }
             catch (System.Exception ex)
@@ -783,6 +783,98 @@ namespace com.ServiBarras.Infrastructure.DataAccess
 
             }
 
+        }
+
+        public DataSet SP_Insert_PlacaConfirmaciones(long RuteoId, string placa,long usuarioId,List<confirmacionesPlacaDTO> confirmacionesPlacaDTO)
+        {
+            var dataSet = new DataSet();
+
+            using (var connection = new SqlConnection(dbcontext.Database.GetDbConnection().ConnectionString))
+            {
+                connection.Open();
+                try
+                {
+                    using (var command = new SqlCommand("sp_Set_Insert_PlacaConfirmaciones", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        // Param: RuteoId
+                        command.Parameters.AddWithValue("@RuteoId", RuteoId);
+                        command.Parameters.AddWithValue("@Placa", placa);
+                        command.Parameters.AddWithValue("@UsuarioId ", usuarioId);
+
+                        // Param: Confirmaciones (TVP)
+                        DataTable tvp = new DataTable();
+                        tvp.Columns.Add("Index", typeof(int));
+                        tvp.Columns.Add("Check", typeof(bool));
+
+                        foreach (var item in confirmacionesPlacaDTO)
+                        {
+                            tvp.Rows.Add(item.index, item.check);
+                        }
+
+                        var tvpParam = command.Parameters.AddWithValue("@Confirmaciones", tvp);
+                        tvpParam.SqlDbType = SqlDbType.Structured;
+                        tvpParam.TypeName = "ConfirmacionPlacaType"; // Asegúrate de que este sea el nombre exacto del tipo en SQL Server
+
+                        // Ejecutar
+                        var adapter = new SqlDataAdapter(command);
+                        adapter.Fill(dataSet);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    LogEvent log = new LogEvent();
+                    log.LogWrite($"Error en SP_Insert_PlacaConfirmaciones: {ex.Message}");
+                    return null;
+
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+
+            return dataSet;
+        }
+
+        public string SP_GET_ValidacionPlacaBahia(string placaVehiculo, long bahiaId)
+        {
+            string resultado = string.Empty;
+
+            using (var connection = new SqlConnection(dbcontext.Database.GetDbConnection().ConnectionString))
+            {
+                connection.Open();
+                try
+                {
+                    using (var command = new SqlCommand("sp_GET_ValidacionPlacaBahia", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@placaVehiculo", placaVehiculo);
+                        command.Parameters.AddWithValue("@bahiaId", bahiaId);
+
+                        using (var reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                resultado = reader["resultado"]?.ToString();
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    LogEvent log = new LogEvent();
+                    log.LogWrite($"Error en SP_GET_ValidacionPlacaBahia: {ex.Message}");
+                    resultado = $"Error al validar placa: {ex.Message}";
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+
+            return resultado;
         }
 
     }

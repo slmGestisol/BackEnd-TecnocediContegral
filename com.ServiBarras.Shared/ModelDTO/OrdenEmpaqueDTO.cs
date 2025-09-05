@@ -21,8 +21,7 @@ namespace com.ServiBarras.Shared.ModelDTO
         public long? ordenEmpaqueId { get; set; }
 
         public long? presentacionId { get; set; }
-
-
+        public bool? integrar { get; set; }
     }
 
     public class generarOrdenEmpaqueDTO
@@ -35,9 +34,10 @@ namespace com.ServiBarras.Shared.ModelDTO
         public long? NUnidades { get; set; }
         public long? estacionId { get; set; }
         public string loteCodigo { get; set; }
+        public string placa { get; set; }
         public string tipo { get; set; }
         public string docExterno { get; set; }
-        
+        public string docIntegracion { get; set; }
     }
 
     public class generarOrdenEmpaqueExternaDTO
@@ -74,6 +74,7 @@ namespace com.ServiBarras.Shared.ModelDTO
         public string loteCodigo { get; set; }
         public string LoteFechaVencimiento { get; set; }
         public long usuarioId { get; set; }
+        public long impresoraId { get; set; }
     }
     public class cerrarEstibaRecepcionCalidadDTO
     {
@@ -90,6 +91,15 @@ namespace com.ServiBarras.Shared.ModelDTO
     {
 
         public long promocionId { get; set; }
+        public long ordenEmpaqueId { get; set; }
+        public long usuarioId { get; set; }
+        public Boolean estado { get; set; }
+
+    }
+
+    public class ordenEmpaqueAddBarcodeDTO
+    {
+
         public long ordenEmpaqueId { get; set; }
         public long usuarioId { get; set; }
         public Boolean estado { get; set; }

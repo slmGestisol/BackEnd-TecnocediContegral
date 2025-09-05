@@ -29,6 +29,8 @@ namespace com.ServiBarras.Shared.ModelDTO
         public string tipoMovimientoSaldo { get; set; }
         public int? sugeridoPosicionSeleccionada { get; set; }
         public long? contenedorId { get; set; }
+        public long? isExportacion { get; set; }
+        public string proceso { get; set; }
 
     }
 
@@ -40,10 +42,13 @@ namespace com.ServiBarras.Shared.ModelDTO
 
     public class SaldoReubicacionParcialDTO
     {
+        public int? contenedoresReubicacionaParcialId { get; set; } = 0;
         public int usuarioId { get; set; }
         public long contenedorId { get; set; }
         public long ubicacionId { get; set; }
+        public long novedadId { get; set; }
         public string tipoMovimiento { get; set; }
+        public Guid uniqueProcessId { get; set; }
 
     }
 
@@ -99,8 +104,7 @@ namespace com.ServiBarras.Shared.ModelDTO
         public long? ubicacionId { get; set; }
         public string contenedorCodigo { get; set; }
         public bool estibaCompleta { get; set; }
-
-
+        public long instalacionId { get; set; }
     }
 
     public class ReubicacionEstibaDTO

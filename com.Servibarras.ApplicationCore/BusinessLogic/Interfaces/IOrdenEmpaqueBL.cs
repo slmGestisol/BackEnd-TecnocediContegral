@@ -11,6 +11,7 @@ namespace com.Servibarras.ApplicationCore.BusinessLogic.Interfaces
         DataSet OrdenEmpaqueEliminarContenedor(JObject parametrosOrden);
         DataSet OrdenEmpaqueContenedorByContenedorCodigo(JObject parametrosContenedor);
         DataSet OrdenEmpaqueContenedorUbicacion(JObject parametrosOrdenEmpaque);
+        DataSet SetSiesaPlanoInventarioRecepcion(JObject parametrosOrdenEmpaque);
         DataSet SetSiesaPlanoInventario(JObject parametrosOrden);
         DataSet ValidarOdenEmpaqueSaldoUbicacion(JObject parametrosOrden);
         DataSet getOrdenesEmpaque();
@@ -20,7 +21,7 @@ namespace com.Servibarras.ApplicationCore.BusinessLogic.Interfaces
         DataSet setOrdenEmpaqueFechaLote(JObject parametrosOrden);
         DataSet getEstacionLoteByEstacionId(long estacionId);
         DataSet setEstacionLoteCambiarEstado(JObject parametrosCambioEstado);
-        DataSet setCerrarEstibaRecepcion(JObject parametrosCerrarRecepcion);
+        DataSet setRecepcion(JObject parametrosCerrarRecepcion);
         DataSet getOrdenesExternas(string documento);
         DataSet setGenerarOrdenEmpaqueExterna(JObject parametrosOrden);
         DataSet getValidarLoteExterno(string documento,long productoId,string LoteCodigo);
@@ -29,6 +30,9 @@ namespace com.Servibarras.ApplicationCore.BusinessLogic.Interfaces
         DataSet getTXOrdenEmpaqueById(long ordenEmpaqueId);
         DataSet setImprimirOrdenEmpaqueById(long txOrdenEmpaqueId);
         DataSet setEstadosPromociones(JObject parametros);
+        DataSet setEstadosAddBarcodeOrdenEmpaqueById(JObject parametros);
         DataSet getPromocionesOrdenesEmpaque();
+        DataSet getValidarDocExternoOrdenEmpaque(string documento);
+                
     }
 }

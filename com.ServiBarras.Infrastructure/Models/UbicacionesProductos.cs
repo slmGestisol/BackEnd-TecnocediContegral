@@ -10,7 +10,6 @@ namespace com.ServiBarras.Infrastructure.Models
         public long? productoId { get; set; }
         public int? ubicacionProductoOrden { get; set; }
 
-        public virtual Productos producto { get; set; }
         public virtual Ubicaciones ubicacion { get; set; }
     }
 }

@@ -18,8 +18,9 @@ namespace com.ServiBarras.Shared.ModelDTO
         public long? ruteoDetalleIdAux { get; set; }
         public long? valorProductoLoteIdAux { get; set; }
         public long? ubicacionIdAux { get; set; }
-
         public bool? continuidadActivada { get; set; }
+        public bool? isExportacion { get; set; }
+        
         //public long? productoId { get; set; }
     }
 

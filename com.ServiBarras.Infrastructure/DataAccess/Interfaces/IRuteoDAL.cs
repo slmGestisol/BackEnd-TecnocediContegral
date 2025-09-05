@@ -10,9 +10,9 @@ namespace com.ServiBarras.Infrastructure.DataAccess.Interfaces
     {
         Task<Ruteos> GetRuteoAsync(long ruteoId);
         Task<List<Ruteos>> GetRuteosAsync();
-        DataSet GetRuteosByInstalacionIdAsync(long instalacionId);
+        DataSet GetRuteosByInstalacionIdAsync(long instalacionId, long isExportacion);
         DataSet GetRuteoDetalle(long ruteoId, long? ruteoDetalleId);
-        DataSet SP_Add_Ruteo(long preRuteoId, long usuarioId);
+        DataSet SP_Add_Ruteo(long preRuteoId, long usuarioId,string placa);
         DataSet SP_Add_RuteoDetalle(long ruteoId, long usuarioId);
         void SP_Update_RuteoGrupos(long preRuteoId, List<RuteoGrupoDTO> ruteosGrupos);
         void SP_Update_RuteoPedidosOrdenBahias(long preRuteoId, List<PedidoOrdenBahiaInfoDTO> pedidoOrdenBahiaInfo);
@@ -27,5 +27,8 @@ namespace com.ServiBarras.Infrastructure.DataAccess.Interfaces
 
         DataSet SP_Add_NovedadRuteo(long novedadId, long ruteoId, long ruteoDetalleId, long usuarioId);
         DataSet GetRuteoPedidosInfo(long ruteoId);
+        DataSet SP_Insert_PlacaConfirmaciones(long RuteoId, string placa, long usuarioId, List<confirmacionesPlacaDTO> confirmacionesPlacaDTO);
+        string SP_GET_ValidacionPlacaBahia(string placaVehiculo, long bahiaId);
+
     }
 }

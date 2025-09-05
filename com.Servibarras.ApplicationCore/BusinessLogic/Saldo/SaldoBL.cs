@@ -19,9 +19,14 @@ namespace com.Servibarras.ApplicationCore.BusinessLogic
             this._saldoDAL = saldoDAL;
         }
 
-        public DataSet GetSaldoDetalleByUbicacionId(long ubicacionId, long contenedorId)
+        public DataSet GetSaldoDetalleByUbicacionId(long ubicacionId)
         {
-            return this._saldoDAL.GetSaldoDetalleByUbicacionId(ubicacionId, contenedorId);
+            return this._saldoDAL.GetSaldoDetalleByUbicacionId(ubicacionId);
+        }
+
+        public DataSet GetSaldoDetalleByUbicacionUbicacionCodigo(long ubicacionId, string ubicacionCodigo)
+        {
+            return this._saldoDAL.GetSaldoDetalleByUbicacionUbicacionCodigo(ubicacionId, ubicacionCodigo);
         }
 
 
@@ -78,14 +83,24 @@ namespace com.Servibarras.ApplicationCore.BusinessLogic
 
         }
 
-        public DataSet setReubicacionSaldoParcial(JArray parametrosReubicacionParcial)
+        //public DataSet setReubicacionSaldoParcial(JArray parametrosReubicacionParcial)
+        //{
+        //    var saldoReubicacionAux = JsonConvert.DeserializeObject<List<SaldoReubicacionParcialDTO>>(parametrosReubicacionParcial.ToString());
+        //    DataSet data = new DataSet();
+        //    foreach(var reubicacion in saldoReubicacionAux)
+        //    {
+        //        data= this._saldoDAL.setReubicacionSaldoParcial(reubicacion);
+        //    }
+        //    return data;
+
+        //}
+
+        public DataSet setReubicacionSaldoParcial(string proceso,JArray parametrosReubicacionParcial)
         {
             var saldoReubicacionAux = JsonConvert.DeserializeObject<List<SaldoReubicacionParcialDTO>>(parametrosReubicacionParcial.ToString());
             DataSet data = new DataSet();
-            foreach(var reubicacion in saldoReubicacionAux)
-            {
-                data= this._saldoDAL.setReubicacionSaldoParcial(reubicacion);
-            }
+            data = this._saldoDAL.setReubicacionSaldoParcial(proceso,saldoReubicacionAux);
+            
             return data;
 
         }

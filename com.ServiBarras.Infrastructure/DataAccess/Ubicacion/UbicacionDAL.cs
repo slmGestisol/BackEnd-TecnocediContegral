@@ -57,7 +57,7 @@ namespace com.ServiBarras.Infrastructure.DataAccess
             }
         }
 
-        public DataSet GetCodigoReubicacionByUsuarioId(long usuarioId)
+        public DataSet GetCodigoReubicacionByUsuarioId(long usuarioId,int isExportacion)
         {
             var dataSet = new DataSet();
             using (var connection = new SqlConnection(dbcontext.Database.GetDbConnection().ConnectionString))
@@ -69,6 +69,7 @@ namespace com.ServiBarras.Infrastructure.DataAccess
                     {
                         command.CommandType = System.Data.CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@usuarioId", usuarioId);
+                        command.Parameters.AddWithValue("@checkExportacion", isExportacion);
                         command.CommandTimeout = 0;
                         var adapter = new SqlDataAdapter(command);
                         adapter.Fill(dataSet);
@@ -133,6 +134,7 @@ namespace com.ServiBarras.Infrastructure.DataAccess
                         command.CommandType = System.Data.CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@bahiaPadreId", ubicacionContingenciaDTO.bahiaPadreId);
                         command.Parameters.AddWithValue("@esDespacho", ubicacionContingenciaDTO.esDespacho);
+                        command.Parameters.AddWithValue("@instalacionId", ubicacionContingenciaDTO.instalacionId);
                         command.CommandTimeout = 0;
                         var adapter = new SqlDataAdapter(command);
                         adapter.Fill(dataSet);
@@ -183,7 +185,7 @@ namespace com.ServiBarras.Infrastructure.DataAccess
             }
         }
 
-        public DataSet GetCodigoUbicacionByUsuarioId(long usuarioId)
+        public DataSet GetCodigoUbicacionByUsuarioId(long usuarioId, int isExportacion)
         {
             var dataSet = new DataSet();
             using (var connection = new SqlConnection(dbcontext.Database.GetDbConnection().ConnectionString))
@@ -195,6 +197,7 @@ namespace com.ServiBarras.Infrastructure.DataAccess
                     {
                         command.CommandType = System.Data.CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@usuarioId", usuarioId);
+                        command.Parameters.AddWithValue("@checkExportacion", isExportacion);
                         command.CommandTimeout = 0;
                         var adapter = new SqlDataAdapter(command);
                         adapter.Fill(dataSet);
@@ -215,7 +218,7 @@ namespace com.ServiBarras.Infrastructure.DataAccess
         }
 
 
-        public DataSet GetUbicacionByUbicacionCodigo(string ubicacionCodigo)
+        public DataSet GetUbicacionByUbicacionCodigo(string ubicacionCodigo, long instalacionId)
         {
             var dataSet = new DataSet();
             using (var connection = new SqlConnection(dbcontext.Database.GetDbConnection().ConnectionString))
@@ -227,6 +230,8 @@ namespace com.ServiBarras.Infrastructure.DataAccess
                     {
                         command.CommandType = System.Data.CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@ubicacionCodigo", ubicacionCodigo);
+                        command.Parameters.AddWithValue("@instalacionId", instalacionId);
+
                         command.CommandTimeout = 0;
                         var adapter = new SqlDataAdapter(command);
                         adapter.Fill(dataSet);
@@ -360,7 +365,7 @@ namespace com.ServiBarras.Infrastructure.DataAccess
         }
 
 
-        public DataSet GetUbicacionByUbicacionCodigoBarcode(string ubicacionCodigo)
+        public DataSet GetUbicacionByUbicacionCodigoBarcode(string ubicacionCodigo, string proceso, long instalacionId, long usuarioId)
         {
             var dataSet = new DataSet();
             using (var connection = new SqlConnection(dbcontext.Database.GetDbConnection().ConnectionString))
@@ -372,6 +377,10 @@ namespace com.ServiBarras.Infrastructure.DataAccess
                     {
                         command.CommandType = System.Data.CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@ubicacionCodigo", ubicacionCodigo);
+                        command.Parameters.AddWithValue("@proceso", proceso);
+                        command.Parameters.AddWithValue("@instalacionId", instalacionId);
+                        command.Parameters.AddWithValue("@usuarioId", usuarioId);
+
                         command.CommandTimeout = 0;
                         var adapter = new SqlDataAdapter(command);
                         adapter.Fill(dataSet);

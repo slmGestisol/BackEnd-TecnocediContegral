@@ -51,7 +51,6 @@ C:\Users\SebastiánLopezMazo\Desktop\GESTISOL\PROYECTOS\CONTEGRAL\BackEnd\TecnoC
 C:\Users\SebastiánLopezMazo\Desktop\GESTISOL\PROYECTOS\CONTEGRAL\BackEnd\TecnoCEDI Services API Controller\com.Servibarras.ApplicationCore\obj\Release\netcoreapp2.2\com.Servibarras.ApplicationCore.AssemblyInfoInputs.cache
 C:\Users\SebastiánLopezMazo\Desktop\GESTISOL\PROYECTOS\CONTEGRAL\BackEnd\TecnoCEDI Services API Controller\com.Servibarras.ApplicationCore\obj\Release\netcoreapp2.2\com.Servibarras.ApplicationCore.AssemblyInfo.cs
 C:\Users\SebastiánLopezMazo\Desktop\GESTISOL\PROYECTOS\CONTEGRAL\BackEnd\TecnoCEDI Services API Controller\com.Servibarras.ApplicationCore\obj\Release\netcoreapp2.2\com.Servibarras.ApplicationCore.csproj.CoreCompileInputs.cache
-C:\Users\SebastiánLopezMazo\Desktop\GESTISOL\PROYECTOS\CONTEGRAL\BackEnd\TecnoCEDI Services API Controller\com.Servibarras.ApplicationCore\obj\Release\netcoreapp2.2\com.Servibarras.ApplicationCore.csproj.CopyComplete
 C:\Users\SebastiánLopezMazo\Desktop\GESTISOL\PROYECTOS\CONTEGRAL\BackEnd\TecnoCEDI Services API Controller\com.Servibarras.ApplicationCore\obj\Release\netcoreapp2.2\com.Servibarras.ApplicationCore.dll
 C:\Users\SebastiánLopezMazo\Desktop\GESTISOL\PROYECTOS\CONTEGRAL\BackEnd\TecnoCEDI Services API Controller\com.Servibarras.ApplicationCore\obj\Release\netcoreapp2.2\com.Servibarras.ApplicationCore.pdb
 C:\Users\SebastiánLopezMazo\Desktop\GESTISOL\PROYECTOS\TRAZABILIDAD\BackEnd\TecnoCEDI Services API Controller\com.Servibarras.ApplicationCore\bin\Release\netcoreapp2.2\com.Servibarras.ApplicationCore.deps.json
@@ -69,3 +68,5 @@ C:\Users\SebastiánLopezMazo\Desktop\GESTISOL\PROYECTOS\TRAZABILIDAD\BackEnd\Tec
 C:\Users\SebastiánLopezMazo\Desktop\GESTISOL\PROYECTOS\TRAZABILIDAD\BackEnd\TecnoCEDI Services API Controller\com.Servibarras.ApplicationCore\obj\Release\netcoreapp2.2\com.Servibarras.ApplicationCore.csproj.CopyComplete
 C:\Users\SebastiánLopezMazo\Desktop\GESTISOL\PROYECTOS\TRAZABILIDAD\BackEnd\TecnoCEDI Services API Controller\com.Servibarras.ApplicationCore\obj\Release\netcoreapp2.2\com.Servibarras.ApplicationCore.dll
 C:\Users\SebastiánLopezMazo\Desktop\GESTISOL\PROYECTOS\TRAZABILIDAD\BackEnd\TecnoCEDI Services API Controller\com.Servibarras.ApplicationCore\obj\Release\netcoreapp2.2\com.Servibarras.ApplicationCore.pdb
+C:\Users\SebastiánLopezMazo\Desktop\GESTISOL\PROYECTOS\CONTEGRAL\BackEnd\TecnoCEDI Services API Controller\com.Servibarras.ApplicationCore\obj\Release\netcoreapp2.2\com.Servibarras.ApplicationCore.sourcelink.json
+C:\Users\SebastiánLopezMazo\Desktop\GESTISOL\PROYECTOS\CONTEGRAL\BackEnd\TecnoCEDI Services API Controller\com.Servibarras.ApplicationCore\obj\Release\netcoreapp2.2\com.Serv.B49589FB.Up2Date

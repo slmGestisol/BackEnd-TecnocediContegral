@@ -26,6 +26,16 @@ namespace com.ServiBarras.WebAPI.Controllers
             return json;
         }
 
+        // GET: api/Productos
+        [Route("api/getproductosByCodigo/{productoCodigo}")]
+        [HttpGet]
+        public JsonResult getproductosByCodigo(string productoCodigo)
+        {
+            var productos = this._productoBL.getproductosByCodigo(productoCodigo);
+            JsonResult json = new JsonResult(productos);
+            return json;
+        }
+
         [Route("api/getdetalleproductos")]
         [HttpGet]
         public async Task<JsonResult> GetDetalleProductos()

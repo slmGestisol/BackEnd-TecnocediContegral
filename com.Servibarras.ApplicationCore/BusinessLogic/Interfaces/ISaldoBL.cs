@@ -5,7 +5,8 @@ namespace com.Servibarras.ApplicationCore.BusinessLogic.Interfaces
 {
     public interface ISaldoBL
     {
-        DataSet GetSaldoDetalleByUbicacionId(long ubicacionId,long contenedorId);
+        DataSet GetSaldoDetalleByUbicacionId(long ubicacionId);
+        DataSet GetSaldoDetalleByUbicacionUbicacionCodigo(long ubicacionId, string ubicacionCodigo);
         DataSet SetSaldoReubicacion(JObject reubicacionJson);
         DataSet ValidarSaldoCargaUsuario(long usuarioId);
         DataSet GetUbicacionesProductoSugerida(JObject reubicacionJson);
@@ -14,7 +15,7 @@ namespace com.Servibarras.ApplicationCore.BusinessLogic.Interfaces
         DataSet SetDescargaSaldoParcial(object parametrosaldoParcial);
         DataSet SetSaldoReubicacionBarcode(JObject parametrosReubicacion);
         DataSet ValidarSaldoUsuarioReubicacionBarcode(long usuarioId);
-        DataSet setReubicacionSaldoParcial(JArray parametrosReubicacionParcial);
+        DataSet setReubicacionSaldoParcial(string proceso, JArray parametrosReubicacionParcial);
         DataSet setDescomprometerUbicacion(JObject parametrosDescomprometerUbicacion);
         DataSet setReubicarEstiba(JObject parametrosReubicarEstiba);
         DataSet setLimpiarEstiba(JObject parametrosLimpiarEstiba);

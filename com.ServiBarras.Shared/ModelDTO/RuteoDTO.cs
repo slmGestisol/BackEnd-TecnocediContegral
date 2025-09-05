@@ -12,17 +12,24 @@ namespace com.ServiBarras.Shared.ModelDTO
         [JsonProperty("usuarioId")]
         public long usuarioId { get; set; }
 
+        [JsonProperty("placa")]
+        public string placa { get; set; }
+
         [JsonProperty("pedidosOrdenBahiaInfo")]
         public List<PedidoOrdenBahiaInfoDTO> pedidosOrdenBahiaInfo { get; set; }
 
         [JsonProperty("ruteosGrupos")]
         public List<RuteoGrupoDTO> ruteosGrupos { get; set; }
 
+        [JsonProperty("confirmaciones")]
+        public List<confirmacionesPlacaDTO> confirmacionesPlaca { get; set; }
+
 
         public RuteoDTO()
         {
             pedidosOrdenBahiaInfo = new List<PedidoOrdenBahiaInfoDTO>();
             ruteosGrupos = new List<RuteoGrupoDTO>();
+            confirmacionesPlaca = new List<confirmacionesPlacaDTO>();
         }
     }
 
@@ -48,6 +55,16 @@ namespace com.ServiBarras.Shared.ModelDTO
 
         [JsonProperty("rutaId")]
         public long rutaId { get; set; }
+    }
+
+    public class confirmacionesPlacaDTO
+    {
+        [JsonProperty("index")]
+        public long index { get; set; }
+
+        [JsonProperty("checked")]
+        public bool check { get; set; }
+
     }
 
     public class NovedadRuteoDTO

@@ -18,7 +18,6 @@ namespace com.ServiBarras.Infrastructure.Models
             ProductosContenedores = new HashSet<ProductosContenedores>();
             ProductosLotes = new HashSet<ProductosLotes>();
             Reglas = new HashSet<Reglas>();
-            UbicacionesProductos = new HashSet<UbicacionesProductos>();
             ValoresPlantillasLotes = new HashSet<ValoresPlantillasLotes>();
         }
 
@@ -52,7 +51,6 @@ namespace com.ServiBarras.Infrastructure.Models
         public virtual ICollection<ProductosContenedores> ProductosContenedores { get; set; }
         public virtual ICollection<ProductosLotes> ProductosLotes { get; set; }
         public virtual ICollection<Reglas> Reglas { get; set; }
-        public virtual ICollection<UbicacionesProductos> UbicacionesProductos { get; set; }
         public virtual ICollection<ValoresPlantillasLotes> ValoresPlantillasLotes { get; set; }
     }
 }

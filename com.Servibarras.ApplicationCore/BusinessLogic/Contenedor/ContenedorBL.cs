@@ -78,5 +78,11 @@ namespace com.Servibarras.ApplicationCore.BusinessLogic
             var contenedorAux = JsonConvert.DeserializeObject<ContenedorUbicacionParcialDTO>(parametrosContenedor.ToString());
             return this._contenedorDAL.GetValidarContenedorExterno(contenedorAux);
         }
+        public DataSet GetContenedoresAsociadosByContenedorCodigo(string contenedorCodigo)
+        {
+            return this._contenedorDAL.GetContenedoresAsociadosByContenedorCodigo(contenedorCodigo);
+        }
+
+        
     }
 }

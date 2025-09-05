@@ -250,6 +250,8 @@ namespace com.ServiBarras.Infrastructure.DataAccess
                         command.Parameters.AddWithValue("@ubicacionId", saldoAux.ubicacionId);
                         command.Parameters.AddWithValue("@contenedorCodigo", saldoAux.contenedorCodigo);
                         command.Parameters.AddWithValue("@estibaCompleta", saldoAux.estibaCompleta);
+                        command.Parameters.AddWithValue("@instalacionId", saldoAux.instalacionId);
+                        
                         command.CommandTimeout = 0;
                         var adapter = new SqlDataAdapter(command);
                         adapter.Fill(dataSet);

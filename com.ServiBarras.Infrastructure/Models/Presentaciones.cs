@@ -7,6 +7,7 @@ namespace com.ServiBarras.Infrastructure.Models
     {
         public Presentaciones()
         {
+            ARC_SaldosDetalle = new HashSet<ARC_SaldosDetalle>();
             DespachosDetalle = new HashSet<DespachosDetalle>();
             Identificaciones = new HashSet<Identificaciones>();
             Inventarios = new HashSet<Inventarios>();
@@ -52,6 +53,7 @@ namespace com.ServiBarras.Infrastructure.Models
         public virtual UnidadesEscalares pesoEscalar { get; set; }
         public virtual Productos producto { get; set; }
         public virtual UnidadesEscalares volumenEscalar { get; set; }
+        public virtual ICollection<ARC_SaldosDetalle> ARC_SaldosDetalle { get; set; }
         public virtual ICollection<DespachosDetalle> DespachosDetalle { get; set; }
         public virtual ICollection<Identificaciones> Identificaciones { get; set; }
         public virtual ICollection<Inventarios> Inventarios { get; set; }

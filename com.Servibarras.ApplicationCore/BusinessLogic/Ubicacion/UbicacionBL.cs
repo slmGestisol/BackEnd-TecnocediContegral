@@ -40,13 +40,13 @@ namespace com.Servibarras.ApplicationCore.BusinessLogic
             var FilterBahiaAux = JsonConvert.DeserializeObject<FilterBahiaDTO>(FilterBahia.ToString());
             return await this._ubicacionDAL.GetUbicacionesByTipoUbicacionAsync(FilterBahiaAux);
         }
-        public DataSet GetCodigoUbicacionByUsuarioId(long usuarioId)
+        public DataSet GetCodigoUbicacionByUsuarioId(long usuarioId,int isExportacion)
         {
-            return this._ubicacionDAL.GetCodigoUbicacionByUsuarioId(usuarioId);
+            return this._ubicacionDAL.GetCodigoUbicacionByUsuarioId(usuarioId,isExportacion);
         }
-        public DataSet GetCodigoReubicacionByUsuarioId(long usuarioId)
+        public DataSet GetCodigoReubicacionByUsuarioId(long usuarioId,int isExportacion)
         {
-            return this._ubicacionDAL.GetCodigoReubicacionByUsuarioId(usuarioId);
+            return this._ubicacionDAL.GetCodigoReubicacionByUsuarioId(usuarioId, isExportacion);
         }
         public string GetCodigoUbicacionPuertaByBahiaId(long bahiaId)
         {
@@ -75,9 +75,9 @@ namespace com.Servibarras.ApplicationCore.BusinessLogic
 
       
 
-        public DataSet GetUbicacionByUbicacionCodigo(string ubicacionCodigo)
+        public DataSet GetUbicacionByUbicacionCodigo(string ubicacionCodigo, long instalacionId)
         {
-            return this._ubicacionDAL.GetUbicacionByUbicacionCodigo(ubicacionCodigo);
+            return this._ubicacionDAL.GetUbicacionByUbicacionCodigo(ubicacionCodigo,instalacionId);
         }
 
         public DataSet GetDespachoParcialUbicaciones(long instalacionId)
@@ -91,9 +91,9 @@ namespace com.Servibarras.ApplicationCore.BusinessLogic
             return this._ubicacionDAL.GetBahiasDisponiblesByBahiaPadre(ubicacionAux);
         }
 
-        public DataSet GetUbicacionByUbicacionCodigoBarcode(string ubicacionCodigo)
+        public DataSet GetUbicacionByUbicacionCodigoBarcode(string ubicacionCodigo, string proceso, long instalacionId, long usuarioId)
         {
-            return this._ubicacionDAL.GetUbicacionByUbicacionCodigoBarcode(ubicacionCodigo);
+            return this._ubicacionDAL.GetUbicacionByUbicacionCodigoBarcode(ubicacionCodigo, proceso, instalacionId,usuarioId);
         }
     }
 }

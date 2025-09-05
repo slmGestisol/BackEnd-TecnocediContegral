@@ -17,12 +17,22 @@ namespace com.ServiBarras.Infrastructure.Models
         {
         }
 
+        public virtual DbSet<ARC_Contenedores> ARC_Contenedores { get; set; }
+        public virtual DbSet<ARC_PickingControl> ARC_PickingControl { get; set; }
+        public virtual DbSet<ARC_Saldos> ARC_Saldos { get; set; }
+        public virtual DbSet<ARC_SaldosDetalle> ARC_SaldosDetalle { get; set; }
+        public virtual DbSet<ARC_TXPacking> ARC_TXPacking { get; set; }
+        public virtual DbSet<ARC_TXPicking> ARC_TXPicking { get; set; }
+        public virtual DbSet<ARC_TxDespacho> ARC_TxDespacho { get; set; }
+        public virtual DbSet<ARC_TxOrdenEmpaque> ARC_TxOrdenEmpaque { get; set; }
+        public virtual DbSet<ARC_TxReubicacion> ARC_TxReubicacion { get; set; }
         public virtual DbSet<AtributosContenedores> AtributosContenedores { get; set; }
         public virtual DbSet<AtributosLotes> AtributosLotes { get; set; }
         public virtual DbSet<AtributosProductos> AtributosProductos { get; set; }
         public virtual DbSet<AtributosPuntosOperaciones> AtributosPuntosOperaciones { get; set; }
         public virtual DbSet<BodegasERP> BodegasERP { get; set; }
         public virtual DbSet<BodegasLogicas> BodegasLogicas { get; set; }
+        public virtual DbSet<CambioSloting> CambioSloting { get; set; }
         public virtual DbSet<CentrosGestion> CentrosGestion { get; set; }
         public virtual DbSet<CentrosOperaciones> CentrosOperaciones { get; set; }
         public virtual DbSet<Ciudades> Ciudades { get; set; }
@@ -31,16 +41,19 @@ namespace com.ServiBarras.Infrastructure.Models
         public virtual DbSet<ClasificacionesPresentaciones> ClasificacionesPresentaciones { get; set; }
         public virtual DbSet<ClasificacionesProductos> ClasificacionesProductos { get; set; }
         public virtual DbSet<Clientes> Clientes { get; set; }
+        public virtual DbSet<Config_Purgas> Config_Purgas { get; set; }
         public virtual DbSet<ConfiguracionVerificacion> ConfiguracionVerificacion { get; set; }
         public virtual DbSet<Contactos> Contactos { get; set; }
         public virtual DbSet<ContactosPuntosOperaciones> ContactosPuntosOperaciones { get; set; }
         public virtual DbSet<Contenedores> Contenedores { get; set; }
+        public virtual DbSet<ContenedoresDespachoParcial> ContenedoresDespachoParcial { get; set; }
         public virtual DbSet<ContenedoresSinSaldo> ContenedoresSinSaldo { get; set; }
         public virtual DbSet<ControlCerrarPuerta> ControlCerrarPuerta { get; set; }
         public virtual DbSet<Coordenadas> Coordenadas { get; set; }
         public virtual DbSet<CriteriosPresentaciones> CriteriosPresentaciones { get; set; }
         public virtual DbSet<CriteriosProductos> CriteriosProductos { get; set; }
         public virtual DbSet<CrossDocking> CrossDocking { get; set; }
+        public virtual DbSet<CrossDockingExcluirRuteo> CrossDockingExcluirRuteo { get; set; }
         public virtual DbSet<Custodios> Custodios { get; set; }
         public virtual DbSet<Despachos> Despachos { get; set; }
         public virtual DbSet<DespachosDetalle> DespachosDetalle { get; set; }
@@ -62,6 +75,7 @@ namespace com.ServiBarras.Infrastructure.Models
         public virtual DbSet<Inventarios> Inventarios { get; set; }
         public virtual DbSet<ListasPuntosOperacion> ListasPuntosOperacion { get; set; }
         public virtual DbSet<Maquinas> Maquinas { get; set; }
+        public virtual DbSet<MaterialEmpaqueDetalleWizard> MaterialEmpaqueDetalleWizard { get; set; }
         public virtual DbSet<Motivos> Motivos { get; set; }
         public virtual DbSet<Novedades> Novedades { get; set; }
         public virtual DbSet<NovedadesAcciones> NovedadesAcciones { get; set; }
@@ -73,10 +87,13 @@ namespace com.ServiBarras.Infrastructure.Models
         public virtual DbSet<PackingDetalle> PackingDetalle { get; set; }
         public virtual DbSet<Paises> Paises { get; set; }
         public virtual DbSet<Pedidos> Pedidos { get; set; }
+        public virtual DbSet<PedidosAgrupados> PedidosAgrupados { get; set; }
         public virtual DbSet<PedidosDetalle> PedidosDetalle { get; set; }
         public virtual DbSet<PedidosPreRuteo> PedidosPreRuteo { get; set; }
         public virtual DbSet<Perifericos> Perifericos { get; set; }
+        public virtual DbSet<Permisos> Permisos { get; set; }
         public virtual DbSet<PickingControl> PickingControl { get; set; }
+        public virtual DbSet<PickingControlParcial> PickingControlParcial { get; set; }
         public virtual DbSet<PlantillasContenedores> PlantillasContenedores { get; set; }
         public virtual DbSet<PlantillasContenedoresAtributos> PlantillasContenedoresAtributos { get; set; }
         public virtual DbSet<PlantillasLotes> PlantillasLotes { get; set; }
@@ -96,13 +113,18 @@ namespace com.ServiBarras.Infrastructure.Models
         public virtual DbSet<ProductosContenedores> ProductosContenedores { get; set; }
         public virtual DbSet<ProductosLotes> ProductosLotes { get; set; }
         public virtual DbSet<ProductosSustituciones> ProductosSustituciones { get; set; }
+        public virtual DbSet<Promociones> Promociones { get; set; }
         public virtual DbSet<PuntosEnvio> PuntosEnvio { get; set; }
         public virtual DbSet<PuntosOperaciones> PuntosOperaciones { get; set; }
-        public virtual DbSet<REVISIONIMPRESION> REVISIONIMPRESION { get; set; }
+        public virtual DbSet<REVISION_CIERRE> REVISION_CIERRE { get; set; }
         public virtual DbSet<RFIDTag> RFIDTag { get; set; }
+        public virtual DbSet<RecetaRef99DetalleWizard> RecetaRef99DetalleWizard { get; set; }
+        public virtual DbSet<RecetaRef99Wizard> RecetaRef99Wizard { get; set; }
         public virtual DbSet<Reglas> Reglas { get; set; }
-        public virtual DbSet<Revision_Modulo> Revision_Modulo { get; set; }
+        public virtual DbSet<RevisionCargaSlottingMovil> RevisionCargaSlottingMovil { get; set; }
+        public virtual DbSet<Revision_preruteo> Revision_preruteo { get; set; }
         public virtual DbSet<Roles> Roles { get; set; }
+        public virtual DbSet<RolesPermisos> RolesPermisos { get; set; }
         public virtual DbSet<RutasGrupos> RutasGrupos { get; set; }
         public virtual DbSet<RutasUbicaciones> RutasUbicaciones { get; set; }
         public virtual DbSet<Ruteos> Ruteos { get; set; }
@@ -114,6 +136,8 @@ namespace com.ServiBarras.Infrastructure.Models
         public virtual DbSet<Siesa_OrdenEmpaque_Auditoria> Siesa_OrdenEmpaque_Auditoria { get; set; }
         public virtual DbSet<Sucursales> Sucursales { get; set; }
         public virtual DbSet<TABLAREVISION> TABLAREVISION { get; set; }
+        public virtual DbSet<TRZ_OrdenEmpaqueContenedorUbicacion> TRZ_OrdenEmpaqueContenedorUbicacion { get; set; }
+        public virtual DbSet<TRZ_SET_Siesa_Plano_Inventario> TRZ_SET_Siesa_Plano_Inventario { get; set; }
         public virtual DbSet<TXPacking> TXPacking { get; set; }
         public virtual DbSet<TXPicking> TXPicking { get; set; }
         public virtual DbSet<TiposAtributos> TiposAtributos { get; set; }
@@ -124,6 +148,7 @@ namespace com.ServiBarras.Infrastructure.Models
         public virtual DbSet<TiposPerifericos> TiposPerifericos { get; set; }
         public virtual DbSet<TiposUbicaciones> TiposUbicaciones { get; set; }
         public virtual DbSet<Titulares> Titulares { get; set; }
+        public virtual DbSet<TrazabilidadPromociones> TrazabilidadPromociones { get; set; }
         public virtual DbSet<TxCalidadUbicaciones> TxCalidadUbicaciones { get; set; }
         public virtual DbSet<TxDespacho> TxDespacho { get; set; }
         public virtual DbSet<TxDevolucion> TxDevolucion { get; set; }
@@ -134,20 +159,25 @@ namespace com.ServiBarras.Infrastructure.Models
         public virtual DbSet<UbicacionesCambioAutomatico> UbicacionesCambioAutomatico { get; set; }
         public virtual DbSet<UbicacionesFisicas> UbicacionesFisicas { get; set; }
         public virtual DbSet<UbicacionesProductos> UbicacionesProductos { get; set; }
+        public virtual DbSet<UbicacionesProductos_Carga> UbicacionesProductos_Carga { get; set; }
         public virtual DbSet<UbicacionesSugeridoModulos> UbicacionesSugeridoModulos { get; set; }
         public virtual DbSet<UnidadesEscalares> UnidadesEscalares { get; set; }
         public virtual DbSet<UnidadesManejo> UnidadesManejo { get; set; }
         public virtual DbSet<Usuarios> Usuarios { get; set; }
         public virtual DbSet<UsuariosEstaciones> UsuariosEstaciones { get; set; }
-        public virtual DbSet<UsuariosRoles> UsuariosRoles { get; set; }
         public virtual DbSet<ValoresPlantillasLotes> ValoresPlantillasLotes { get; set; }
         public virtual DbSet<ValoresProductosLotes> ValoresProductosLotes { get; set; }
+        public virtual DbSet<contenedoresReubicacionaParcial> contenedoresReubicacionaParcial { get; set; }
         public virtual DbSet<pedidoOrden> pedidoOrden { get; set; }
-        public virtual DbSet<revisionCierre> revisionCierre { get; set; }
         public virtual DbSet<revisonpoquitos> revisonpoquitos { get; set; }
+        public virtual DbSet<trzOrdenEmpaqueCierreUbicacionEstiba> trzOrdenEmpaqueCierreUbicacionEstiba { get; set; }
+        public virtual DbSet<ubicacionesSustitucion> ubicacionesSustitucion { get; set; }
 
-        // Unable to generate entity type for table 'dbo.ContenedorEliminar27_05_20'. Please see the warning messages.
-        // Unable to generate entity type for table 'dbo.Copia_Contenedores_27_05_20'. Please see the warning messages.
+        // Unable to generate entity type for table 'dbo.BaseInventario2'. Please see the warning messages.
+        // Unable to generate entity type for table 'dbo.slottingNuevo'. Please see the warning messages.
+        // Unable to generate entity type for table 'dbo.pickingSlottingNuevo'. Please see the warning messages.
+        // Unable to generate entity type for table 'dbo.intercambioSloting'. Please see the warning messages.
+        // Unable to generate entity type for table 'dbo.IDEncoladoIntegracionREP'. Please see the warning messages.
         // Unable to generate entity type for table 'dbo.PresentacionesListas'. Please see the warning messages.
         // Unable to generate entity type for table 'dbo.PresentacionesListasDetalle'. Please see the warning messages.
         // Unable to generate entity type for table 'dbo.contenedoresPicking'. Please see the warning messages.
@@ -155,28 +185,29 @@ namespace com.ServiBarras.Infrastructure.Models
         // Unable to generate entity type for table 'dbo.TXReemplazoContenedor'. Please see the warning messages.
         // Unable to generate entity type for table 'dbo.ProductosListas'. Please see the warning messages.
         // Unable to generate entity type for table 'dbo.ProductosListasDetalle'. Please see the warning messages.
-        // Unable to generate entity type for table 'dbo.REVISIONPICKING'. Please see the warning messages.
+        // Unable to generate entity type for table 'dbo.PromocionesDetalle'. Please see the warning messages.
+        // Unable to generate entity type for table 'dbo.tablaSubirEliminar'. Please see the warning messages.
         // Unable to generate entity type for table 'dbo.RuteosPedidosDetalleEstado'. Please see the warning messages.
+        // Unable to generate entity type for table 'dbo.UbicacionesRestauracion'. Please see the warning messages.
         // Unable to generate entity type for table 'dbo.PuntosEnviosListas'. Please see the warning messages.
         // Unable to generate entity type for table 'dbo.PuntosEnviosListasDetalle'. Please see the warning messages.
-        // Unable to generate entity type for table 'dbo.contenedorEliminar20_07_20'. Please see the warning messages.
-        // Unable to generate entity type for table 'dbo.CONTENEDORESCOPIA20_07_20'. Please see the warning messages.
         // Unable to generate entity type for table 'dbo.PuntosOperacionesListas'. Please see the warning messages.
         // Unable to generate entity type for table 'dbo.PuntosOperacionesListasDetalle'. Please see the warning messages.
-        // Unable to generate entity type for table 'dbo.ReglaCaducidad'. Please see the warning messages.
+        // Unable to generate entity type for table 'dbo.ReglaCaducidadBack'. Please see the warning messages.
         // Unable to generate entity type for table 'dbo.OrdenEmpaqueEvaluacion'. Please see the warning messages.
+        // Unable to generate entity type for table 'dbo.cambiarslottingborrar'. Please see the warning messages.
         // Unable to generate entity type for table 'dbo.txrevisionTxdespacho'. Please see the warning messages.
         // Unable to generate entity type for table 'dbo.txdespachocopia'. Please see the warning messages.
-        // Unable to generate entity type for table 'dbo.revisiontpacking'. Please see the warning messages.
-        // Unable to generate entity type for table 'dbo.revisiontpicking'. Please see the warning messages.
+        // Unable to generate entity type for table 'dbo.RuteosPedidosDetalleEstadoRevision'. Please see the warning messages.
+        // Unable to generate entity type for table 'dbo.ReglaCaducidad'. Please see the warning messages.
         // Unable to generate entity type for table 'dbo.ControlBorrarSaldoIntegracionCabeza'. Please see the warning messages.
         // Unable to generate entity type for table 'dbo.RuteosUbicacionesOrden'. Please see the warning messages.
-        // Unable to generate entity type for table 'dbo.revisiontxreubicacion'. Please see the warning messages.
+        // Unable to generate entity type for table 'dbo.ARC_TxReubicacionInsert'. Please see the warning messages.
         // Unable to generate entity type for table 'dbo.RespaldoContenedores'. Please see the warning messages.
-        // Unable to generate entity type for table 'dbo.HIS_TxDespacho_25_06_2020'. Please see the warning messages.
         // Unable to generate entity type for table 'dbo.DocumentosDetalleTipo'. Please see the warning messages.
         // Unable to generate entity type for table 'dbo.ReservaCambioTx'. Please see the warning messages.
         // Unable to generate entity type for table 'dbo.DocumentosGruposListas'. Please see the warning messages.
+        // Unable to generate entity type for table 'dbo.TEMP'. Please see the warning messages.
         // Unable to generate entity type for table 'dbo.DocumentosListas'. Please see the warning messages.
         // Unable to generate entity type for table 'dbo.DocumentosPresentacionesListas'. Please see the warning messages.
         // Unable to generate entity type for table 'dbo.ContenedoresConSaldo'. Please see the warning messages.
@@ -185,43 +216,34 @@ namespace com.ServiBarras.Infrastructure.Models
         // Unable to generate entity type for table 'dbo.DocumentosPuntosEnvioListas'. Please see the warning messages.
         // Unable to generate entity type for table 'dbo.DocumentosPuntosOperaciones'. Please see the warning messages.
         // Unable to generate entity type for table 'dbo.DocumentosPuntosOperacionesListas'. Please see the warning messages.
-        // Unable to generate entity type for table 'dbo.copia_UbicacionesProductos'. Please see the warning messages.
         // Unable to generate entity type for table 'dbo.DocumentosReglas'. Please see the warning messages.
-        // Unable to generate entity type for table 'dbo.TxReubicacionAnt_30_03_20'. Please see the warning messages.
-        // Unable to generate entity type for table 'dbo.copia_UbicacionesSugeridoModulos'. Please see the warning messages.
         // Unable to generate entity type for table 'dbo.DocumentosRutas'. Please see the warning messages.
+        // Unable to generate entity type for table 'dbo.ProgramacionEmpaque'. Please see the warning messages.
         // Unable to generate entity type for table 'dbo.TxReubicacionInsert'. Please see the warning messages.
         // Unable to generate entity type for table 'dbo.DocumentosSeries'. Please see the warning messages.
         // Unable to generate entity type for table 'dbo.DocumentosUbicacionesListas'. Please see the warning messages.
         // Unable to generate entity type for table 'dbo.DocumentosUbicacionesLogicasListas'. Please see the warning messages.
+        // Unable to generate entity type for table 'dbo.MetasProducto'. Please see the warning messages.
         // Unable to generate entity type for table 'dbo.RutaPicking'. Please see the warning messages.
         // Unable to generate entity type for table 'dbo.DocumentosUsuariosListas'. Please see the warning messages.
-        // Unable to generate entity type for table 'dbo.contenedorId_Eliminar'. Please see the warning messages.
-        // Unable to generate entity type for table 'dbo.copia_contenedores_16_06_20'. Please see the warning messages.
-        // Unable to generate entity type for table 'dbo.copia_rutapicking'. Please see the warning messages.
-        // Unable to generate entity type for table 'dbo.His_TxReubicacion_280620'. Please see the warning messages.
+        // Unable to generate entity type for table 'dbo.RevisionNovedad'. Please see the warning messages.
         // Unable to generate entity type for table 'dbo.UbicacionesListas'. Please see the warning messages.
-        // Unable to generate entity type for table 'dbo.His_TxOrdenEmpaque_280620'. Please see the warning messages.
         // Unable to generate entity type for table 'dbo.UbicacionesListasDetalle'. Please see the warning messages.
-        // Unable to generate entity type for table 'dbo.His_TXPicking_280620'. Please see the warning messages.
+        // Unable to generate entity type for table 'dbo.MaterialEmpaqueWizard'. Please see the warning messages.
         // Unable to generate entity type for table 'dbo.UbicacionesLogicasListas'. Please see the warning messages.
-        // Unable to generate entity type for table 'dbo.His_TXPacking_280620'. Please see the warning messages.
         // Unable to generate entity type for table 'dbo.UbicacionesLogicasListasDetalle'. Please see the warning messages.
-        // Unable to generate entity type for table 'dbo.copia_ruta'. Please see the warning messages.
-        // Unable to generate entity type for table 'dbo.His_TxDespacho_280620'. Please see the warning messages.
-        // Unable to generate entity type for table 'dbo.contenedoreliminar_280620'. Please see the warning messages.
-        // Unable to generate entity type for table 'dbo.copia_contenedores_280620'. Please see the warning messages.
+        // Unable to generate entity type for table 'dbo.LoteNuevo'. Please see the warning messages.
         // Unable to generate entity type for table 'dbo.Usuario'. Please see the warning messages.
         // Unable to generate entity type for table 'dbo.UsuarioGrupo'. Please see the warning messages.
         // Unable to generate entity type for table 'dbo.estacionLote'. Please see the warning messages.
-        // Unable to generate entity type for table 'dbo.revisiondespacho'. Please see the warning messages.
+        // Unable to generate entity type for table 'dbo.antesr'. Please see the warning messages.
         // Unable to generate entity type for table 'dbo.UsuariosListas'. Please see the warning messages.
-        // Unable to generate entity type for table 'dbo.contenedorEliminar230820'. Please see the warning messages.
         // Unable to generate entity type for table 'dbo.UsuariosListasDetalle'. Please see the warning messages.
-        // Unable to generate entity type for table 'dbo.copiaContenedores_230820'. Please see the warning messages.
+        // Unable to generate entity type for table 'dbo.copiaUbicacionesProductos'. Please see the warning messages.
         // Unable to generate entity type for table 'dbo.prueb'. Please see the warning messages.
-        // Unable to generate entity type for table 'dbo.revisarContenedoresEliminado'. Please see the warning messages.
+        // Unable to generate entity type for table 'dbo.RevisionCargaSlottingMovilDetalle'. Please see the warning messages.
         // Unable to generate entity type for table 'dbo.Lote'. Please see the warning messages.
+        // Unable to generate entity type for table 'dbo.InventarioBase'. Please see the warning messages.
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -240,9 +262,252 @@ namespace com.ServiBarras.Infrastructure.Models
             }
         }
 
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("ProductVersion", "2.2.6-servicing-10079");
+
+            modelBuilder.Entity<ARC_Contenedores>(entity =>
+            {
+                entity.HasKey(e => e.contenedorId);
+
+                entity.Property(e => e.contenedorId).ValueGeneratedNever();
+
+                entity.Property(e => e.contenedorCodigo)
+                    .IsRequired()
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<ARC_PickingControl>(entity =>
+            {
+                entity.HasKey(e => e.controlId)
+                    .HasName("PK__ARC_Pick__6306E63B2B655226");
+
+                entity.Property(e => e.controlId).ValueGeneratedNever();
+
+                entity.Property(e => e.Fecha)
+                    .HasColumnType("datetime")
+                    .HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.contenedorTag)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ubicacionTag)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<ARC_Saldos>(entity =>
+            {
+                entity.HasKey(e => e.Id_ARCSaldos)
+                    .HasName("PK__ARC_Sald__A21C40BA56B22BEC");
+
+                entity.Property(e => e.FechaRegistro_ARCSaldos).HasColumnType("datetime");
+            });
+
+            modelBuilder.Entity<ARC_SaldosDetalle>(entity =>
+            {
+                entity.HasKey(e => new { e.id_ARCSaldos, e.saldoDetalleId })
+                    .HasName("PK_ARC_SaldosDetalle_1");
+
+                entity.Property(e => e.saldoDetalleComprometidoEscalar)
+                    .HasColumnType("decimal(18, 4)")
+                    .HasDefaultValueSql("((0))");
+
+                entity.Property(e => e.saldoDetalleComprometidoManejo)
+                    .HasColumnType("decimal(18, 4)")
+                    .HasDefaultValueSql("((0))");
+
+                entity.Property(e => e.saldoDetalleDisponibleEscalar)
+                    .HasColumnType("decimal(18, 4)")
+                    .HasDefaultValueSql("((0))");
+
+                entity.Property(e => e.saldoDetalleDisponibleManejo)
+                    .HasColumnType("decimal(18, 4)")
+                    .HasDefaultValueSql("((0))");
+
+                entity.Property(e => e.saldoDetalleInmovilizadoEscalar)
+                    .HasColumnType("decimal(18, 4)")
+                    .HasDefaultValueSql("((0))");
+
+                entity.Property(e => e.saldoDetalleInmovilizadoManejo)
+                    .HasColumnType("decimal(18, 4)")
+                    .HasDefaultValueSql("((0))");
+
+                entity.Property(e => e.saldoDetalleRealEscalar)
+                    .HasColumnType("decimal(18, 4)")
+                    .HasDefaultValueSql("((0))");
+
+                entity.Property(e => e.saldoDetalleRealManejo)
+                    .HasColumnType("decimal(18, 4)")
+                    .HasDefaultValueSql("((0))");
+
+                entity.Property(e => e.updatesSecuencia).IsUnicode(false);
+
+                entity.HasOne(d => d.bodegaLogica)
+                    .WithMany(p => p.ARC_SaldosDetalle)
+                    .HasForeignKey(d => d.bodegaLogicaId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_ARCSaldosDetalle_BodegasLogicas");
+
+                entity.HasOne(d => d.contenedor)
+                    .WithMany(p => p.ARC_SaldosDetalle)
+                    .HasForeignKey(d => d.contenedorId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_ARCSaldosDetalle_Contenedores");
+
+                entity.HasOne(d => d.presentacion)
+                    .WithMany(p => p.ARC_SaldosDetalle)
+                    .HasForeignKey(d => d.presentacionId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_ARCSaldosDetalle_Presentaciones");
+
+                entity.HasOne(d => d.saldo)
+                    .WithMany(p => p.ARC_SaldosDetalle)
+                    .HasForeignKey(d => d.saldoId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_ARCSaldosDetalle_Saldos");
+
+                entity.HasOne(d => d.ubicacion)
+                    .WithMany(p => p.ARC_SaldosDetalle)
+                    .HasForeignKey(d => d.ubicacionId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_ARCSaldosDetalle_Ubicaciones");
+
+                entity.HasOne(d => d.valorProductoLote)
+                    .WithMany(p => p.ARC_SaldosDetalle)
+                    .HasForeignKey(d => d.valorProductoLoteId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_ARCSaldosDetalle_ValoresPlantillasLotes");
+            });
+
+            modelBuilder.Entity<ARC_TXPacking>(entity =>
+            {
+                entity.HasKey(e => e.tXPackingId);
+
+                entity.Property(e => e.tXPackingId).ValueGeneratedNever();
+
+                entity.Property(e => e.tXPackingRealEscalar).HasColumnType("decimal(18, 4)");
+
+                entity.Property(e => e.tXPackingRealManejo).HasColumnType("decimal(18, 4)");
+
+                entity.Property(e => e.txPackingFechaCreacion).HasColumnType("datetime");
+
+                entity.Property(e => e.txPackingFechaModificacion).HasColumnType("datetime");
+            });
+
+            modelBuilder.Entity<ARC_TXPicking>(entity =>
+            {
+                entity.HasKey(e => e.tXPickingId);
+
+                entity.Property(e => e.tXPickingId).ValueGeneratedNever();
+
+                entity.Property(e => e.tXPickingRealEscalar).HasColumnType("decimal(18, 4)");
+
+                entity.Property(e => e.tXPickingRealManejo).HasColumnType("decimal(18, 4)");
+
+                entity.Property(e => e.txPickingFechaCreacion).HasColumnType("datetime");
+
+                entity.Property(e => e.txPickingFechaModificacion).HasColumnType("datetime");
+            });
+
+            modelBuilder.Entity<ARC_TxDespacho>(entity =>
+            {
+                entity.HasKey(e => e.txDespachoId);
+
+                entity.HasIndex(e => e.contenedorId)
+                    .HasName("IX_TxDespacho_contenedorId");
+
+                entity.HasIndex(e => new { e.contenedorId, e.txDespachoEstado, e.ubicacionId })
+                    .HasName("<Name of Missing Index,1, sysname,>");
+
+                entity.HasIndex(e => new { e.txDespachoConcepto, e.ubicacionId, e.ruteoId })
+                    .HasName("IX_TxDespacho_txDespachoConcepto_ubicacionId_ruteoId");
+
+                entity.HasIndex(e => new { e.valorProductoLoteId, e.txDespachoRealManejo, e.presentacionId, e.PedidoId })
+                    .HasName("IX_TxDespacho_presentacionId_PedidoId");
+
+                entity.HasIndex(e => new { e.txDespachoConcepto, e.contenedorId, e.ubicacionId, e.ruteoId, e.ruteoDetalleId })
+                    .HasName("IX_TxDespacho_txDespachoConcepto_contenedorId_ubicacionId_ruteoId_ruteoDetalleId");
+
+                entity.HasIndex(e => new { e.contenedorId, e.valorProductoLoteId, e.presentacionId, e.ubicacionId, e.ruteoId, e.PedidoId })
+                    .HasName("IX_TxDespacho_presentacionId_ubicacionId_ruteoId_PedidoId");
+
+                entity.HasIndex(e => new { e.presentacionId, e.txDespachoRealManejo, e.txDespachoConcepto, e.ubicacionId, e.ruteoId, e.txDespachoEstado })
+                    .HasName("IX_TxDespacho_txDespachoConcepto_ubicacionId_ruteoId_txDespachoEstado");
+
+                entity.HasIndex(e => new { e.txDespachoConcepto, e.presentacionId, e.ubicacionId, e.txDespachoFechaCreacion, e.usuarioId, e.contenedorId })
+                    .HasName("IX_TxDespacho_contenedorId_1");
+
+                entity.HasIndex(e => new { e.txDespachoRealManejo, e.txDespachoEstado, e.txDespachoConcepto, e.presentacionId, e.ubicacionId, e.ruteoId })
+                    .HasName("IX_TxDespacho_txDespachoConcepto_presentacionId_ubicacionId_ruteoId");
+
+                entity.HasIndex(e => new { e.presentacionId, e.contenedorId, e.ubicacionId, e.ruteoId, e.txDespachoFechaCreacion, e.PedidoId, e.valorProductoLoteId })
+                    .HasName("IX_TxDespacho_valorProductoLoteId");
+
+                entity.HasIndex(e => new { e.presentacionId, e.contenedorId, e.valorProductoLoteId, e.ubicacionId, e.txDespachoFechaCreacion, e.ruteoId, e.PedidoId })
+                    .HasName("IX_TxDespacho_ruteoId_PedidoId");
+
+                entity.HasIndex(e => new { e.txDespachoConsecutivo, e.presentacionId, e.contenedorId, e.txDespachoConcepto, e.ubicacionId, e.ruteoId, e.PedidoId, e.txDespachoEstado })
+                    .HasName("IX_TxDespacho_txDespachoConcepto_ubicacionId_ruteoId_PedidoId_txDespachoEstado");
+
+                entity.HasIndex(e => new { e.txDespachoConcepto, e.ubicacionId, e.bodegaLogicaId, e.txDespachoRealManejo, e.ruteoId, e.ruteoDetalleId, e.txDespachoFechaCreacion, e.txDespachoFechaModificacion, e.usuarioId, e.continuidadActivada, e.txDespachoEstado })
+                    .HasName("<Name of Missing Index, sysname,>");
+
+                entity.HasIndex(e => new { e.txDespachoConcepto, e.ubicacionId, e.bodegaLogicaId, e.txDespachoRealManejo, e.txDespachoFechaCreacion, e.txDespachoFechaModificacion, e.usuarioId, e.continuidadActivada, e.ruteoId, e.ruteoDetalleId, e.txDespachoEstado })
+                    .HasName("<Name of Missing Index 1, sysname,>");
+
+                entity.Property(e => e.txDespachoId).ValueGeneratedNever();
+
+                entity.Property(e => e.txDespachoFechaCreacion).HasColumnType("datetime");
+
+                entity.Property(e => e.txDespachoFechaModificacion).HasColumnType("datetime");
+
+                entity.Property(e => e.txDespachoRealEscalar).HasColumnType("decimal(18, 4)");
+
+                entity.Property(e => e.txDespachoRealManejo).HasColumnType("decimal(18, 4)");
+            });
+
+            modelBuilder.Entity<ARC_TxOrdenEmpaque>(entity =>
+            {
+                entity.HasKey(e => e.txOrdenEmpaqueId)
+                    .HasName("PK_ARC_TxEmpaque");
+
+                entity.Property(e => e.txOrdenEmpaqueId).ValueGeneratedNever();
+
+                entity.Property(e => e.FechaIntegrado).HasColumnType("datetime");
+
+                entity.Property(e => e.txOrdenEmpaqueFechaCierre).HasColumnType("datetime");
+
+                entity.Property(e => e.txOrdenEmpaqueFechaCreacion).HasColumnType("datetime");
+
+                entity.Property(e => e.txOrdenEmpaqueFechaModificacion).HasColumnType("datetime");
+
+                entity.Property(e => e.txOrdenEmpaquePlano)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.txOrdenEmpaqueRealEscalar).HasColumnType("decimal(18, 4)");
+
+                entity.Property(e => e.txOrdenEmpaqueRealManejo).HasColumnType("decimal(18, 4)");
+            });
+
+            modelBuilder.Entity<ARC_TxReubicacion>(entity =>
+            {
+                entity.HasKey(e => e.txReubicacionId);
+
+                entity.Property(e => e.txReubicacionId).ValueGeneratedNever();
+
+                entity.Property(e => e.txReubicacionFechaCreacion).HasColumnType("datetime");
+
+                entity.Property(e => e.txReubicacionFechaModificacion).HasColumnType("datetime");
+
+                entity.Property(e => e.txReubicacionRealEscalar).HasColumnType("decimal(18, 4)");
+
+                entity.Property(e => e.txReubicacionRealManejo).HasColumnType("decimal(18, 4)");
+            });
 
             modelBuilder.Entity<AtributosContenedores>(entity =>
             {
@@ -373,6 +638,25 @@ namespace com.ServiBarras.Infrastructure.Models
                     .HasForeignKey(d => d.bodegaErpId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_BodegasLogicas_BodegasERP");
+            });
+
+            modelBuilder.Entity<CambioSloting>(entity =>
+            {
+                entity.Property(e => e.calle)
+                    .HasMaxLength(10)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.columna)
+                    .HasMaxLength(10)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.modulo)
+                    .HasMaxLength(10)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.productoCodigo)
+                    .HasMaxLength(10)
+                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<CentrosGestion>(entity =>
@@ -548,6 +832,20 @@ namespace com.ServiBarras.Infrastructure.Models
                     .HasConstraintName("FK_Cliente_Titulares");
             });
 
+            modelBuilder.Entity<Config_Purgas>(entity =>
+            {
+                entity.HasKey(e => e.f_tabla);
+
+                entity.Property(e => e.f_tabla)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.f_sp)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+            });
+
             modelBuilder.Entity<ConfiguracionVerificacion>(entity =>
             {
                 entity.Property(e => e.configuracionVerificacionCodigo)
@@ -593,11 +891,18 @@ namespace com.ServiBarras.Infrastructure.Models
                 entity.HasIndex(e => e.contenedorCodigo)
                     .HasName("<Name of Missing Index, sysname,>");
 
+                entity.HasIndex(e => new { e.contenedorId, e.contenedorCodigo, e.contenedorEstibaConsecutivo })
+                    .HasName("<Name of Missing Index,1, sysname,>");
+
                 entity.Property(e => e.contenedorId).ValueGeneratedNever();
 
                 entity.Property(e => e.contenedorCodigo)
                     .IsRequired()
                     .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.promocionDetalleCodigo)
+                    .HasMaxLength(30)
                     .IsUnicode(false);
 
                 entity.HasOne(d => d.contenedorPadre)
@@ -610,6 +915,18 @@ namespace com.ServiBarras.Infrastructure.Models
                     .HasForeignKey(d => d.tipoContenedorId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Contenedores_TiposContenedores");
+            });
+
+            modelBuilder.Entity<ContenedoresDespachoParcial>(entity =>
+            {
+                entity.HasKey(e => e.contenedoresPickingId)
+                    .HasName("PK__Contened__EC2648A615971C18");
+
+                entity.HasIndex(e => e.uniqueProcessId);
+
+                entity.HasIndex(e => new { e.uniqueProcessId, e.ContenedorId });
+
+                entity.Property(e => e.respuesta).IsUnicode(false);
             });
 
             modelBuilder.Entity<ContenedoresSinSaldo>(entity =>
@@ -625,6 +942,11 @@ namespace com.ServiBarras.Infrastructure.Models
                 entity.Property(e => e.Borrar)
                     .HasMaxLength(1)
                     .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<ControlCerrarPuerta>(entity =>
+            {
+                entity.HasIndex(e => e.pedidoid);
             });
 
             modelBuilder.Entity<Coordenadas>(entity =>
@@ -676,9 +998,18 @@ namespace com.ServiBarras.Infrastructure.Models
             {
                 entity.Property(e => e.cantidadPreparada).HasColumnType("decimal(18, 2)");
 
-                entity.Property(e => e.cantidadRestante).HasColumnType("decimal(18, 2)");
+                entity.Property(e => e.cantidadRestante)
+                    .HasColumnType("decimal(19, 2)")
+                    .HasComputedColumnSql("([cantidadSolicitada]-[cantidadPreparada])");
 
                 entity.Property(e => e.cantidadSolicitada).HasColumnType("decimal(18, 2)");
+
+                entity.Property(e => e.estado).HasComputedColumnSql("(case when ([cantidadSolicitada]-[cantidadPreparada])<=(0) then (1) else (0) end)");
+            });
+
+            modelBuilder.Entity<CrossDockingExcluirRuteo>(entity =>
+            {
+                entity.Property(e => e.CrossDockingExcluirRuteoFecha).HasColumnType("datetime");
             });
 
             modelBuilder.Entity<Custodios>(entity =>
@@ -750,6 +1081,36 @@ namespace com.ServiBarras.Infrastructure.Models
 
                 entity.HasIndex(e => e.usuarioId)
                     .HasName("ix_DespachosDetalle_usuarioId");
+
+                entity.HasIndex(e => new { e.ubicacionId, e.despachoEstado })
+                    .HasName("<Name of Missing Index 1, sysname,>");
+
+                entity.HasIndex(e => new { e.presentacionId, e.despachoDetalleFechaModificacion, e.ubicacionActualId })
+                    .HasName("<Name of Missing Index, sysname,1>");
+
+                entity.HasIndex(e => new { e.ruteoId, e.usuarioIdDespacho, e.usuarioIdEstado })
+                    .HasName("IX_DespachosDetalle_usuarioIdDespacho_usuarioIdEstado_1");
+
+                entity.HasIndex(e => new { e.ubicacionId, e.presentacionId, e.ubicacionActualId })
+                    .HasName("IX_DespachosDetalle_ubicacionActualId_1");
+
+                entity.HasIndex(e => new { e.despachoDetalleCantSolicitada, e.despachoDetalleCantDespachada, e.usuarioIdDespacho, e.usuarioIdEstado })
+                    .HasName("IX_DespachosDetalle_usuarioIdDespacho_usuarioIdEstado");
+
+                entity.HasIndex(e => new { e.despachoId, e.ubicacionId, e.ruteoId, e.ubicacionActualId, e.despachoEstado })
+                    .HasName("IX_DespachosDetalle_despachoEstado_1");
+
+                entity.HasIndex(e => new { e.despachoDetalleId, e.despachoEstado, e.ubicacionActualId, e.despachoDetalleCantDespachada, e.usuarioIdDespacho, e.usuarioIdEstado })
+                    .HasName("<Name of Missing Index, sysname,>");
+
+                entity.HasIndex(e => new { e.despachoId, e.despachoDetalleCantTotal, e.ubicacionId, e.presentacionId, e.despachoEstado, e.ubicacionActualId })
+                    .HasName("IX_DespachosDetalle_despachoEstado_ubicacionActualId");
+
+                entity.HasIndex(e => new { e.despachoId, e.presentacionId, e.ruteoId, e.ruteoDetalleId, e.despachoEstado, e.pedidoId })
+                    .HasName("IX_DespachosDetalle_pedidoId_1");
+
+                entity.HasIndex(e => new { e.ruteoId, e.ruteoDetalleId, e.pedidoId, e.pedidoDetalleId, e.ubicacionId, e.presentacionId, e.despachoEstado })
+                    .HasName("IX_DespachosDetalle_ubicacionId_presentacionId_despachoEstado");
 
                 entity.Property(e => e.despachoDetalleCantDespachada)
                     .HasColumnType("decimal(17, 2)")
@@ -824,6 +1185,14 @@ namespace com.ServiBarras.Infrastructure.Models
                 entity.HasKey(e => e.DespachoPoquitosId)
                     .HasName("PK__Despacho__40B5E8CF5820A4B0");
 
+                entity.HasIndex(e => new { e.PresentacionId, e.RuteoId });
+
+                entity.HasIndex(e => new { e.PresentacionId, e.RuteoId, e.bahia0, e.Estado })
+                    .HasName("IX_DespachosPoquitos_PresentacionId_RuteoId_bahia0_Estado_1");
+
+                entity.HasIndex(e => new { e.BahiaId, e.PedidoId, e.CantidadPedido, e.CantidadDespachada, e.PresentacionId, e.RuteoId, e.bahia0, e.Estado })
+                    .HasName("IX_DespachosPoquitos_PresentacionId_RuteoId_bahia0_Estado");
+
                 entity.Property(e => e.CantidadDespachada).HasColumnType("decimal(18, 4)");
 
                 entity.Property(e => e.CantidadPedido).HasColumnType("decimal(18, 4)");
@@ -856,6 +1225,16 @@ namespace com.ServiBarras.Infrastructure.Models
             {
                 entity.HasKey(e => e.devolucionId)
                     .HasName("PK__Devoluci__1A2AB24890C21713");
+
+                entity.HasIndex(e => e.ruteoId)
+                    .HasName("<Name of Missing Index, sysname,>");
+
+                entity.HasIndex(e => new { e.usuarioId, e.estado });
+
+                entity.HasIndex(e => new { e.usuarioId, e.estado, e.devolucionProcesoId });
+
+                entity.HasIndex(e => new { e.ruteoId, e.presentacionId, e.puertaId, e.usuarioId, e.cantidadSalida, e.cantidadEntrada, e.novedadId, e.estado })
+                    .HasName("IX_Devoluciones_estado");
 
                 entity.Property(e => e.cantidadEntrada).HasColumnType("decimal(18, 2)");
 
@@ -1201,6 +1580,95 @@ namespace com.ServiBarras.Infrastructure.Models
                     .IsUnicode(false);
             });
 
+            modelBuilder.Entity<MaterialEmpaqueDetalleWizard>(entity =>
+            {
+                entity.HasKey(e => new { e.MaterialEmpaqueId, e.MaterialEmpaqueDetalleId });
+
+                entity.Property(e => e.BODEGA_1_emp)
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.BODEGA_2)
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.BODEGA_3)
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.BODEGA_4)
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.BODEGA_MAT_EMP)
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CANTID_1)
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CANTID_2)
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CANTID_3)
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CANTID_4)
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CO_MAT_EMP)
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.MOTIVO_MAT_EMP)
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.PREFIJO_MAT_EMP)
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.REFERENCIA_LINEA)
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.REF_1_emp)
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.REF_2)
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.REF_3)
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.REF_4)
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.UM_REF_1)
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.UM_REF_2)
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.UM_REF_3)
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.UM_REF_4)
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
+            });
+
             modelBuilder.Entity<Motivos>(entity =>
             {
                 entity.HasKey(e => e.motivoId);
@@ -1290,15 +1758,37 @@ namespace com.ServiBarras.Infrastructure.Models
                 entity.HasKey(e => e.ordenEmpaqueId)
                     .HasName("PK__OrdenesEmpaque__73DF11DEB0420F27");
 
+                entity.HasIndex(e => e.ordenEmpaqueConsecutivo)
+                    .HasName("DPA_RECIDX_2954");
+
+                entity.HasIndex(e => e.presentacionId);
+
+                entity.HasIndex(e => new { e.ordenEmpaqueConsecutivo, e.productoId, e.ordenEmpaqueFechaCreacion, e.ordenEmpaqueFechaFinalizacion, e.ordenEmpaqueNumeroUnidades, e.estacionId, e.ordenEmpaqueEvaluacionIdOE, e.ordenEmpaqueNumeroUbicacion, e.ordenEmpaqueEstado })
+                    .HasName("IX_OrdenesEmpaque_ordenEmpaqueEstado");
+
+                entity.Property(e => e.docExterno)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.ordenEmpaqueClientePreferente)
                     .HasMaxLength(20)
                     .IsUnicode(false);
+
+                entity.Property(e => e.ordenEmpaqueFechaActivacion).HasColumnType("datetime");
 
                 entity.Property(e => e.ordenEmpaqueFechaCreacion).HasColumnType("datetime");
 
                 entity.Property(e => e.ordenEmpaqueFechaFinalizacion).HasColumnType("datetime");
 
                 entity.Property(e => e.ordenEmpaqueFechaNovedad).HasColumnType("datetime");
+
+                entity.Property(e => e.placa)
+                    .HasMaxLength(10)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.tipoOperacion)
+                    .HasMaxLength(30)
+                    .IsUnicode(false);
 
                 entity.HasOne(d => d.documento)
                     .WithMany(p => p.OrdenesEmpaque)
@@ -1347,6 +1837,8 @@ namespace com.ServiBarras.Infrastructure.Models
 
             modelBuilder.Entity<Packing>(entity =>
             {
+                entity.HasIndex(e => new { e.usuarioId, e.packingEstado });
+
                 entity.Property(e => e.packingFecha)
                     .HasColumnType("datetime")
                     .HasDefaultValueSql("(getutcdate())");
@@ -1389,6 +1881,9 @@ namespace com.ServiBarras.Infrastructure.Models
 
                 entity.HasIndex(e => e.usuarioId)
                     .HasName("ix_packingDetalle_usuarioId");
+
+                entity.HasIndex(e => new { e.packingId, e.presentacionId, e.ruteoId, e.ruteoDetalleId, e.packingEstado, e.pedidoId })
+                    .HasName("IX_PackingDetalle_pedidoId_1");
 
                 entity.Property(e => e.packingDetalleCantNovedad).HasColumnType("decimal(17, 2)");
 
@@ -1471,6 +1966,13 @@ namespace com.ServiBarras.Infrastructure.Models
                 entity.HasKey(e => e.pedidoId)
                     .HasName("PK__Pedido__09BA14307B3C60ED");
 
+                entity.HasIndex(e => new { e.pedidoConsecutivoERP, e.pedidoDocumentoERP, e.puntoOperacionId, e.pedidoVersion, e.puntoOperacionIdEntrada })
+                    .HasName("UIPedido")
+                    .IsUnique();
+
+                entity.HasIndex(e => new { e.sucursalId, e.pedidoConsecutivo, e.pedidoFecha, e.pedidoFechaEntrega, e.pedidoFechaCarga, e.pedidoFechaMalla, e.pedidoObservacion, e.pedidoConsecutivoERP, e.pedidoVersion, e.pedidoFuente, e.puntoOperacionId, e.pedidoDocumentoERP, e.pedidoEstado })
+                    .HasName("IX_Pedidos_pedidoDocumentoERP_pedidoEstado");
+
                 entity.Property(e => e.pedidoConsecutivoERP)
                     .IsRequired()
                     .HasMaxLength(20)
@@ -1495,7 +1997,7 @@ namespace com.ServiBarras.Infrastructure.Models
 
                 entity.Property(e => e.pedidoObservacion)
                     .IsRequired()
-                    .HasMaxLength(500)
+                    .HasMaxLength(2000)
                     .IsUnicode(false);
 
                 entity.HasOne(d => d.puntoOperacion)
@@ -1510,10 +2012,20 @@ namespace com.ServiBarras.Infrastructure.Models
                     .HasConstraintName("FK_Pedido_Sucursal");
             });
 
+            modelBuilder.Entity<PedidosAgrupados>(entity =>
+            {
+                entity.Property(e => e.fechaAgrupacion)
+                    .HasColumnType("datetime")
+                    .HasDefaultValueSql("(getdate())");
+            });
+
             modelBuilder.Entity<PedidosDetalle>(entity =>
             {
                 entity.HasKey(e => new { e.pedidoId, e.pedidoDetalleId })
                     .HasName("PK__PedidoDe__289B42F40F046596");
+
+                entity.HasIndex(e => new { e.productoId, e.pedidoDetalleCantidad, e.presentacionId })
+                    .HasName("IDXPEDIDOpresentacionId");
 
                 entity.Property(e => e.pedidoDetalleCantidad).HasColumnType("decimal(18, 4)");
 
@@ -1547,6 +2059,8 @@ namespace com.ServiBarras.Infrastructure.Models
             {
                 entity.HasKey(e => new { e.pedidoId, e.UserNameId });
 
+                entity.HasIndex(e => e.UniqueProcessId);
+
                 entity.Property(e => e.Estado).HasDefaultValueSql("((0))");
             });
 
@@ -1566,6 +2080,27 @@ namespace com.ServiBarras.Infrastructure.Models
                     .HasConstraintName("FK_Perifericos_TiposPeriferico");
             });
 
+            modelBuilder.Entity<Permisos>(entity =>
+            {
+                entity.HasKey(e => e.permisoId);
+
+                entity.Property(e => e.permisoCodigo)
+                    .HasMaxLength(30)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.permisoDescripcion)
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.permisoLink)
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.permisoLinkExterno).IsUnicode(false);
+
+                entity.Property(e => e.permisoLinkParametro).HasMaxLength(100);
+            });
+
             modelBuilder.Entity<PickingControl>(entity =>
             {
                 entity.HasKey(e => e.controlId)
@@ -1581,6 +2116,15 @@ namespace com.ServiBarras.Infrastructure.Models
 
                 entity.Property(e => e.ubicacionTag)
                     .HasMaxLength(50)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<PickingControlParcial>(entity =>
+            {
+                entity.Property(e => e.fecha).HasColumnType("datetime");
+
+                entity.Property(e => e.ubicacionTag)
+                    .HasMaxLength(30)
                     .IsUnicode(false);
             });
 
@@ -1682,6 +2226,12 @@ namespace com.ServiBarras.Infrastructure.Models
                 entity.HasKey(e => new { e.preRuteoId, e.preRuteoDetalleId })
                     .HasName("PK__PreRuteo__D1D2DE1862E57593");
 
+                entity.HasIndex(e => e.saldoUbicacionId);
+
+                entity.HasIndex(e => new { e.ubicacionId, e.saldoId });
+
+                entity.HasIndex(e => new { e.preRuteoId, e.presentacionId, e.preRuteoDetalleCantRequerida, e.esCrossDocking });
+
                 entity.Property(e => e.preRuteoDetalleId).ValueGeneratedOnAdd();
 
                 entity.Property(e => e.preRuteoDetalleCantNovedad).HasColumnType("decimal(18, 4)");
@@ -1727,6 +2277,8 @@ namespace com.ServiBarras.Infrastructure.Models
             modelBuilder.Entity<PreRuteosPedidos>(entity =>
             {
                 entity.HasKey(e => new { e.preRuteoId, e.pedidoId });
+
+                entity.HasIndex(e => e.pedidoId);
 
                 entity.HasOne(d => d.pedido)
                     .WithMany(p => p.PreRuteosPedidos)
@@ -1988,6 +2540,18 @@ namespace com.ServiBarras.Infrastructure.Models
                 entity.Property(e => e.productoSustitucionCantidad).HasColumnType("decimal(18, 4)");
             });
 
+            modelBuilder.Entity<Promociones>(entity =>
+            {
+                entity.HasKey(e => e.promocionId)
+                    .HasName("PK__Promocio__B492D9A4D295D758");
+
+                entity.Property(e => e.productoCodigo)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.promocionFechaCreacion).HasColumnType("datetime");
+            });
+
             modelBuilder.Entity<PuntosEnvio>(entity =>
             {
                 entity.HasKey(e => e.puntoEnvioId)
@@ -2073,11 +2637,11 @@ namespace com.ServiBarras.Infrastructure.Models
                     .HasConstraintName("FK_PuntosOperacion_ListasPuntosOperacion");
             });
 
-            modelBuilder.Entity<REVISIONIMPRESION>(entity =>
+            modelBuilder.Entity<REVISION_CIERRE>(entity =>
             {
                 entity.Property(e => e.FECHA).HasColumnType("datetime");
 
-                entity.Property(e => e.MENSAJE).IsUnicode(false);
+                entity.Property(e => e.resultado).IsUnicode(false);
             });
 
             modelBuilder.Entity<RFIDTag>(entity =>
@@ -2115,6 +2679,46 @@ namespace com.ServiBarras.Infrastructure.Models
                 entity.Property(e => e.RFIDTagTipo_EPC).HasMaxLength(50);
             });
 
+            modelBuilder.Entity<RecetaRef99DetalleWizard>(entity =>
+            {
+                entity.HasKey(e => new { e.RecetaRef99Id, e.RecetaRef99DetalleId })
+                    .HasName("PK_RecetaRef99Wizard_ID");
+
+                entity.Property(e => e.BODEGA_REF_99)
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CO_DOC_99)
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.MOTIVO_REF_99)
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.PREFIJO_REF_99)
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.REFERENCIA_99)
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.REFERENCIA_LINEA)
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<RecetaRef99Wizard>(entity =>
+            {
+                entity.HasKey(e => e.RecetaRef99Id)
+                    .HasName("PK__RecetaRe__A718ED4F2CC51A74");
+
+                entity.Property(e => e.fechaCarga)
+                    .HasColumnType("datetime")
+                    .HasDefaultValueSql("(getdate())");
+            });
+
             modelBuilder.Entity<Reglas>(entity =>
             {
                 entity.HasKey(e => e.ReglaId);
@@ -2132,19 +2736,42 @@ namespace com.ServiBarras.Infrastructure.Models
                     .HasConstraintName("FK_Reglas_PuntosEnvio");
             });
 
-            modelBuilder.Entity<Revision_Modulo>(entity =>
+            modelBuilder.Entity<RevisionCargaSlottingMovil>(entity =>
+            {
+                entity.HasKey(e => e.cargaSlottingMovilId)
+                    .HasName("PK__Revision__E70693864D5691A3");
+
+                entity.Property(e => e.fechaCarga).HasColumnType("datetime");
+            });
+
+            modelBuilder.Entity<Revision_preruteo>(entity =>
             {
                 entity.Property(e => e.fecha).HasColumnType("datetime");
+
+                entity.Property(e => e.fechaFinalizacionTrasaccion).HasColumnType("datetime");
+
+                entity.Property(e => e.resultado).IsUnicode(false);
             });
 
             modelBuilder.Entity<Roles>(entity =>
             {
-                entity.HasKey(e => e.roleId);
+                entity.HasKey(e => e.rolId);
 
                 entity.Property(e => e.roleDescripcion)
                     .IsRequired()
                     .HasMaxLength(100)
                     .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<RolesPermisos>(entity =>
+            {
+                entity.HasKey(e => new { e.rolId, e.permisoId });
+
+                entity.HasOne(d => d.permiso)
+                    .WithMany(p => p.RolesPermisos)
+                    .HasForeignKey(d => d.permisoId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_RolesPermisos_Permisos");
             });
 
             modelBuilder.Entity<RutasGrupos>(entity =>
@@ -2155,6 +2782,18 @@ namespace com.ServiBarras.Infrastructure.Models
             modelBuilder.Entity<RutasUbicaciones>(entity =>
             {
                 entity.HasKey(e => e.rutaUbicacionId);
+
+                entity.HasIndex(e => e.ubicacionId)
+                    .HasName("IX_RutasUbicaciones_ubicacionId_1");
+
+                entity.HasIndex(e => new { e.rutaUbicacionOrden, e.ubicacionId })
+                    .HasName("IX_RutasUbicaciones_ubicacionId");
+
+                entity.HasIndex(e => new { e.ubicacionId, e.rutaUbicacionOrden })
+                    .HasName("IX_RutasUbicaciones_rutaUbicacionOrden");
+
+                entity.HasIndex(e => new { e.rutaUbicacionOrden, e.rutaId, e.ubicacionId })
+                    .HasName("IX_RutasUbicaciones_rutaId_ubicacionId");
             });
 
             modelBuilder.Entity<Ruteos>(entity =>
@@ -2191,8 +2830,21 @@ namespace com.ServiBarras.Infrastructure.Models
                 entity.HasIndex(e => e.ubicacionId)
                     .HasName("ix_ruteosDetalle_ubicacionId");
 
+                entity.HasIndex(e => new { e.ubicacionId, e.ruteoDetalleEstado })
+                    .HasName("IX_RuteosDetalle_ruteoDetalleEstado_1");
+
+                entity.HasIndex(e => new { e.ruteoId, e.ruteoDetalleId, e.presentacionId, e.ubicacionId, e.ruteoDetalleCantidad, e.ruteoDetalleCantRequerida, e.valorProductoLoteId, e.bodegaLogicaId, e.ruteoDetalleEstado })
+                    .HasName("IX_RuteosDetalle_bodegaLogicaId_ruteoDetalleEstado");
+
+                entity.HasIndex(e => new { e.ruteoId, e.ruteoDetalleId, e.ubicacionId, e.ruteoDetalleCantRequerida, e.valorProductoLoteId, e.presentacionId, e.bodegaLogicaId, e.ruteoDetalleEstado, e.ruteoDetalleCantidad })
+                    .HasName("IX_RuteosDetalle_presentacionId_bodegaLogicaId_ruteoDetalleEstado_ruteoDetalleCantidad");
+
                 entity.Property(e => e.Transaccion)
                     .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.origenLinea)
+                    .HasMaxLength(100)
                     .IsUnicode(false);
 
                 entity.Property(e => e.ruteoDetalleCantNovedad).HasColumnType("decimal(18, 4)");
@@ -2233,6 +2885,9 @@ namespace com.ServiBarras.Infrastructure.Models
             modelBuilder.Entity<RuteosPedidos>(entity =>
             {
                 entity.HasKey(e => new { e.ruteoId, e.pedidoId });
+
+                entity.HasIndex(e => new { e.pedidoId, e.ruteoPedidoFechaCIerre, e.pedidoProcesado })
+                    .HasName("<Name of Missing Index, sysname,>");
 
                 entity.Property(e => e.ruteoPedidoFechaCIerre).HasColumnType("datetime");
 
@@ -2310,14 +2965,98 @@ namespace com.ServiBarras.Infrastructure.Models
                 entity.HasIndex(e => e.ubicacionId)
                     .HasName("ix_SaldosDetalle_ubicacionId");
 
+                entity.HasIndex(e => new { e.ubicacionId, e.saldoDetalleComprometidoManejo })
+                    .HasName("IX_SaldosDetalle_ubicacionId_saldoDetalleComprometidoManejo_3");
+
                 entity.HasIndex(e => new { e.ubicacionId, e.saldoDetalleRealManejo })
                     .HasName("ix_saldosDetalle_ubicacionId_saldoDetalleRealManejo");
+
+                entity.HasIndex(e => new { e.contenedorId, e.ubicacionId, e.saldoDetalleComprometidoManejo })
+                    .HasName("IX_SaldosDetalle_ubicacionId_saldoDetalleComprometidoManejo");
+
+                entity.HasIndex(e => new { e.contenedorId, e.ubicacionId, e.saldoDetalleDisponibleManejo })
+                    .HasName("IX_SaldosDetalle_ubicacionId_saldoDetalleDisponibleManejo");
+
+                entity.HasIndex(e => new { e.presentacionId, e.ubicacionId, e.saldoDetalleComprometidoManejo })
+                    .HasName("IX_SaldosDetalle_ubicacionId_saldoDetalleComprometidoManejo_2");
+
+                entity.HasIndex(e => new { e.valorProductoLoteId, e.saldoId, e.ubicacionId })
+                    .HasName("IX_SaldosDetalle_saldoId_ubicacionId");
+
+                entity.HasIndex(e => new { e.presentacionId, e.ubicacionId, e.saldoDetalleComprometidoManejo, e.saldoDetalleRealManejo })
+                    .HasName("IX_SaldosDetalle_presentacionId_ubicacionId_saldoDetalleComprometidoManejo_saldoDetalleRealManejo_1");
+
+                entity.HasIndex(e => new { e.saldoId, e.presentacionId, e.saldoDetalleRealManejo, e.ubicacionId })
+                    .HasName("<Name of Missing Index, 2,>");
+
+                entity.HasIndex(e => new { e.ubicacionId, e.bodegaLogicaId, e.saldoDetalleRealManejo, e.saldoDetalleDisponibleManejo, e.presentacionId })
+                    .HasName("IX_SaldosDetalle_presentacionId_1");
 
                 entity.HasIndex(e => new { e.presentacionId, e.valorProductoLoteId, e.bodegaLogicaId, e.saldoDetalleRealManejo, e.saldoDetalleComprometidoManejo, e.ubicacionId })
                     .HasName("ix_SaldosDetalle_ubicacionId_Extend");
 
                 entity.HasIndex(e => new { e.saldoId, e.presentacionId, e.valorProductoLoteId, e.ubicacionId, e.saldoDetalleComprometidoManejo, e.saldoDetalleRealManejo })
                     .HasName("<Name of Missing Index, sysname,>");
+
+                entity.HasIndex(e => new { e.ubicacionId, e.bodegaLogicaId, e.saldoDetalleRealManejo, e.saldoDetalleComprometidoManejo, e.saldoDetalleDisponibleManejo, e.presentacionId })
+                    .HasName("IX_SaldosDetalle_presentacionId_3");
+
+                entity.HasIndex(e => new { e.presentacionId, e.contenedorId, e.valorProductoLoteId, e.bodegaLogicaId, e.saldoDetalleRealManejo, e.saldoDetalleRealEscalar, e.ubicacionId })
+                    .HasName("IX_SaldosDetalle_ubicacionId_2");
+
+                entity.HasIndex(e => new { e.saldoId, e.presentacionId, e.contenedorId, e.bodegaLogicaId, e.saldoDetalleComprometidoEscalar, e.ubicacionId, e.saldoDetalleComprometidoManejo })
+                    .HasName("IX_SaldosDetalle_ubicacionId_saldoDetalleComprometidoManejo_1");
+
+                entity.HasIndex(e => new { e.saldoId, e.valorProductoLoteId, e.bodegaLogicaId, e.saldoDetalleRealManejo, e.saldoDetalleDisponibleManejo, e.presentacionId, e.ubicacionId })
+                    .HasName("IX_SaldosDetalle_presentacionId_ubicacionId");
+
+                entity.HasIndex(e => new { e.saldoId, e.valorProductoLoteId, e.saldoDetalleRealManejo, e.saldoDetalleComprometidoManejo, e.saldoDetalleDisponibleManejo, e.presentacionId, e.ubicacionId })
+                    .HasName("IX_SaldosDetalle_presentacionId_ubicacionId_1");
+
+                entity.HasIndex(e => new { e.saldoId, e.valorProductoLoteId, e.ubicacionId, e.bodegaLogicaId, e.saldoDetalleRealManejo, e.saldoDetalleDisponibleManejo, e.presentacionId })
+                    .HasName("IX_SaldosDetalle_presentacionId");
+
+                entity.HasIndex(e => new { e.saldoId, e.valorProductoLoteId, e.ubicacionId, e.saldoDetalleRealManejo, e.saldoDetalleComprometidoManejo, e.saldoDetalleDisponibleManejo, e.presentacionId })
+                    .HasName("IX_SaldosDetalle_presentacionId_2");
+
+                entity.HasIndex(e => new { e.presentacionId, e.contenedorId, e.ubicacionId, e.saldoDetalleRealManejo, e.saldoDetalleComprometidoManejo, e.saldoDetalleInmovilizadoManejo, e.saldoId, e.bodegaLogicaId })
+                    .HasName("IX_SaldosDetalle_saldoId_bodegaLogicaId");
+
+                entity.HasIndex(e => new { e.presentacionId, e.valorProductoLoteId, e.bodegaLogicaId, e.saldoDetalleComprometidoManejo, e.saldoDetalleInmovilizadoManejo, e.saldoDetalleDisponibleManejo, e.ubicacionId, e.saldoDetalleRealManejo })
+                    .HasName("<Name of Missing Index, sysname,1>");
+
+                entity.HasIndex(e => new { e.saldoDetalleId, e.saldoId, e.contenedorId, e.saldoDetalleRealEscalar, e.presentacionId, e.ubicacionId, e.bodegaLogicaId, e.saldoDetalleRealManejo })
+                    .HasName("IX_SaldosDetalle_presentacionId_ubicacionId_bodegaLogicaId_saldoDetalleRealManejo");
+
+                entity.HasIndex(e => new { e.saldoDetalleId, e.saldoId, e.presentacionId, e.contenedorId, e.bodegaLogicaId, e.saldoDetalleRealEscalar, e.ubicacionId, e.saldoDetalleRealManejo })
+                    .HasName("IX_SaldosDetalle_ubicacionId_saldoDetalleRealManejo_1");
+
+                entity.HasIndex(e => new { e.saldoDetalleRealEscalar, e.saldoDetalleDisponibleManejo, e.saldoDetalleComprometidoEscalar, e.saldoDetalleDisponibleEscalar, e.presentacionId, e.ubicacionId, e.saldoDetalleComprometidoManejo, e.saldoDetalleRealManejo })
+                    .HasName("IX_SaldosDetalle_presentacionId_ubicacionId_saldoDetalleComprometidoManejo_saldoDetalleRealManejo");
+
+                entity.HasIndex(e => new { e.saldoId, e.presentacionId, e.contenedorId, e.saldoDetalleRealManejo, e.saldoDetalleComprometidoManejo, e.saldoDetalleInmovilizadoManejo, e.ubicacionId, e.bodegaLogicaId })
+                    .HasName("IX_SaldosDetalle_ubicacionId_bodegaLogicaId");
+
+                entity.HasIndex(e => new { e.saldoId, e.presentacionId, e.contenedorId, e.ubicacionId, e.saldoDetalleRealManejo, e.saldoDetalleComprometidoManejo, e.saldoDetalleInmovilizadoManejo, e.bodegaLogicaId })
+                    .HasName("IX_SaldosDetalle_bodegaLogicaId");
+
+                entity.HasIndex(e => new { e.saldoId, e.presentacionId, e.valorProductoLoteId, e.bodegaLogicaId, e.saldoDetalleInmovilizadoManejo, e.ubicacionId, e.saldoDetalleRealManejo, e.saldoDetalleComprometidoManejo })
+                    .HasName("IX_SaldosDetalle_ubicacionId_saldoDetalleRealManejo_saldoDetalleComprometidoManejo");
+
+                entity.HasIndex(e => new { e.saldoDetalleRealManejo, e.saldoDetalleComprometidoManejo, e.saldoDetalleInmovilizadoManejo, e.saldoDetalleRealEscalar, e.saldoDetalleDisponibleManejo, e.saldoDetalleComprometidoEscalar, e.saldoDetalleDisponibleEscalar, e.updatesSecuencia, e.ubicacionId })
+                    .HasName("IX_SaldosDetalle_ubicacionId_4");
+
+                entity.HasIndex(e => new { e.saldoDetalleRealManejo, e.saldoDetalleComprometidoManejo, e.saldoDetalleInmovilizadoManejo, e.saldoDetalleRealEscalar, e.saldoDetalleDisponibleManejo, e.saldoDetalleComprometidoEscalar, e.saldoDetalleInmovilizadoEscalar, e.saldoDetalleDisponibleEscalar, e.saldoId })
+                    .HasName("<Name of Missing Index, 1,>");
+
+                entity.HasIndex(e => new { e.saldoDetalleId, e.saldoId, e.presentacionId, e.contenedorId, e.valorProductoLoteId, e.bodegaLogicaId, e.saldoDetalleComprometidoManejo, e.saldoDetalleComprometidoEscalar, e.ubicacionId, e.saldoDetalleRealManejo })
+                    .HasName("<Name of Missing Index 1, sysname,>");
+
+                entity.HasIndex(e => new { e.saldoId, e.presentacionId, e.contenedorId, e.valorProductoLoteId, e.bodegaLogicaId, e.saldoDetalleRealManejo, e.saldoDetalleComprometidoManejo, e.saldoDetalleInmovilizadoManejo, e.saldoDetalleRealEscalar, e.saldoDetalleDisponibleManejo, e.saldoDetalleComprometidoEscalar, e.saldoDetalleInmovilizadoEscalar, e.saldoDetalleDisponibleEscalar, e.ubicacionId })
+                    .HasName("IX_SaldosDetalle_ubicacionId_1");
+
+                entity.HasIndex(e => new { e.saldoId, e.presentacionId, e.contenedorId, e.valorProductoLoteId, e.bodegaLogicaId, e.saldoDetalleRealManejo, e.saldoDetalleComprometidoManejo, e.saldoDetalleInmovilizadoManejo, e.saldoDetalleRealEscalar, e.saldoDetalleDisponibleManejo, e.saldoDetalleComprometidoEscalar, e.saldoDetalleInmovilizadoEscalar, e.saldoDetalleDisponibleEscalar, e.updatesSecuencia, e.ubicacionId })
+                    .HasName("IX_SaldosDetalle_ubicacionId_3");
 
                 entity.Property(e => e.saldoDetalleComprometidoEscalar)
                     .HasColumnType("decimal(18, 4)")
@@ -2351,7 +3090,7 @@ namespace com.ServiBarras.Infrastructure.Models
                     .HasColumnType("decimal(18, 4)")
                     .HasDefaultValueSql("((0))");
 
-                entity.Property(e => e.updatesSecuencia).IsUnicode(false);
+                entity.Property(e => e.updatesSecuencia).HasColumnType("varchar(max)");
 
                 entity.HasOne(d => d.bodegaLogica)
                     .WithMany(p => p.SaldosDetalle)
@@ -2507,8 +3246,54 @@ namespace com.ServiBarras.Infrastructure.Models
                     .IsUnicode(false);
             });
 
+            modelBuilder.Entity<TRZ_OrdenEmpaqueContenedorUbicacion>(entity =>
+            {
+                entity.HasKey(e => e.trzId)
+                    .HasName("PK__TRZ_Orde__C3D7079052254B36");
+
+                entity.Property(e => e.contenedorCodigo)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.fecha).HasColumnType("datetime");
+
+                entity.Property(e => e.proceso)
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.resultado).IsUnicode(false);
+
+                entity.Property(e => e.ubicacionId)
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<TRZ_SET_Siesa_Plano_Inventario>(entity =>
+            {
+                entity.Property(e => e.fecha)
+                    .HasColumnType("datetime")
+                    .HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.nombreArchivo)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+            });
+
             modelBuilder.Entity<TXPacking>(entity =>
             {
+                entity.HasIndex(e => e.contenedorId);
+
+                entity.HasIndex(e => new { e.contenedorId, e.ruteoId, e.ruteoDetalleId })
+                    .HasName("IX_TXPacking_ruteoId_ruteoDetalleId");
+
+                entity.HasIndex(e => new { e.contenedorId, e.tXPackingConcepto, e.ruteoId, e.ruteoDetalleId })
+                    .HasName("IX_TXPacking_tXPackingConcepto_ruteoId_ruteoDetalleId");
+
+                entity.HasIndex(e => new { e.tXPackingConcepto, e.contenedorId, e.ruteoId, e.ruteoDetalleId });
+
+                entity.HasIndex(e => new { e.tXPackingConcepto, e.ubicacionId, e.bodegaLogicaId, e.tXPackingRealManejo, e.txPackingFechaCreacion, e.txPackingFechaModificacion, e.usuarioId, e.continuidadActivada, e.ruteoId, e.ruteoDetalleId })
+                    .HasName("<Name of Missing Index, sysname,>");
+
                 entity.Property(e => e.continuidadActivada).HasDefaultValueSql("((0))");
 
                 entity.Property(e => e.tXPackingRealEscalar)
@@ -2530,11 +3315,6 @@ namespace com.ServiBarras.Infrastructure.Models
                     .HasForeignKey(d => d.bodegaLogicaId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_tXPacking_BodegasLogicas");
-
-                entity.HasOne(d => d.contenedor)
-                    .WithMany(p => p.TXPacking)
-                    .HasForeignKey(d => d.contenedorId)
-                    .HasConstraintName("FK_tXPacking_Contenedores");
 
                 entity.HasOne(d => d.identificacion)
                     .WithMany(p => p.TXPacking)
@@ -2560,6 +3340,19 @@ namespace com.ServiBarras.Infrastructure.Models
 
             modelBuilder.Entity<TXPicking>(entity =>
             {
+                entity.HasIndex(e => e.contenedorId);
+
+                entity.HasIndex(e => new { e.tXPickingConcepto, e.contenedorId, e.ruteoId, e.ruteoDetalleId });
+
+                entity.HasIndex(e => new { e.valorProductoLoteId, e.ruteoId, e.ruteoDetalleId, e.usuarioId })
+                    .HasName("TXPickingusuarioId");
+
+                entity.HasIndex(e => new { e.tXPickingId, e.contenedorId, e.tXPickingConcepto, e.ruteoId, e.ruteoDetalleId })
+                    .HasName("<Name of Missing Index, sysname,>");
+
+                entity.HasIndex(e => new { e.tXPickingConcepto, e.ubicacionId, e.bodegaLogicaId, e.txPickingFechaCreacion, e.txPickingFechaModificacion, e.usuarioId, e.continuidadActivada, e.ruteoId, e.ruteoDetalleId })
+                    .HasName("<Name of Missing Index 1, sysname,>");
+
                 entity.Property(e => e.continuidadActivada).HasDefaultValueSql("((0))");
 
                 entity.Property(e => e.tXPickingRealEscalar)
@@ -2581,11 +3374,6 @@ namespace com.ServiBarras.Infrastructure.Models
                     .HasForeignKey(d => d.bodegaLogicaId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_TXPicking_BodegasLogicas");
-
-                entity.HasOne(d => d.contenedor)
-                    .WithMany(p => p.TXPicking)
-                    .HasForeignKey(d => d.contenedorId)
-                    .HasConstraintName("FK_TXPicking_Contenedores");
 
                 entity.HasOne(d => d.identificacion)
                     .WithMany(p => p.TXPicking)
@@ -2742,6 +3530,14 @@ namespace com.ServiBarras.Infrastructure.Models
                     .HasConstraintName("FK_Titular_Ordenantes");
             });
 
+            modelBuilder.Entity<TrazabilidadPromociones>(entity =>
+            {
+                entity.HasKey(e => e.trazabilidadPromocionId)
+                    .HasName("PK__Trazabil__2DC23E713F6137E8");
+
+                entity.Property(e => e.trazabilidadPromocionFecha).HasColumnType("datetime");
+            });
+
             modelBuilder.Entity<TxCalidadUbicaciones>(entity =>
             {
                 entity.HasKey(e => e.TxCalidadUbicacionId)
@@ -2786,6 +3582,45 @@ namespace com.ServiBarras.Infrastructure.Models
 
             modelBuilder.Entity<TxDespacho>(entity =>
             {
+                entity.HasIndex(e => e.contenedorId);
+
+                entity.HasIndex(e => new { e.contenedorId, e.txDespachoEstado, e.ubicacionId })
+                    .HasName("<Name of Missing Index,1, sysname,>");
+
+                entity.HasIndex(e => new { e.txDespachoConcepto, e.ubicacionId, e.ruteoId });
+
+                entity.HasIndex(e => new { e.valorProductoLoteId, e.txDespachoRealManejo, e.presentacionId, e.PedidoId })
+                    .HasName("IX_TxDespacho_presentacionId_PedidoId");
+
+                entity.HasIndex(e => new { e.txDespachoConcepto, e.contenedorId, e.ubicacionId, e.ruteoId, e.ruteoDetalleId });
+
+                entity.HasIndex(e => new { e.contenedorId, e.valorProductoLoteId, e.presentacionId, e.ubicacionId, e.ruteoId, e.PedidoId })
+                    .HasName("IX_TxDespacho_presentacionId_ubicacionId_ruteoId_PedidoId");
+
+                entity.HasIndex(e => new { e.presentacionId, e.txDespachoRealManejo, e.txDespachoConcepto, e.ubicacionId, e.ruteoId, e.txDespachoEstado })
+                    .HasName("IX_TxDespacho_txDespachoConcepto_ubicacionId_ruteoId_txDespachoEstado");
+
+                entity.HasIndex(e => new { e.txDespachoConcepto, e.presentacionId, e.ubicacionId, e.txDespachoFechaCreacion, e.usuarioId, e.contenedorId })
+                    .HasName("IX_TxDespacho_contenedorId_1");
+
+                entity.HasIndex(e => new { e.txDespachoRealManejo, e.txDespachoEstado, e.txDespachoConcepto, e.presentacionId, e.ubicacionId, e.ruteoId })
+                    .HasName("IX_TxDespacho_txDespachoConcepto_presentacionId_ubicacionId_ruteoId");
+
+                entity.HasIndex(e => new { e.presentacionId, e.contenedorId, e.ubicacionId, e.ruteoId, e.txDespachoFechaCreacion, e.PedidoId, e.valorProductoLoteId })
+                    .HasName("IX_TxDespacho_valorProductoLoteId");
+
+                entity.HasIndex(e => new { e.presentacionId, e.contenedorId, e.valorProductoLoteId, e.ubicacionId, e.txDespachoFechaCreacion, e.ruteoId, e.PedidoId })
+                    .HasName("IX_TxDespacho_ruteoId_PedidoId");
+
+                entity.HasIndex(e => new { e.txDespachoConsecutivo, e.presentacionId, e.contenedorId, e.txDespachoConcepto, e.ubicacionId, e.ruteoId, e.PedidoId, e.txDespachoEstado })
+                    .HasName("IX_TxDespacho_txDespachoConcepto_ubicacionId_ruteoId_PedidoId_txDespachoEstado");
+
+                entity.HasIndex(e => new { e.txDespachoConcepto, e.ubicacionId, e.bodegaLogicaId, e.txDespachoRealManejo, e.ruteoId, e.ruteoDetalleId, e.txDespachoFechaCreacion, e.txDespachoFechaModificacion, e.usuarioId, e.continuidadActivada, e.txDespachoEstado })
+                    .HasName("<Name of Missing Index, sysname,>");
+
+                entity.HasIndex(e => new { e.txDespachoConcepto, e.ubicacionId, e.bodegaLogicaId, e.txDespachoRealManejo, e.txDespachoFechaCreacion, e.txDespachoFechaModificacion, e.usuarioId, e.continuidadActivada, e.ruteoId, e.ruteoDetalleId, e.txDespachoEstado })
+                    .HasName("<Name of Missing Index 1, sysname,>");
+
                 entity.Property(e => e.continuidadActivada).HasDefaultValueSql("((0))");
 
                 entity.Property(e => e.txDespachoFechaCreacion)
@@ -2807,11 +3642,6 @@ namespace com.ServiBarras.Infrastructure.Models
                     .HasForeignKey(d => d.bodegaLogicaId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_TxDespacho_BodegasLogicas");
-
-                entity.HasOne(d => d.contenedor)
-                    .WithMany(p => p.TxDespacho)
-                    .HasForeignKey(d => d.contenedorId)
-                    .HasConstraintName("FK_TxDespacho_Contenedores");
 
                 entity.HasOne(d => d.identificacion)
                     .WithMany(p => p.TxDespacho)
@@ -2837,6 +3667,14 @@ namespace com.ServiBarras.Infrastructure.Models
 
             modelBuilder.Entity<TxDevolucion>(entity =>
             {
+                entity.HasIndex(e => new { e.contenedorId, e.devolucionId })
+                    .HasName("<Name of Missing Index, sysname,>");
+
+                entity.HasIndex(e => new { e.novedadId, e.contenedorId })
+                    .HasName("IX_TxDevolucion_contenedorId");
+
+                entity.HasIndex(e => new { e.TxDevolucionConcepto, e.TxDevolucionConsecutivo, e.TxDevolucionEstado });
+
                 entity.Property(e => e.TxDevolucionFechaCreacion)
                     .HasColumnType("datetime")
                     .HasDefaultValueSql("(getutcdate())");
@@ -2856,12 +3694,6 @@ namespace com.ServiBarras.Infrastructure.Models
                     .HasForeignKey(d => d.bodegaLogicaId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_TxDevolucion_BodegasLogicas");
-
-                entity.HasOne(d => d.contenedor)
-                    .WithMany(p => p.TxDevolucion)
-                    .HasForeignKey(d => d.contenedorId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_TxDevolucion_ContenedorId");
 
                 entity.HasOne(d => d.identificacion)
                     .WithMany(p => p.TxDevolucion)
@@ -2938,6 +3770,28 @@ namespace com.ServiBarras.Infrastructure.Models
                 entity.HasIndex(e => e.ubicacionId)
                     .HasName("ix_TxOrdenEmpaque_ubicacionId");
 
+                entity.HasIndex(e => new { e.ordenEmpaqueId, e.ubicacionId, e.estacionId });
+
+                entity.HasIndex(e => new { e.presentacionId, e.txOrdenEmpaquePlano, e.ubicacionId })
+                    .HasName("IX_Archivo");
+
+                entity.HasIndex(e => new { e.txOrdenEmpaqueConcepto, e.txOrdenEmpaqueConsecutivo, e.saldoId })
+                    .HasName("<Name of Missing Index, 1,>");
+
+                entity.HasIndex(e => new { e.ordenEmpaqueId, e.presentacionId, e.contenedorId, e.txOrdenEmpaqueConcepto, e.ubicacionId, e.txOrdenEmpaqueEstado })
+                    .HasName("IX_TxOrdenEmpaque_txOrdenEmpaqueConcepto_ubicacionId_txOrdenEmpaqueEstado");
+
+                entity.HasIndex(e => new { e.presentacionId, e.contenedorId, e.txOrdenEmpaqueConcepto, e.ordenEmpaqueId, e.ubicacionId, e.txOrdenEmpaqueEstado })
+                    .HasName("IX_TxOrdenEmpaque_txOrdenEmpaqueConcepto_ordenEmpaqueId_ubicacionId_txOrdenEmpaqueEstado");
+
+                entity.HasIndex(e => new { e.txOrdenEmpaqueFechaCreacion, e.txOrdenEmpaqueConcepto, e.ordenEmpaqueId, e.presentacionId, e.ubicacionId, e.txOrdenEmpaqueEstado, e.txOrdenEmpaquePlano })
+                    .HasName("<Name of Missing Index, sysname,>");
+
+                entity.HasIndex(e => new { e.ordenEmpaqueId, e.presentacionId, e.ubicacionId, e.txOrdenEmpaqueFechaCreacion, e.usuarioId, e.txOrdenEmpaqueTurno, e.txOrdenEmpaqueConcepto, e.txOrdenEmpaqueEstado, e.txOrdenEmpaqueFechaModificacion })
+                    .HasName("<Name of Missing Index 1, sysname,>");
+
+                entity.Property(e => e.FechaIntegrado).HasColumnType("datetime");
+
                 entity.Property(e => e.txOrdenEmpaqueFechaCierre).HasColumnType("datetime");
 
                 entity.Property(e => e.txOrdenEmpaqueFechaCreacion)
@@ -2957,17 +3811,29 @@ namespace com.ServiBarras.Infrastructure.Models
                 entity.Property(e => e.txOrdenEmpaqueRealManejo)
                     .HasColumnType("decimal(18, 4)")
                     .HasDefaultValueSql("((0))");
-
-                entity.HasOne(d => d.contenedor)
-                    .WithMany(p => p.TxOrdenEmpaque)
-                    .HasForeignKey(d => d.contenedorId)
-                    .HasConstraintName("FK_txOrdenEmpaque_Contenedores");
             });
 
             modelBuilder.Entity<TxReubicacion>(entity =>
             {
+                entity.HasIndex(e => e.contenedorId);
+
+                entity.HasIndex(e => new { e.txReubicacionId, e.txReubicacionEstado, e.usuarioId, e.ubicacionId })
+                    .HasName("<Name of Missing Index 1, sysname,>");
+
+                entity.HasIndex(e => new { e.contenedorId, e.saldoDetalleId, e.txReubicacionConcepto, e.txReubicacionConsecutivo, e.saldoId })
+                    .HasName("IX_TxReubicacion_txReubicacionConcepto_txReubicacionConsecutivo_saldoId");
+
                 entity.HasIndex(e => new { e.txReubicacionId, e.contenedorId, e.saldoDetalleId, e.txReubicacionConcepto, e.saldoId })
                     .HasName("<Name of Missing Index, sysname,>");
+
+                entity.HasIndex(e => new { e.txReubicacionId, e.txReubicacionConcepto, e.contenedorId, e.saldoId, e.saldoDetalleId })
+                    .HasName("<Name of Missing Index, sysname,1>");
+
+                entity.HasIndex(e => new { e.txReubicacionConcepto, e.presentacionId, e.ubicacionId, e.txReubicacionFechaCreacion, e.usuarioId, e.contenedorId })
+                    .HasName("IX_TxReubicacion_contenedorId_1");
+
+                entity.HasIndex(e => new { e.presentacionId, e.documentoId, e.txReubicacionFechaCreacion, e.txReubicacionConcepto, e.txReubicacionConsecutivo, e.ubicacionId, e.txReubicacionEstado })
+                    .HasName("<Name of Missing Index, sysname2,>");
 
                 entity.Property(e => e.txReubicacionBarcode).HasDefaultValueSql("((0))");
 
@@ -2990,11 +3856,6 @@ namespace com.ServiBarras.Infrastructure.Models
                     .HasForeignKey(d => d.bodegaLogicaId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_TxReubicacion_BodegasLogicas");
-
-                entity.HasOne(d => d.contenedor)
-                    .WithMany(p => p.TxReubicacion)
-                    .HasForeignKey(d => d.contenedorId)
-                    .HasConstraintName("FK_TxReubicacion_Contenedores");
 
                 entity.HasOne(d => d.identificacion)
                     .WithMany(p => p.TxReubicacion)
@@ -3022,11 +3883,40 @@ namespace com.ServiBarras.Infrastructure.Models
             {
                 entity.HasKey(e => e.ubicacionId);
 
+                entity.HasIndex(e => e.estacionId);
+
                 entity.HasIndex(e => e.ubicacionCodigo)
                     .HasName("ix_Ubicaciones_ubicacionCodigo");
 
+                entity.HasIndex(e => e.ubicacionDescripcion);
+
                 entity.HasIndex(e => e.ubicacionPadreId)
                     .HasName("ix_Ubicaciones_ubicacionPadreId");
+
+                entity.HasIndex(e => new { e.ubicacionId, e.ubicacionDisponible })
+                    .HasName("IX_Ubicaciones_ubicacionDisponible");
+
+                entity.HasIndex(e => new { e.ubicacionDescripcion, e.ubicacionPadreId, e.instalacionId })
+                    .HasName("IX_Ubicaciones_instalacionId");
+
+                entity.HasIndex(e => new { e.ubicacionId, e.tipoUbicacionId, e.ubicacionDisponible })
+                    .HasName("IX_Ubicaciones_tipoUbicacionId_ubicacionDisponible");
+
+                entity.HasIndex(e => new { e.ubicacionId, e.ubicacionCodigo, e.tipoUbicacionId })
+                    .HasName("IX_Ubicaciones_tipoUbicacionId");
+
+                entity.HasIndex(e => new { e.ubicacionId, e.ubicacionCodigo, e.ubicacionDisponible })
+                    .HasName("IX_Ubicaciones_ubicacionDisponible_1");
+
+                entity.HasIndex(e => new { e.tipoUbicacionId, e.estacionId, e.EstadoSecuencia, e.ubicacionSecuencia });
+
+                entity.HasIndex(e => new { e.ubicacionCodigo, e.tipoUbicacionId, e.instalacionId, e.ubicacionDescripcion })
+                    .HasName("IX_Ubicaciones_instalacionId_ubicacionDescripcion");
+
+                entity.HasIndex(e => new { e.ubicacionEstado, e.estacionId, e.EstadoSecuencia, e.ubicacionSecuencia });
+
+                entity.HasIndex(e => new { e.ubicacionCodigo, e.ubicacionDescripcion, e.ubicacionRuteoEstado, e.ubicacionDisponible, e.instalacionId })
+                    .HasName("IX_Ubicaciones_ubicacionDisponible_instalacionId");
 
                 entity.Property(e => e.ubicacionCodigo)
                     .IsRequired()
@@ -3100,15 +3990,22 @@ namespace com.ServiBarras.Infrastructure.Models
             {
                 entity.HasKey(e => e.ubicacionProductoId);
 
-                entity.HasOne(d => d.producto)
-                    .WithMany(p => p.UbicacionesProductos)
-                    .HasForeignKey(d => d.productoId)
-                    .HasConstraintName("FK_UbicacionesProductos_Productos");
+                entity.HasIndex(e => new { e.ubicacionId, e.productoId });
+
+                entity.HasIndex(e => new { e.ubicacionId, e.ubicacionProductoOrden, e.productoId })
+                    .HasName("<Name of Missing Index, sysname,>");
 
                 entity.HasOne(d => d.ubicacion)
                     .WithMany(p => p.UbicacionesProductos)
                     .HasForeignKey(d => d.ubicacionId)
                     .HasConstraintName("FK_UbicacionesProductos_Ubicaciones");
+            });
+
+            modelBuilder.Entity<UbicacionesProductos_Carga>(entity =>
+            {
+                entity.Property(e => e.productoCodigo)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<UbicacionesSugeridoModulos>(entity =>
@@ -3194,26 +4091,15 @@ namespace com.ServiBarras.Infrastructure.Models
                     .HasConstraintName("FK_UsuariosEstaciones_Usuarios");
             });
 
-            modelBuilder.Entity<UsuariosRoles>(entity =>
-            {
-                entity.HasKey(e => new { e.usuarioId, e.roleId });
-
-                entity.HasOne(d => d.role)
-                    .WithMany(p => p.UsuariosRoles)
-                    .HasForeignKey(d => d.roleId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_UsuariosRoles_Roles");
-
-                entity.HasOne(d => d.usuario)
-                    .WithMany(p => p.UsuariosRoles)
-                    .HasForeignKey(d => d.usuarioId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_UsuariosRoles_Usuarios");
-            });
-
             modelBuilder.Entity<ValoresPlantillasLotes>(entity =>
             {
                 entity.HasKey(e => e.valorProductoLoteId);
+
+                entity.HasIndex(e => new { e.productoId, e.valorPLantillaLoteFechaVencimiento });
+
+                entity.HasIndex(e => new { e.valorPlantillaLoteCodigo, e.productoId })
+                    .HasName("IUValoresPlantillasLotes")
+                    .IsUnique();
 
                 entity.Property(e => e.FechaAjuste).HasColumnType("datetime");
 
@@ -3256,22 +4142,58 @@ namespace com.ServiBarras.Infrastructure.Models
                     .HasDefaultValueSql("(getutcdate())");
             });
 
-            modelBuilder.Entity<revisionCierre>(entity =>
+            modelBuilder.Entity<contenedoresReubicacionaParcial>(entity =>
             {
-                entity.Property(e => e.estadoEstibaUbicacion)
-                    .HasMaxLength(20)
-                    .IsUnicode(false);
+                entity.Property(e => e.tipoMovimiento).IsUnicode(false);
+            });
 
-                entity.Property(e => e.fecha).HasColumnType("datetime");
+            modelBuilder.Entity<pedidoOrden>(entity =>
+            {
+                entity.HasIndex(e => e.ruteoId);
 
-                entity.Property(e => e.resultado).IsUnicode(false);
+                entity.HasIndex(e => new { e.ruteoId, e.productoId })
+                    .HasName("IX_pedidoOrden_ruteoId_productoId_2");
+
+                entity.HasIndex(e => new { e.prioridad, e.ruteoId, e.productoId })
+                    .HasName("IX_pedidoOrden_ruteoId_productoId");
+
+                entity.HasIndex(e => new { e.orden, e.prioridad, e.ruteoId, e.productoId })
+                    .HasName("IX_pedidoOrden_ruteoId_productoId_1");
             });
 
             modelBuilder.Entity<revisonpoquitos>(entity =>
             {
-                entity.Property(e => e.Resultado).IsUnicode(false);
+                entity.Property(e => e.RESULTADO).IsUnicode(false);
 
                 entity.Property(e => e.fecha).HasColumnType("datetime");
+
+                entity.Property(e => e.ingreso)
+                    .HasMaxLength(10)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<trzOrdenEmpaqueCierreUbicacionEstiba>(entity =>
+            {
+                entity.Property(e => e.ejecucionImpresion).IsUnicode(false);
+
+                entity.Property(e => e.estadoEstibaUbicacion)
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.fechaFin).HasColumnType("datetime");
+
+                entity.Property(e => e.fechaFinImpresion).HasColumnType("datetime");
+
+                entity.Property(e => e.fechaInicio).HasColumnType("datetime");
+
+                entity.Property(e => e.fechaInicioImpresion).HasColumnType("datetime");
+
+                entity.Property(e => e.resultado).IsUnicode(false);
+            });
+
+            modelBuilder.Entity<ubicacionesSustitucion>(entity =>
+            {
+                entity.HasKey(e => e.ubicacionSustitucionId);
             });
         }
     }

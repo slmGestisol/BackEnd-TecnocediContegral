@@ -85,7 +85,6 @@ C:\Users\SebastiánLopezMazo\Desktop\GESTISOL\PROYECTOS\CONTEGRAL\BackEnd\TecnoC
 C:\Users\SebastiánLopezMazo\Desktop\GESTISOL\PROYECTOS\CONTEGRAL\BackEnd\TecnoCEDI Services API Controller\com.ServiBarras.WebAPI\obj\Release\netcoreapp2.2\com.ServiBarras.WebAPI.RazorAssemblyInfo.cache
 C:\Users\SebastiánLopezMazo\Desktop\GESTISOL\PROYECTOS\CONTEGRAL\BackEnd\TecnoCEDI Services API Controller\com.ServiBarras.WebAPI\obj\Release\netcoreapp2.2\com.ServiBarras.WebAPI.RazorAssemblyInfo.cs
 C:\Users\SebastiánLopezMazo\Desktop\GESTISOL\PROYECTOS\CONTEGRAL\BackEnd\TecnoCEDI Services API Controller\com.ServiBarras.WebAPI\obj\Release\netcoreapp2.2\com.ServiBarras.WebAPI.RazorTargetAssemblyInfo.cache
-C:\Users\SebastiánLopezMazo\Desktop\GESTISOL\PROYECTOS\CONTEGRAL\BackEnd\TecnoCEDI Services API Controller\com.ServiBarras.WebAPI\obj\Release\netcoreapp2.2\com.ServiBarras.WebAPI.csproj.CopyComplete
 C:\Users\SebastiánLopezMazo\Desktop\GESTISOL\PROYECTOS\CONTEGRAL\BackEnd\TecnoCEDI Services API Controller\com.ServiBarras.WebAPI\obj\Release\netcoreapp2.2\com.ServiBarras.WebAPI.dll
 C:\Users\SebastiánLopezMazo\Desktop\GESTISOL\PROYECTOS\CONTEGRAL\BackEnd\TecnoCEDI Services API Controller\com.ServiBarras.WebAPI\obj\Release\netcoreapp2.2\com.ServiBarras.WebAPI.pdb
 C:\Users\SebastiánLopezMazo\Desktop\GESTISOL\PROYECTOS\CONTEGRAL\BackEnd\TecnoCEDI Services API Controller\com.ServiBarras.WebAPI\obj\Release\netcoreapp2.2\com.ServiBarras.WebAPI.genruntimeconfig.cache
@@ -113,3 +112,5 @@ C:\Users\SebastiánLopezMazo\Desktop\GESTISOL\PROYECTOS\TRAZABILIDAD\BackEnd\Tec
 C:\Users\SebastiánLopezMazo\Desktop\GESTISOL\PROYECTOS\TRAZABILIDAD\BackEnd\TecnoCEDI Services API Controller\com.ServiBarras.WebAPI\obj\Release\netcoreapp2.2\com.ServiBarras.WebAPI.dll
 C:\Users\SebastiánLopezMazo\Desktop\GESTISOL\PROYECTOS\TRAZABILIDAD\BackEnd\TecnoCEDI Services API Controller\com.ServiBarras.WebAPI\obj\Release\netcoreapp2.2\com.ServiBarras.WebAPI.pdb
 C:\Users\SebastiánLopezMazo\Desktop\GESTISOL\PROYECTOS\TRAZABILIDAD\BackEnd\TecnoCEDI Services API Controller\com.ServiBarras.WebAPI\obj\Release\netcoreapp2.2\com.ServiBarras.WebAPI.genruntimeconfig.cache
+C:\Users\SebastiánLopezMazo\Desktop\GESTISOL\PROYECTOS\CONTEGRAL\BackEnd\TecnoCEDI Services API Controller\com.ServiBarras.WebAPI\obj\Release\netcoreapp2.2\com.ServiBarras.WebAPI.sourcelink.json
+C:\Users\SebastiánLopezMazo\Desktop\GESTISOL\PROYECTOS\CONTEGRAL\BackEnd\TecnoCEDI Services API Controller\com.ServiBarras.WebAPI\obj\Release\netcoreapp2.2\com.Serv.E20BD230.Up2Date

@@ -7,6 +7,7 @@ namespace com.ServiBarras.Infrastructure.Models
     {
         public Ubicaciones()
         {
+            ARC_SaldosDetalle = new HashSet<ARC_SaldosDetalle>();
             DespachosDetalle = new HashSet<DespachosDetalle>();
             Inventarios = new HashSet<Inventarios>();
             PackingDetalle = new HashSet<PackingDetalle>();
@@ -46,6 +47,7 @@ namespace com.ServiBarras.Infrastructure.Models
         public virtual Instalaciones instalacion { get; set; }
         public virtual TiposUbicaciones tipoUbicacion { get; set; }
         public virtual UbicacionesFisicas ubicacionFisica { get; set; }
+        public virtual ICollection<ARC_SaldosDetalle> ARC_SaldosDetalle { get; set; }
         public virtual ICollection<DespachosDetalle> DespachosDetalle { get; set; }
         public virtual ICollection<Inventarios> Inventarios { get; set; }
         public virtual ICollection<PackingDetalle> PackingDetalle { get; set; }

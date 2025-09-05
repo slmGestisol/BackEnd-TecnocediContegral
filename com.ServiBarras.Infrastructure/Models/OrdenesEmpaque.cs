@@ -25,6 +25,12 @@ namespace com.ServiBarras.Infrastructure.Models
         public string ordenEmpaqueClientePreferente { get; set; }
         public long? estacionIdSalidaordenEmpaque { get; set; }
         public int? ordenEmpaqueNumeroUbicacion { get; set; }
+        public bool? incluirPromocion { get; set; }
+        public DateTime? ordenEmpaqueFechaActivacion { get; set; }
+        public string tipoOperacion { get; set; }
+        public string placa { get; set; }
+        public string docExterno { get; set; }
+        public bool? docIntegracion { get; set; }
 
         public virtual Documentos documento { get; set; }
         public virtual Estaciones estacion { get; set; }

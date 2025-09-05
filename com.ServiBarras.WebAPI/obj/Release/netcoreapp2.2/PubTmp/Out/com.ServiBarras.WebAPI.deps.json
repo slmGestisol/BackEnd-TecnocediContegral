@@ -619,7 +619,10 @@
           "com.ServiBarras.Shared": "1.0.0"
         },
         "runtime": {
-          "com.Servibarras.ApplicationCore.dll": {}
+          "com.Servibarras.ApplicationCore.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         },
         "compile": {
           "com.Servibarras.ApplicationCore.dll": {}
@@ -637,7 +640,10 @@
           "com.ServiBarras.Shared": "1.0.0"
         },
         "runtime": {
-          "com.ServiBarras.Infrastructure.dll": {}
+          "com.ServiBarras.Infrastructure.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         },
         "compile": {
           "com.ServiBarras.Infrastructure.dll": {}
@@ -652,7 +658,10 @@
           "Newtonsoft.Json": "12.0.2"
         },
         "runtime": {
-          "com.ServiBarras.Shared.dll": {}
+          "com.ServiBarras.Shared.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         },
         "compile": {
           "com.ServiBarras.Shared.dll": {}

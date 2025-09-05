@@ -181,7 +181,7 @@ namespace com.ServiBarras.WebAPI.Controllers.Ruteo
                 dt.Rows.Add(dr);
                 result.Tables.Add(dt);
             }
-            JsonResult json = new JsonResult(result);
+                   JsonResult json = new JsonResult(result);
             if (json.Value == null)
             {
                 json.StatusCode = 500;
@@ -190,7 +190,7 @@ namespace com.ServiBarras.WebAPI.Controllers.Ruteo
             else
                 json.StatusCode = 200;
 
-            return json;
+             return json;
 
 
         }

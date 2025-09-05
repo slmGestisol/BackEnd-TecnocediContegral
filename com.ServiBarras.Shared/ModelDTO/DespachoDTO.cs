@@ -64,6 +64,8 @@ namespace com.ServiBarras.Shared.ModelDTO
         public long puertaUbicacionId { get; set; }
         
         public long usuarioId { get; set; }
+        
+        public bool cerrarDocumentosAsociados { get; set; }
     }
 
     public class DespachoLibreCrearDocumento

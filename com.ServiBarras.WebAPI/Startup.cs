@@ -69,6 +69,9 @@ namespace com.ServiBarras.WebAPI
             services.AddTransient<IConfiguracionVerificacionDAL, ConfiguracionVerificacionDAL>();
             services.AddTransient<IRFIDDAL, RFIDDAL>();
             services.AddTransient<ICoronaExtrasDAL, CoronaExtrasDAL>();
+            services.AddTransient<IImpresionDAL, ImpresionDAL>();
+            services.AddTransient<IRecepcionDAL, RecepcionDAL>();
+
 
 
 
@@ -117,6 +120,9 @@ namespace com.ServiBarras.WebAPI
             services.AddTransient<IConfiguracionVerificacionBL, ConfiguracionVerificacionBL>();
             services.AddTransient<IRFIDBL, RFIDBL>();
             services.AddTransient<ICoronaExtrasBL, CoronaExtrasBL>();
+            services.AddTransient<IImpresionBL, ImpresionBL>();
+            services.AddTransient<IRecepcionBL, RecepcionBL>();
+
 
 
 

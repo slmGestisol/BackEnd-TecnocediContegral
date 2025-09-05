@@ -13,7 +13,6 @@ namespace com.ServiBarras.Infrastructure.Models
             OrdenesEmpaque = new HashSet<OrdenesEmpaque>();
             Packing = new HashSet<Packing>();
             UsuariosEstaciones = new HashSet<UsuariosEstaciones>();
-            UsuariosRoles = new HashSet<UsuariosRoles>();
         }
 
         public long usuarioId { get; set; }
@@ -27,6 +26,7 @@ namespace com.ServiBarras.Infrastructure.Models
         public long? UbicacionIdUsuario { get; set; }
         public string usuarioPassword { get; set; }
         public long? instalacionId { get; set; }
+        public long? rolId { get; set; }
 
         public virtual ICollection<Despachos> Despachos { get; set; }
         public virtual ICollection<DespachosDetalle> DespachosDetalle { get; set; }
@@ -34,6 +34,5 @@ namespace com.ServiBarras.Infrastructure.Models
         public virtual ICollection<OrdenesEmpaque> OrdenesEmpaque { get; set; }
         public virtual ICollection<Packing> Packing { get; set; }
         public virtual ICollection<UsuariosEstaciones> UsuariosEstaciones { get; set; }
-        public virtual ICollection<UsuariosRoles> UsuariosRoles { get; set; }
     }
 }

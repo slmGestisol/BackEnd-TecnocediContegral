@@ -11,6 +11,7 @@ namespace com.ServiBarras.Infrastructure.DataAccess.Interfaces
         DataSet OrdenEmpaqueEliminarContenedor(OrdenEmpaqueDTO ordenAux);
         DataSet OrdenEmpaqueContenedorUbicacion(OrdenEmpaqueDTO ordenEmpaqueAux);
         DataSet SetSiesaPlanoInventario(OrdenEmpaqueDTO empaqueDTO);
+        DataSet SetSiesaPlanoInventarioRecepcion(OrdenEmpaqueDTO empaqueDTO);
         DataSet OrdenEmpaqueContenedorByContenedorCodigo(OrdenEmpaqueDTO contenedorItem);
         DataSet ValidarOdenEmpaqueSaldoUbicacion(OrdenEmpaqueDTO empaqueDTO);
         DataSet getOrdenesEmpaque();
@@ -20,7 +21,7 @@ namespace com.ServiBarras.Infrastructure.DataAccess.Interfaces
         DataSet setOrdenEmpaqueFechaLote(cambioFechaLoteOrdenEmpaqueDTO parametrosOrden);
         DataSet getEstacionLoteByEstacionId(long estacionId);
         DataSet setEstacionLoteCambiarEstado(cambioEstadioEstacionLoteDTO cambioEstadioEstacionLoteDTO);
-        DataSet setCerrarEstibaRecepcion(cerrarRecpcecionDTO parametrosCerrarRecepcion);
+        DataSet setRecepcion(cerrarRecpcecionDTO parametrosCerrarRecepcion);
         DataSet getOrdenesExternas(string documento);
         DataSet setGenerarOrdenEmpaqueExterna(generarOrdenEmpaqueExternaDTO generarOrdenEmpaqueDTO);
         DataSet getValidarLoteExterno(string documento,long productoId,string LoteCodigo);
@@ -29,7 +30,9 @@ namespace com.ServiBarras.Infrastructure.DataAccess.Interfaces
         DataSet getTXOrdenEmpaqueById(long ordenEmpaqueId);
         DataSet setImprimirOrdenEmpaqueById(long txOrdenEmpaqueId);
         DataSet setEstadosPromociones(EstadoPromocionDTO estadoPromocionDTO);
+        DataSet setEstadosAddBarcodeOrdenEmpaqueById(ordenEmpaqueAddBarcodeDTO ordenEmpaqueAddBarcodeDTO);
         DataSet getPromocionesOrdenesEmpaque();
+        DataSet getValidarDocExternoOrdenEmpaque(string doc);
 
     }
 }

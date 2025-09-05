@@ -28,6 +28,7 @@ namespace com.ServiBarras.Infrastructure.Models
         public byte pedidoEstado { get; set; }
         public string pedidoFuente { get; set; }
         public long? puntoOperacionId { get; set; }
+        public long? puntoOperacionIdEntrada { get; set; }
 
         public virtual PuntosOperaciones puntoOperacion { get; set; }
         public virtual Sucursales sucursal { get; set; }

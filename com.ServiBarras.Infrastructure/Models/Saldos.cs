@@ -7,6 +7,7 @@ namespace com.ServiBarras.Infrastructure.Models
     {
         public Saldos()
         {
+            ARC_SaldosDetalle = new HashSet<ARC_SaldosDetalle>();
             SaldosDetalle = new HashSet<SaldosDetalle>();
             SaldosUbicaciones = new HashSet<SaldosUbicaciones>();
         }
@@ -25,6 +26,7 @@ namespace com.ServiBarras.Infrastructure.Models
         public byte separaSaldo { get; set; }
 
         public virtual Productos producto { get; set; }
+        public virtual ICollection<ARC_SaldosDetalle> ARC_SaldosDetalle { get; set; }
         public virtual ICollection<SaldosDetalle> SaldosDetalle { get; set; }
         public virtual ICollection<SaldosUbicaciones> SaldosUbicaciones { get; set; }
     }
