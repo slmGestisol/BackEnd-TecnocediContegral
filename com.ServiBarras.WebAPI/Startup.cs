@@ -1,10 +1,26 @@
 ﻿using com.Servibarras.ApplicationCore.BusinessLogic;
+using com.Servibarras.ApplicationCore.BusinessLogic.BodegaLogica;
 using com.Servibarras.ApplicationCore.BusinessLogic.Clientes;
 using com.Servibarras.ApplicationCore.BusinessLogic.Interfaces;
 using com.ServiBarras.Infrastructure.DataAccess;
+using com.ServiBarras.Infrastructure.DataAccess.BodegaLogica;
 using com.ServiBarras.Infrastructure.DataAccess.Clientes;
 using com.ServiBarras.Infrastructure.DataAccess.Interfaces;
+using com.ServiBarras.Infrastructure.DataAccess.MonitorOperario;
+using com.Servibarras.ApplicationCore.BusinessLogic.MonitorOperario;
+using com.Servibarras.ApplicationCore.BusinessLogic.Reabastecimiento;
+using com.ServiBarras.Infrastructure.DataAccess.Dashboard;
+using com.Servibarras.ApplicationCore.BusinessLogic.Dashboard;
+using com.ServiBarras.Infrastructure.DataAccess.Reabastecimiento;
+using com.ServiBarras.Infrastructure.DataAccess.ConfigReabastecimiento;
+using com.Servibarras.ApplicationCore.BusinessLogic.ConfigReabastecimiento;
+using com.ServiBarras.Infrastructure.DataAccess.UbicacionLista;
+using com.Servibarras.ApplicationCore.BusinessLogic.UbicacionLista;
 using com.ServiBarras.Infrastructure.Models;
+using com.ServiBarras.WebAPI.BackgroundServices;
+using com.ServiBarras.WebAPI.Filters;
+using com.ServiBarras.WebAPI.Hubs;
+using com.ServiBarras.WebAPI.State;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -51,6 +67,7 @@ namespace com.ServiBarras.WebAPI
             services.AddTransient<IMaquinaDAL, MaquinaDAL>();
             services.AddTransient<IUsuarioDAL, UsuarioDAL>();
             services.AddTransient<IUbicacionDAL, UbicacionDAL>();
+            services.AddTransient<IUbicacionListaDAL, UbicacionListaDAL>();
             services.AddTransient<ICentroOperacionDAL, CentroOperacionDAL>();
             services.AddTransient<ICrossDockingDAL, CrossDockingDAL>();
             services.AddTransient<IPreRuteoDAL, PreRuteoDAL>();
@@ -71,6 +88,13 @@ namespace com.ServiBarras.WebAPI
             services.AddTransient<ICoronaExtrasDAL, CoronaExtrasDAL>();
             services.AddTransient<IImpresionDAL, ImpresionDAL>();
             services.AddTransient<IRecepcionDAL, RecepcionDAL>();
+            services.AddTransient<IBodegaLogicaDAL, BodegaLogicaDAL>();
+            services.AddTransient<ILoteDAL, LoteDAL>();
+            services.AddTransient<IMonitorOperarioDAL, MonitorOperarioDAL>();
+            services.AddTransient<IDashboardDAL, DashboardDAL>();
+            services.AddTransient<IProductoNoConformeDAL, ProductoNoConformeDAL>();
+            services.AddTransient<IReabastecimientoDAL, ReabastecimientoDAL>();
+            services.AddTransient<IConfigReabastecimientoDAL, ConfigReabastecimientoDAL>();
 
 
 
@@ -102,6 +126,7 @@ namespace com.ServiBarras.WebAPI
             services.AddTransient<IMaquinaBL, MaquinaBL>();
             services.AddTransient<IUsuarioBL, UsuarioBL>();
             services.AddTransient<IUbicacionBL, UbicacionBL>();
+            services.AddTransient<IUbicacionListaBL, UbicacionListaBL>();
             services.AddTransient<ICentroOperacionBL, CentroOperacionBL>();
             services.AddTransient<ICrossDockingBL, CrossDockingBL>();
             services.AddTransient<IPreRuteoBL, PreRuteoBL>();
@@ -122,6 +147,14 @@ namespace com.ServiBarras.WebAPI
             services.AddTransient<ICoronaExtrasBL, CoronaExtrasBL>();
             services.AddTransient<IImpresionBL, ImpresionBL>();
             services.AddTransient<IRecepcionBL, RecepcionBL>();
+            services.AddTransient<IBodegaLogicaBL, BodegaLogicaBL>();
+            services.AddTransient<ILoteBL, LoteBL>();
+            services.AddTransient<IMonitorOperarioBL, MonitorOperarioBL>();
+            services.AddTransient<IDashboardBL, DashboardBL>();
+            services.AddTransient<IProductoNoConformeBL, ProductoNoConformeBL>();
+            services.AddTransient<IReabastecimientoBL, ReabastecimientoBL>();
+            services.AddTransient<IConfigReabastecimientoBL, ConfigReabastecimientoBL>();
+            services.AddScoped<NotificarActualizacionWmsAttribute>();
 
 
 
@@ -132,12 +165,28 @@ namespace com.ServiBarras.WebAPI
             services.AddCors(c =>
             {
                 c.AddPolicy("OpenAll", opciones =>
-                opciones.AllowAnyOrigin()
+                opciones.WithOrigins(
+                            "http://localhost:8080",
+                            "http://localhost:4200",
+                            "http://10.252.0.116:8083",
+                            "http://10.252.0.116:8081",
+                            "http://10.252.0.141:8084",
+                            "null")
                         .AllowAnyMethod()
                         .AllowAnyHeader()
-                        .WithHeaders("authorization", "accept", "content-type", "origin"));
+                        .AllowCredentials());
             });
-            services.AddSignalR();
+            // EnableDetailedErrors: TEMPORAL para diagnóstico — muestra el mensaje real de la
+            // excepción al cliente. Quitar (o dejar solo en Development) una vez resuelto.
+            services.AddSignalR(options => options.EnableDetailedErrors = true);
+
+            #region Reabastecimiento
+            // Estado compartido del room (contador de conexiones + último snapshot/hash).
+            services.AddSingleton<IReabastecimientoState, ReabastecimientoState>();
+            // Servicio en background que consulta el SP y difunde cambios por SignalR.
+            services.AddHostedService<ReabastecimientoBackgroundService>();
+            #endregion
+
             services.AddDbContext<TecnoCEDI_bdContext>(options => options.UseSqlServer(Configuration.GetConnectionString("TecnoCEDIEntities")));
             services.AddMvc(option => option.EnableEndpointRouting = false);
             services.AddMvc().AddJsonOptions(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
@@ -164,6 +213,10 @@ namespace com.ServiBarras.WebAPI
            
             app.UseCors("OpenAll");
             //  app.UseHttpsRedirection();
+            app.UseSignalR(routes =>
+            {
+                routes.MapHub<WmsHub>("/hubs/wms");
+            });
             app.UseMvc();
         }
     }

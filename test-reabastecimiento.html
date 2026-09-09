@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <title>Test Reabastecimiento - SignalR</title>
+    <!-- Cliente SignalR 1.1.4: coincide con el servidor ASP.NET Core 2.2 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aspnet-signalr/1.1.4/signalr.min.js"></script>
+    <style>
+        body { font-family: Consolas, monospace; margin: 16px; }
+        #estado { font-weight: bold; }
+        button { margin-right: 8px; padding: 6px 12px; }
+        #log { white-space: pre-wrap; background: #111; color: #0f0; padding: 12px; margin-top: 12px; height: 60vh; overflow: auto; }
+    </style>
+</head>
+<body>
+    <h3>Test Room_Reabastecimiento</h3>
+    <div>URL hub: <input id="url" size="45" value="http://localhost:1386/hubs/wms" /></div>
+    <div style="font-size: 12px; color: #555;">
+        IIS Express (F5 en VS) → puerto <b>1386</b>. &nbsp; dotnet run / Kestrel → puerto <b>5000</b>.
+        Usa el que muestre el navegador al arrancar la API.
+    </div>
+    <p>Estado: <span id="estado">desconectado</span></p>
+    <button onclick="conectar()">Conectar</button>
+    <button onclick="unirse()">UnirseAReabastecimiento</button>
+    <button onclick="salir()">SalirDeReabastecimiento</button>
+    <button onclick="desconectar()">Desconectar</button>
+    <div id="log"></div>
+
+    <script>
+        let connection = null;
+        const log = (msg, obj) => {
+            const linea = `[${new Date().toLocaleTimeString()}] ${msg}` +
+                (obj !== undefined ? "\n" + JSON.stringify(obj, null, 2) : "");
+            document.getElementById("log").textContent += linea + "\n\n";
+            document.getElementById("log").scrollTop = 1e9;
+        };
+
+        function conectar() {
+            connection = new signalR.HubConnectionBuilder()
+                .withUrl(document.getElementById("url").value)
+                .configureLogging(signalR.LogLevel.Information)
+                .build();
+
+            // Evento que emite el backend cuando hay datos nuevos
+            connection.on("ReabastecimientoActualizado", data => {
+                log("EVENTO ReabastecimientoActualizado (" + data.length + " items)", data);
+            });
+
+            connection.onclose(() => document.getElementById("estado").textContent = "desconectado");
+
+            connection.start()
+                .then(() => { document.getElementById("estado").textContent = "conectado"; log("Conectado."); })
+                .catch(err => log("Error al conectar: " + err));
+        }
+
+        function unirse() {
+            connection.invoke("UnirseAReabastecimiento")
+                .then(() => log("Llamado UnirseAReabastecimiento (si ya hay snapshot, llega solo a mí)."))
+                .catch(err => log("Error: " + err));
+        }
+
+        function salir() {
+            connection.invoke("SalirDeReabastecimiento")
+                .then(() => log("Llamado SalirDeReabastecimiento."))
+                .catch(err => log("Error: " + err));
+        }
+
+        function desconectar() {
+            if (connection) connection.stop();
+        }
+    </script>
+</body>
+</html>

@@ -574,7 +574,7 @@ namespace com.ServiBarras.Infrastructure.DataAccess
                         command.Parameters.AddWithValue("@ContenedorId", DespachoParcialDTO[0].ContenedorId);
                         command.Parameters.AddWithValue("@PuertaId", DespachoParcialDTO[0].PuertaId);
                         command.Parameters.AddWithValue("@PedidoId", DespachoParcialDTO[0].PedidoId);
-                        command.Parameters.AddWithValue("@incompleto", DespachoParcialDTO[0].Incomincompleto);
+                        command.Parameters.AddWithValue("@incompleto", DespachoParcialDTO[0].incompleto);
                         command.Parameters.AddWithValue("@uniqueidentifier", DespachoParcialDTO[0].uniqueProcessId);
 
 
@@ -1124,6 +1124,54 @@ namespace com.ServiBarras.Infrastructure.DataAccess
                         command.CommandType = System.Data.CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@ubicacionId", ubicacionid);
                         command.Parameters.AddWithValue("@productoId", productoId);
+
+                        command.CommandTimeout = 0;
+
+
+                        var adapter = new SqlDataAdapter(command);
+
+                        adapter.Fill(dataSet);
+
+                    }
+
+
+                    return dataSet;
+
+
+                }
+                catch (System.Exception ex)
+                {
+                    LogEvent log = new LogEvent();
+                    log.LogWrite(ex.Message);
+
+                    return null;
+                }
+                finally
+                {
+                    connection.Close();
+                }
+
+            }
+        }
+
+        public DataSet getCheckFaltanteDespachos(DespachoCheckCantidadFaltanteDTO despachoCheckCantidadFaltanteDTO)
+        {
+
+            var dataSet = new DataSet();
+
+            using (var connection = new SqlConnection(dbcontext.Database.GetDbConnection().ConnectionString))
+            {
+                connection.Open();
+
+                try
+                {
+
+                    using (var command = new SqlCommand("[dbo].[sp_GET_DespachoCheckCantidadFaltante]", connection))
+                    {
+
+                        command.CommandType = System.Data.CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@puertaId", despachoCheckCantidadFaltanteDTO.puertaUbicacionId);
+                        command.Parameters.AddWithValue("@usuarioId", despachoCheckCantidadFaltanteDTO.usuarioId);
 
                         command.CommandTimeout = 0;
 

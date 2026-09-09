@@ -1,5 +1,8 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using com.Servibarras.ApplicationCore.BusinessLogic.Interfaces;
+using com.ServiBarras.Infrastructure.ModelDTO;
 using Microsoft.AspNetCore.Mvc;
 
 namespace com.ServiBarras.WebAPI.Controllers.Configuracion
@@ -8,6 +11,7 @@ namespace com.ServiBarras.WebAPI.Controllers.Configuracion
     [ApiController]
     public class ProcesosController : ControllerBase
     {
+        private const string MensajeErrorServicio = "Error al consumir el servicio, revise el log de eventos en la carpeta (C:\\EventLogTecnoCEDI\\Utils\\)";
 
         private readonly IProcesoBL _procesoBL;
 
@@ -31,6 +35,28 @@ namespace com.ServiBarras.WebAPI.Controllers.Configuracion
                 json.StatusCode = 200;
 
             return json;
+        }
+
+        // GET: api/getProcesos
+        // Procesos para el combo del módulo de parametrización de novedades.
+        [Route("api/getProcesos")]
+        [HttpGet]
+        public async Task<JsonResult> GetProcesos()
+        {
+            try
+            {
+                IReadOnlyList<ProcesoComboDto> result = await this._procesoBL.ObtenerProcesosAsync();
+
+                JsonResult json = new JsonResult(result);
+                json.StatusCode = 200;
+                return json;
+            }
+            catch (Exception)
+            {
+                JsonResult json = new JsonResult(MensajeErrorServicio);
+                json.StatusCode = 500;
+                return json;
+            }
         }
 
     }

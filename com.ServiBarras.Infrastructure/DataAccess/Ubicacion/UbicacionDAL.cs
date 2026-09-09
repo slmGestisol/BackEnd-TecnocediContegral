@@ -88,7 +88,7 @@ namespace com.ServiBarras.Infrastructure.DataAccess
                 }
             }
         }
-        public DataSet GetContenedoresByUbicacionesCodigo(string ubicacionCodigo)
+        public DataSet GetContenedoresByUbicacionesCodigo(string ubicacionCodigo,long instalacionId)
         {
             var dataSet = new DataSet();
             using (var connection = new SqlConnection(dbcontext.Database.GetDbConnection().ConnectionString))
@@ -100,6 +100,7 @@ namespace com.ServiBarras.Infrastructure.DataAccess
                     {
                         command.CommandType = System.Data.CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@ubicacionCodigo", ubicacionCodigo);
+                        command.Parameters.AddWithValue("@instalacionId", instalacionId);
                         command.CommandTimeout = 0;
                         var adapter = new SqlDataAdapter(command);
                         adapter.Fill(dataSet);
@@ -154,7 +155,7 @@ namespace com.ServiBarras.Infrastructure.DataAccess
             }
         }
 
-        public DataSet GetDespachoParcialUbicaciones(long instalacionId)
+        public DataSet GetDespachoParcialUbicaciones(long instalacionId, int incluirCompletas)
         {
             var dataSet = new DataSet();
             using (var connection = new SqlConnection(dbcontext.Database.GetDbConnection().ConnectionString))
@@ -166,6 +167,7 @@ namespace com.ServiBarras.Infrastructure.DataAccess
                     {
                         command.CommandType = System.Data.CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@instalacionId", instalacionId);
+                        command.Parameters.AddWithValue("@incluirCompletas", incluirCompletas);
                         command.CommandTimeout = 0;
                         var adapter = new SqlDataAdapter(command);
                         adapter.Fill(dataSet);
@@ -185,7 +187,7 @@ namespace com.ServiBarras.Infrastructure.DataAccess
             }
         }
 
-        public DataSet GetCodigoUbicacionByUsuarioId(long usuarioId, int isExportacion)
+        public DataSet GetCodigoUbicacionByUsuarioId(long usuarioId, string ubicacionCapturada)
         {
             var dataSet = new DataSet();
             using (var connection = new SqlConnection(dbcontext.Database.GetDbConnection().ConnectionString))
@@ -197,7 +199,7 @@ namespace com.ServiBarras.Infrastructure.DataAccess
                     {
                         command.CommandType = System.Data.CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@usuarioId", usuarioId);
-                        command.Parameters.AddWithValue("@checkExportacion", isExportacion);
+                        command.Parameters.AddWithValue("@ubicacionCapturada", ubicacionCapturada);
                         command.CommandTimeout = 0;
                         var adapter = new SqlDataAdapter(command);
                         adapter.Fill(dataSet);
@@ -329,6 +331,7 @@ namespace com.ServiBarras.Infrastructure.DataAccess
                         command.CommandType = System.Data.CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@bahiaPadreId", ubicacionDTO.bahiaPadreId);
                         command.Parameters.AddWithValue("@usuarioId", ubicacionDTO.usuarioId);
+                        command.Parameters.AddWithValue("@ubicacionCapturada", ubicacionDTO.ubicacionCapturada);
                         command.CommandTimeout = 0;
                         var adapter = new SqlDataAdapter(command);
                         adapter.Fill(dataSet);

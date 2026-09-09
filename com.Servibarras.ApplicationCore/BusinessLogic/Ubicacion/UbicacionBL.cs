@@ -40,9 +40,9 @@ namespace com.Servibarras.ApplicationCore.BusinessLogic
             var FilterBahiaAux = JsonConvert.DeserializeObject<FilterBahiaDTO>(FilterBahia.ToString());
             return await this._ubicacionDAL.GetUbicacionesByTipoUbicacionAsync(FilterBahiaAux);
         }
-        public DataSet GetCodigoUbicacionByUsuarioId(long usuarioId,int isExportacion)
+        public DataSet GetCodigoUbicacionByUsuarioId(long usuarioId,string ubicacionCapturada)
         {
-            return this._ubicacionDAL.GetCodigoUbicacionByUsuarioId(usuarioId,isExportacion);
+            return this._ubicacionDAL.GetCodigoUbicacionByUsuarioId(usuarioId,ubicacionCapturada);
         }
         public DataSet GetCodigoReubicacionByUsuarioId(long usuarioId,int isExportacion)
         {
@@ -68,9 +68,9 @@ namespace com.Servibarras.ApplicationCore.BusinessLogic
             return this._ubicacionDAL.getPuertasUbicaciones(instalacionId);
         }
 
-        public DataSet GetContenedoresByUbicacionesCodigo(string ubicacionCodigo)
+        public DataSet GetContenedoresByUbicacionesCodigo(string ubicacionCodigo, long instalacionId)
         {
-            return this._ubicacionDAL.GetContenedoresByUbicacionesCodigo(ubicacionCodigo);
+            return this._ubicacionDAL.GetContenedoresByUbicacionesCodigo(ubicacionCodigo, instalacionId);
         }
 
       
@@ -80,9 +80,9 @@ namespace com.Servibarras.ApplicationCore.BusinessLogic
             return this._ubicacionDAL.GetUbicacionByUbicacionCodigo(ubicacionCodigo,instalacionId);
         }
 
-        public DataSet GetDespachoParcialUbicaciones(long instalacionId)
+        public DataSet GetDespachoParcialUbicaciones(long instalacionId, int incluirCompletas)
         {
-            return this._ubicacionDAL.GetDespachoParcialUbicaciones(instalacionId);
+            return this._ubicacionDAL.GetDespachoParcialUbicaciones(instalacionId, incluirCompletas);
         }
 
         public DataSet GetBahiasDisponiblesByBahiaPadre(JObject parametrosUbicacion)

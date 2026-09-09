@@ -26,6 +26,7 @@ namespace com.ServiBarras.Infrastructure.Models
         public long? documentoId { get; set; }
         public long? novedadAccionId { get; set; }
         public byte? tipoNovedadId { get; set; }
+        public bool novedadActivo { get; set; }
         public int? procesoId { get; set; }
 
         public virtual Procesos proceso { get; set; }

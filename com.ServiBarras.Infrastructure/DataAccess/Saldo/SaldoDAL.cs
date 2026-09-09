@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using com.ServiBarras.Infrastructure.DataAccess.Interfaces;
 using com.ServiBarras.Infrastructure.Models;
 using com.ServiBarras.Shared.LogEvent;
@@ -11,6 +12,7 @@ using com.ServiBarras.Shared.ModelDTO;
 using com.ServiBarras.Shared.SqlData;
 using com.ServiBarras.Shared.Utils;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 
 namespace com.ServiBarras.Infrastructure.DataAccess
 {
@@ -73,6 +75,41 @@ namespace com.ServiBarras.Infrastructure.DataAccess
                         command.CommandType = System.Data.CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@ubicacionId", ubicacionId);
                         command.Parameters.AddWithValue("@ubicacionCodigo", ubicacionCodigo);
+
+                        command.CommandTimeout = 0;
+                        var adapter = new SqlDataAdapter(command);
+                        adapter.Fill(dataSet);
+                    }
+                    return dataSet;
+                }
+                catch (System.Exception ex)
+                {
+                    LogEvent log = new LogEvent();
+                    log.LogWrite(ex.Message);
+
+                    return null;
+                }
+
+                finally
+                {
+                    connection.Close();
+                }
+            }
+        }
+
+        public DataSet GetSaldoDetalleContenedoresByUbicacionUbicacionCodigo(string ubicacionCodigo, long instalacionId)
+        {
+            var dataSet = new DataSet();
+            using (var connection = new SqlConnection(dbcontext.Database.GetDbConnection().ConnectionString))
+            {
+                connection.Open();
+                try
+                {
+                    using (var command = new SqlCommand("[dbo].[SP_GET_SaldoDetalleContenedoresByUbicacionCodigo]", connection))
+                    {
+                        command.CommandType = System.Data.CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@ubicacionCodigo", ubicacionCodigo);
+                        command.Parameters.AddWithValue("@instalacionId", instalacionId);
 
                         command.CommandTimeout = 0;
                         var adapter = new SqlDataAdapter(command);
@@ -212,7 +249,7 @@ namespace com.ServiBarras.Infrastructure.DataAccess
         }
 
 
-        public string SetAjustarSaldo(List<SaldoAjusteDTO> saldoAux)
+        public async Task<string> SetAjustarSaldo(List<SaldoAjusteDTO> saldoAux)
         {
             if (saldoAux == null) return null;
 
@@ -240,26 +277,38 @@ namespace com.ServiBarras.Infrastructure.DataAccess
                          command.Parameters.AddWithValue("@usuarioId", saldoAux[0].usuarioId);
                          command.Parameters.AddWithValue("@ubicacionId", saldoAux[0].ubicacionId);
                          command.Parameters.AddWithValue("@concepto", 1);
-                         command.CommandTimeout = 0;
-                         command.ExecuteNonQuery();
+                         command.Parameters.AddWithValue("@novedadId", saldoAux[0].novedadId);
+                         command.Parameters.AddWithValue("@nota", saldoAux[0].nota);
+                        command.CommandTimeout = 0;
+                         await command.ExecuteNonQueryAsync();
                      }
                  }
 
                 dbcontext.SaldosDetalle.RemoveRange(dbcontext.SaldosDetalle.Where(x => x.ubicacionId == saldoAux[0].ubicacionId));
+
+                await dbcontext.SaveChangesAsync();
+
                 var data = saldoAux.Where(x => x.selected);
 
                 if (data == null)
                 {
-                    dbcontext.SaveChanges();
+                    await dbcontext.SaveChangesAsync();
                     result = "El ajuste se ha procesado correctamente";
                     return result;
                 }
 
                 if (data.Count() == 0)
                 {
-                    dbcontext.SaveChanges();
+                    await dbcontext.SaveChangesAsync();
                     result = "El ajuste se ha procesado correctamente";
                     return result;
+                }
+
+                // *** VALIDACIÓN DE BODEGAS LÓGICAS ***
+                var (validacionResultado, bodegaLogicaIdValidada) = await setAjustarSaldoValidad(saldoAux);
+                if (!string.IsNullOrEmpty(validacionResultado))
+                {
+                    return validacionResultado; // Retornar el mensaje de error de validación
                 }
 
                 var productoItem = dbcontext.Productos.Where(x => x.productoId == saldoAux[0].productoId).FirstOrDefault();
@@ -274,11 +323,26 @@ namespace com.ServiBarras.Infrastructure.DataAccess
                     return result;
                 }
 
-                var ordenEmpaqueId = dbcontext.TxOrdenEmpaque.Where(x => x.contenedorId == saldoAux[0].contenedorId).FirstOrDefault();
+                //Se busca el lote por orden de empaque, si el contenedor no ingreso por ese proceso se busca por recepcion
+                var valorProductoLoteIdAux = dbcontext.TxOrdenEmpaque
+                                                      .Where(x => x.contenedorId == saldoAux[0].contenedorId
+                                                               && x.valorProductoLoteId != null)
+                                                      .Select(x => x.valorProductoLoteId)
+                                                      .FirstOrDefault();
 
-                if (ordenEmpaqueId == null)
+                if (valorProductoLoteIdAux == null)
                 {
-                    result = "No se encontro la orden de empaque para relacionar la fecha de vencimiento";
+                    valorProductoLoteIdAux = dbcontext.TxRecepcion
+                                                      .Where(x => x.contenedorId == saldoAux[0].contenedorId
+                                                               && x.valorProductoLoteId != null)
+                                                      .OrderByDescending(x => x.txRecepcionId)
+                                                      .Select(x => x.valorProductoLoteId)
+                                                      .FirstOrDefault();
+                }
+
+                if (valorProductoLoteIdAux == null)
+                {
+                    result = "No se encontro el contenedor ni en orden de empaque ni en recepcion para relacionar la fecha de vencimiento";
                     return result;
                 }
 
@@ -300,14 +364,14 @@ namespace com.ServiBarras.Infrastructure.DataAccess
                 }
 
                 var saldoid = saldoItem.saldoId;
-                long ValorLoteId = long.Parse(ordenEmpaqueId.valorProductoLoteId.ToString());
+                long ValorLoteId = valorProductoLoteIdAux.Value;
 
                 foreach (var saldoDetalleItem in saldoAux.Where(x => x.selected))
                 {
                     sDetalleItem = new SaldoDetalleDTO();
                     sDetalleItem.saldoId = saldoid;
                     sDetalleItem.contenedorId = saldoDetalleItem.contenedorId;
-                    sDetalleItem.bodegaLogicaId = saldoDetalleItem.bodegaLogicaId;
+                    sDetalleItem.bodegaLogicaId = bodegaLogicaIdValidada;
                     sDetalleItem.ubicacionId = saldoDetalleItem.ubicacionId;
                     sDetalleItem.valorProductoLoteId = ValorLoteId;
                     sDetalleItem.presentacionId = saldoDetalleItem.presentacionId;
@@ -326,7 +390,7 @@ namespace com.ServiBarras.Infrastructure.DataAccess
                 DataTable dataInsert = ConverterObject.CreateDataTable(sDetalleList);
                 SqlObjectData sqlObjectData = new SqlObjectData();
                 sqlObjectData.BulkInsertDataTable("[dbo].[saldosDetalle]", dataInsert, dbcontext.Database.GetDbConnection().ConnectionString);
-                dbcontext.SaveChanges();
+                await dbcontext.SaveChangesAsync();
 
                 using (var connection = new SqlConnection(dbcontext.Database.GetDbConnection().ConnectionString))
                 {
@@ -337,8 +401,10 @@ namespace com.ServiBarras.Infrastructure.DataAccess
                         command.Parameters.AddWithValue("@usuarioId", saldoAux[0].usuarioId);
                         command.Parameters.AddWithValue("@ubicacionId", saldoAux[0].ubicacionId);
                         command.Parameters.AddWithValue("@concepto", 2);
+                        command.Parameters.AddWithValue("@novedadId", saldoAux[0].novedadId);
+                        command.Parameters.AddWithValue("@nota", saldoAux[0].nota);
                         command.CommandTimeout = 0;
-                        command.ExecuteNonQuery();
+                        await command.ExecuteNonQueryAsync();
                     }
                 }
                 /* using (var connection = new SqlConnection(dbcontext.Database.GetDbConnection().ConnectionString))
@@ -371,6 +437,100 @@ namespace com.ServiBarras.Infrastructure.DataAccess
 
         }
 
+        private async Task<(string resultado, long bodegaLogicaId)> setAjustarSaldoValidad(List<SaldoAjusteDTO> saldoAux)
+        {
+            try
+            {
+                using (var connection = new SqlConnection(dbcontext.Database.GetDbConnection().ConnectionString))
+                {
+                    await connection.OpenAsync();
+
+           
+
+                    // Crear el DataTable con la estructura del Table Type
+                    var dataTable = new DataTable();
+                    dataTable.Columns.Add("saldoId", typeof(long));
+                    dataTable.Columns.Add("contenedorId", typeof(long));
+                    dataTable.Columns.Add("ubicacionId", typeof(long));
+                    dataTable.Columns.Add("bodegaLogicaId", typeof(long));
+                    dataTable.Columns.Add("saldoDetalleRealManejo", typeof(decimal));
+                    dataTable.Columns.Add("presentacionId", typeof(long));
+                    dataTable.Columns.Add("productoId", typeof(long));
+                    dataTable.Columns.Add("valorProductoLoteId", typeof(long));
+                    dataTable.Columns.Add("selected", typeof(bool));
+                    dataTable.Columns.Add("usuarioId", typeof(long));
+
+                    var seleccionados = saldoAux.Where(x => x.selected).ToList();
+
+                    Console.WriteLine($"Seleccionados: {seleccionados.Count}");
+
+
+                    // Llenar el DataTable con los datos seleccionados
+                    foreach (var item in seleccionados)
+                    {
+                        dataTable.Rows.Add(
+                            item.saldoId,
+                            item.contenedorId,
+                            item.ubicacionId,
+                            item.bodegaLogicaId,
+                            item.saldoDetalleRealManejo,
+                            item.presentacionId,
+                            item.productoId,
+                            item.valorProductoLoteId,
+                            item.selected,
+                            item.usuarioId ?? (object)DBNull.Value
+                        );
+                    }
+
+                    Console.WriteLine($"Filas en DataTable: {dataTable.Rows.Count}");
+
+
+                    using (var command = new SqlCommand("sp_GET_InventarioValidacion", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        // Parámetro simple
+                        command.Parameters.AddWithValue("@ubicacionId", saldoAux[0].ubicacionId);
+
+                        // Parámetro Table Type
+                        var parameter = command.Parameters.AddWithValue("@saldoAux", dataTable);
+                        parameter.SqlDbType = SqlDbType.Structured;
+                        parameter.TypeName = "dbo.SaldoAjusteTableType";
+
+                        // Parámetro de salida para resultado
+                        var outputResultado = new SqlParameter("@resultado", SqlDbType.VarChar, -1)
+                        {
+                            Direction = ParameterDirection.Output
+                        };
+                        command.Parameters.Add(outputResultado);
+
+                        // Parámetro de salida para bodega lógica
+                        var outputBodegaLogica = new SqlParameter("@bodegaLogicaId", SqlDbType.BigInt)
+                        {
+                            Direction = ParameterDirection.Output
+                        };
+                        command.Parameters.Add(outputBodegaLogica);
+
+                        // Ejecutar
+                        await command.ExecuteNonQueryAsync();
+                        string resultado = outputResultado.Value?.ToString() ?? string.Empty;
+                        long bodegaLogicaId = outputBodegaLogica.Value != DBNull.Value
+                        ? Convert.ToInt64(outputBodegaLogica.Value)
+                        : 0;
+
+                        return (resultado, bodegaLogicaId);
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                LogEvent log = new LogEvent();
+                log.LogWrite(ex.Message);
+                return ("Error al validar las bodegas lógicas: " + ex.Message, 0);
+            }
+        }
+
         public DataSet SetSaldoReubicacion(SaldoReubicacionDTO saldoReubicacionAux)
         {
             var dataSet = new DataSet();
@@ -393,6 +553,8 @@ namespace com.ServiBarras.Infrastructure.DataAccess
                         command.Parameters.AddWithValue("@sugeridoPosicionSeleccionada", saldoReubicacionAux.sugeridoPosicionSeleccionada);
                         command.Parameters.AddWithValue("@contenedorId", saldoReubicacionAux.contenedorId);
                         command.Parameters.AddWithValue("@checkExportacion", saldoReubicacionAux.isExportacion);
+                        command.Parameters.AddWithValue("@procesoTipo", saldoReubicacionAux.proceso);
+                        command.Parameters.AddWithValue("@reabastecimientoSolicitudId", saldoReubicacionAux.reabastecimientoSolicitudId);
 
 
                         command.CommandTimeout = 0;
@@ -466,6 +628,40 @@ namespace com.ServiBarras.Infrastructure.DataAccess
                         command.Parameters.AddWithValue("@FechaSaldo", ubicacionProductoDTO.FechaSaldo);
                         command.Parameters.AddWithValue("@usuarioId", ubicacionProductoDTO.usuarioId);
                         command.Parameters.AddWithValue("@checkExportacion", ubicacionProductoDTO.isExportacion);
+
+                        command.CommandTimeout = 0;
+                        var adapter = new SqlDataAdapter(command);
+                        adapter.Fill(dataSet);
+                    }
+                    return dataSet;
+                }
+                catch (System.Exception ex)
+                {
+                    LogEvent log = new LogEvent();
+                    log.LogWrite(ex.Message);
+
+                    return null;
+                }
+
+                finally
+                {
+                    connection.Close();
+                }
+            }
+        }
+
+        public DataSet GetUbicacionesSugeridaReintegro(long instalacionId)
+        {
+            var dataSet = new DataSet();
+            using (var connection = new SqlConnection(dbcontext.Database.GetDbConnection().ConnectionString))
+            {
+                connection.Open();
+                try
+                {
+                    using (var command = new SqlCommand("[dbo].[SP_GET_UbicacionesSugeridaReintegro]", connection))
+                    {
+                        command.CommandType = System.Data.CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@instalacionId", instalacionId);
 
                         command.CommandTimeout = 0;
                         var adapter = new SqlDataAdapter(command);
@@ -695,6 +891,41 @@ namespace com.ServiBarras.Infrastructure.DataAccess
                         command.Parameters.AddWithValue("@loteFechaVencimiento", parametrosAjustarEstiba.fechaVencimientoLote);
 
 
+
+                        command.CommandTimeout = 0;
+                        var adapter = new SqlDataAdapter(command);
+                        adapter.Fill(dataSet);
+                    }
+                    return dataSet;
+                }
+                catch (System.Exception ex)
+                {
+                    LogEvent log = new LogEvent();
+                    log.LogWrite(ex.Message);
+
+                    return null;
+                }
+
+                finally
+                {
+                    connection.Close();
+                }
+            }
+
+
+        }
+
+        public DataSet getSaldo()
+        {
+            var dataSet = new DataSet();
+            using (var connection = new SqlConnection(dbcontext.Database.GetDbConnection().ConnectionString))
+            {
+                connection.Open();
+                try
+                {
+                    using (var command = new SqlCommand("[dbo].[sp_GET_Saldo]", connection))
+                    {
+                        command.CommandType = System.Data.CommandType.StoredProcedure;
 
                         command.CommandTimeout = 0;
                         var adapter = new SqlDataAdapter(command);

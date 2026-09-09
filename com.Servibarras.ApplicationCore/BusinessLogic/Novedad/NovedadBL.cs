@@ -4,6 +4,7 @@ using System.Data;
 using System.Threading.Tasks;
 using com.Servibarras.ApplicationCore.BusinessLogic.Interfaces;
 using com.ServiBarras.Infrastructure.DataAccess.Interfaces;
+using com.ServiBarras.Infrastructure.ModelDTO;
 using com.ServiBarras.Infrastructure.Models;
 
 namespace com.Servibarras.ApplicationCore.BusinessLogic
@@ -35,6 +36,21 @@ namespace com.Servibarras.ApplicationCore.BusinessLogic
         public DataSet GetNovedadByNovedadCodigo(string novedadCodigo)
         {
             return this._novedadDAL.GetNovedadByNovedadCodigo(novedadCodigo);
+        }
+
+        public Task<IReadOnlyList<NovedadItemDto>> ObtenerNovedadesAsync(int? procesoId, bool incluirInactivas)
+        {
+            return this._novedadDAL.ObtenerNovedadesAsync(procesoId, incluirInactivas);
+        }
+
+        public Task<NovedadResultDto> GuardarNovedadAsync(GuardarNovedadRequestDto request)
+        {
+            return this._novedadDAL.GuardarNovedadAsync(request);
+        }
+
+        public Task<NovedadResultDto> CambiarEstadoNovedadAsync(int novedadId, bool activo, int usuarioId)
+        {
+            return this._novedadDAL.CambiarEstadoNovedadAsync(novedadId, activo, usuarioId);
         }
     }
 }

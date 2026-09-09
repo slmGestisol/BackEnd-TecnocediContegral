@@ -143,6 +143,13 @@ namespace com.Servibarras.ApplicationCore.BusinessLogic
             return this._despachoDAL.setDespachoLibreCambiarPuerta(despachoCambioPuertaDocAux);
 
         }
+
+        public DataSet getCheckFaltanteDespachos(JObject DespachoCheckCantidadFaltanteDTO)
+        {
+            var DespachoCheckCantidadFaltanteDTOAux = JsonConvert.DeserializeObject<DespachoCheckCantidadFaltanteDTO>(DespachoCheckCantidadFaltanteDTO.ToString());
+            return this._despachoDAL.getCheckFaltanteDespachos(DespachoCheckCantidadFaltanteDTOAux);
+
+        }
         public DataSet getDespachoLotesPuerta(long ubicacionId, long productoId)
         {
             return this._despachoDAL.getDespachoLotesPuerta(ubicacionId,productoId);

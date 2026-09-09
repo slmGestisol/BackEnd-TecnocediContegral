@@ -27,11 +27,11 @@ namespace com.ServiBarras.WebAPI.Controllers.Ruteo
         }
 
         // GET: api/getruteosByInstalacionId/2
-        [Route("api/getruteosByInstalacionId/{instalacionId}/{isExportacion}")]
+        [Route("api/getruteosByInstalacionId/{instalacionId}")]
         [HttpGet]
-        public JsonResult GetRuteosByInstalacionId(long instalacionId, long isExportacion)
+        public JsonResult GetRuteosByInstalacionId(long instalacionId)
         {
-            var ruteosList =  this._ruteoBL.GetRuteosByInstalacionIdAsync(instalacionId, isExportacion);
+            var ruteosList =  this._ruteoBL.GetRuteosByInstalacionIdAsync(instalacionId);
             JsonResult json = new JsonResult(ruteosList);
             return json;
         }

@@ -47,12 +47,12 @@ namespace com.ServiBarras.WebAPI.Controllers.Ubicacion
 
 
         [Route("api/GetCodigoUbicacionByUsuarioId/{usuarioId}")]
-        [Route("api/GetCodigoUbicacionByUsuarioId/{usuarioId}/{isExportacion}")]
+        [Route("api/GetCodigoUbicacionByUsuarioId/{usuarioId}/{ubicacionCapturada}")]
         [HttpGet]
-        public JsonResult GetCodigoUbicacionByUsuarioId(long usuarioId,int isExportacion = 0)
+        public JsonResult GetCodigoUbicacionByUsuarioId(long usuarioId, string ubicacionCapturada)
         {
             DataSet result = new DataSet();
-            result = this._ubicacionBL.GetCodigoUbicacionByUsuarioId(usuarioId, isExportacion);
+            result = this._ubicacionBL.GetCodigoUbicacionByUsuarioId(usuarioId, ubicacionCapturada);
             JsonResult json = new JsonResult(result);
             if (json.Value == null)
             {
@@ -152,12 +152,12 @@ namespace com.ServiBarras.WebAPI.Controllers.Ubicacion
             return json;
         }
 
-        [Route("api/getContenedoresByUbicacionCodigo/{ubicacionCodigo}")]
+        [Route("api/getContenedoresByUbicacionCodigo/{ubicacionCodigo}/{instalacionId}")]
         [HttpGet]
-        public JsonResult GetContenedoresByUbicacionesCodigo(string ubicacionCodigo)
+        public JsonResult GetContenedoresByUbicacionesCodigo(string ubicacionCodigo, long instalacionId)
         {
             DataSet result = new DataSet();
-            result = this._ubicacionBL.GetContenedoresByUbicacionesCodigo(ubicacionCodigo);
+            result = this._ubicacionBL.GetContenedoresByUbicacionesCodigo(ubicacionCodigo, instalacionId);
             JsonResult json = new JsonResult(result);
             if (json.Value == null)
             {
@@ -188,12 +188,12 @@ namespace com.ServiBarras.WebAPI.Controllers.Ubicacion
             return json;
         }
 
-        [Route("api/getDespachoParcialUbicaciones/{instalacionId}")]
+        [Route("api/getDespachoParcialUbicaciones/{instalacionId}/{incluirCompletas}")]
         [HttpGet]
-        public JsonResult GetDespachoParcialUbicaciones(long instalacionId)
+        public JsonResult GetDespachoParcialUbicaciones(long instalacionId, int incluirCompletas)
         {
             DataSet result = new DataSet();
-            result = this._ubicacionBL.GetDespachoParcialUbicaciones(instalacionId);
+            result = this._ubicacionBL.GetDespachoParcialUbicaciones(instalacionId, incluirCompletas);
             JsonResult json = new JsonResult(result);
             if (json.Value == null)
             {

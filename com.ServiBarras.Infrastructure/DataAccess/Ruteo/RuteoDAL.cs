@@ -34,7 +34,7 @@ namespace com.ServiBarras.Infrastructure.DataAccess
             return await dbcontext.Ruteos.Where(x => x.ruteoPedidoEstado == 0).ToListAsync();
         }
 
-        public DataSet GetRuteosByInstalacionIdAsync(long instalacionId, long isExportacion)
+        public DataSet GetRuteosByInstalacionIdAsync(long instalacionId)
         {
 
             var dataSet = new DataSet();
@@ -49,7 +49,6 @@ namespace com.ServiBarras.Infrastructure.DataAccess
 
                         command.CommandType = System.Data.CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@instalacionId", instalacionId);
-                        command.Parameters.AddWithValue("@isExportacion", isExportacion);
                         command.CommandTimeout = 0;
                         var adapter = new SqlDataAdapter(command);
                         adapter.Fill(dataSet);

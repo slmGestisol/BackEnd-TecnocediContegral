@@ -118,7 +118,7 @@ namespace com.Servibarras.ApplicationCore.BusinessLogic
         }
         public DataSet setRecepcion(JObject parametrosCerrarRecepcion)
         {
-            var ordenAux = JsonConvert.DeserializeObject<cerrarRecpcecionDTO>(parametrosCerrarRecepcion.ToString());
+            var ordenAux = JsonConvert.DeserializeObject<cerrarRecepcionDTO>(parametrosCerrarRecepcion.ToString());
             return this._ordenEmpaqueDAL.setRecepcion(ordenAux);
 
         }

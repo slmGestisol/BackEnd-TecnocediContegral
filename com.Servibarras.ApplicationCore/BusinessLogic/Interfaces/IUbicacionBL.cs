@@ -12,16 +12,16 @@ namespace com.Servibarras.ApplicationCore.BusinessLogic.Interfaces
         Task<List<Ubicaciones>> GetUbicacionesAsync();
 
         Task<List<Ubicaciones>> GetUbicacionesByTipoUbicacionAsync(JObject parametrosUbicacion);
-        DataSet GetCodigoUbicacionByUsuarioId(long usuarioId,int isExportacion);
+        DataSet GetCodigoUbicacionByUsuarioId(long usuarioId, string ubicacionCapturada);
         string GetCodigoUbicacionPuertaByBahiaId(long bahiaId);
 
         string GetCodigoUbicacionByBahiaPadreId(JObject parametrosUbicacion);
         DataSet getruteoDetalleUbicacionCapturada(JObject parametrosUbicacion);
         DataSet GetCodigoReubicacionByUsuarioId(long usuarioId,int isExportacion);
         DataSet getPuertasUbicaciones(long instalacionId);
-        DataSet GetContenedoresByUbicacionesCodigo(string ubicacionCodigo);
+        DataSet GetContenedoresByUbicacionesCodigo(string ubicacionCodigo,long instalacionId);
         DataSet GetUbicacionByUbicacionCodigo(string ubicacionCodigo, long instalacionId);
-        DataSet GetDespachoParcialUbicaciones(long instalacionId);
+        DataSet GetDespachoParcialUbicaciones(long instalacionId,int incluirCompletas);
         DataSet GetBahiasDisponiblesByBahiaPadre(JObject parametrosUbicacion);
         DataSet GetUbicacionByUbicacionCodigoBarcode(string ubicacionCodigo, string proceso, long instalacionId,long usuarioId);
     }

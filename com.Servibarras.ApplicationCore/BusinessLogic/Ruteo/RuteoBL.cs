@@ -28,9 +28,9 @@ namespace com.Servibarras.ApplicationCore.BusinessLogic
             return await this._ruteoDAL.GetRuteosAsync();
         }
 
-        public DataSet GetRuteosByInstalacionIdAsync(long instalacionId, long isExportacion)
+        public DataSet GetRuteosByInstalacionIdAsync(long instalacionId)
         {
-            return  this._ruteoDAL.GetRuteosByInstalacionIdAsync(instalacionId,isExportacion);
+            return  this._ruteoDAL.GetRuteosByInstalacionIdAsync(instalacionId);
         }
 
 

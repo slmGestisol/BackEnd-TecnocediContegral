@@ -21,12 +21,12 @@ namespace com.ServiBarras.WebAPI.Controllers.Calidad
             this._calidadBL = calidadBL;
         }
 
-        [Route("api/getCalidadSaldosUbicaciones")]
+        [Route("api/getCalidadSaldosUbicaciones/{instalacionId}")]
         [HttpGet]
-        public JsonResult GetCalidadSaldosUbicaciones()
+        public JsonResult GetCalidadSaldosUbicaciones(long instalacionId)
         {
             DataSet result = new DataSet();           
-            result = this._calidadBL.GetCalidadSaldosUbicaciones();
+            result = this._calidadBL.GetCalidadSaldosUbicaciones(instalacionId);
             if (result == null)
             {
                 result = new DataSet();

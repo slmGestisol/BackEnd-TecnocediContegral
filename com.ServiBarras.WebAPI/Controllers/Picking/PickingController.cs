@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using com.Servibarras.ApplicationCore.BusinessLogic.Interfaces;
+using com.ServiBarras.WebAPI.Filters;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
 
@@ -18,6 +19,7 @@ namespace com.ServiBarras.WebAPI.Controllers.Picking
 
         [Route("api/setpickingruteo")]
         [HttpPost]
+        [ServiceFilter(typeof(NotificarActualizacionWmsAttribute))]
         public JsonResult SetPickingRuteo([FromBody] JObject parametrosPickingRuteo)
         {
             DataSet result = new DataSet();
@@ -48,6 +50,7 @@ namespace com.ServiBarras.WebAPI.Controllers.Picking
         
         [Route("api/setPickingPackingRuteo")]
         [HttpPost]
+        [ServiceFilter(typeof(NotificarActualizacionWmsAttribute))]
         public JsonResult SetPickingPackingRuteo([FromBody] JArray parametrosPickingPackingRuteo)
         {
             DataSet result = new DataSet();
@@ -108,6 +111,7 @@ namespace com.ServiBarras.WebAPI.Controllers.Picking
 
         [Route("api/SetPickingPackingRuteoNovedad")]
         [HttpPost]
+        [ServiceFilter(typeof(NotificarActualizacionWmsAttribute))]
         public JsonResult SetPickingPackingRuteoNovedad([FromBody] JArray parametrosPickingPackingRuteo)
         {
             DataSet result = new DataSet();

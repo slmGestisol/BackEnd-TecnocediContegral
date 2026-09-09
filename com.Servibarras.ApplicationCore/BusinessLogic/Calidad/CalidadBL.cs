@@ -19,10 +19,10 @@ namespace com.Servibarras.ApplicationCore.BusinessLogic
             this._despachoDAL = despachoDAL;
         }
 
-        public DataSet GetCalidadSaldosUbicaciones()
+        public DataSet GetCalidadSaldosUbicaciones(long instalacionId)
         {
             
-            return this._despachoDAL.GetCalidadSaldosUbicaciones();
+            return this._despachoDAL.GetCalidadSaldosUbicaciones(instalacionId);
         }
 
         public DataSet SetCalidadUbicaciones(JObject parametrosCalidad)

@@ -5,7 +5,7 @@ namespace com.Servibarras.ApplicationCore.BusinessLogic.Interfaces
 {
     public interface ICalidadBL
     {
-        DataSet GetCalidadSaldosUbicaciones();
+        DataSet GetCalidadSaldosUbicaciones(long instalacionId);
         DataSet SetCalidadUbicaciones(JObject parametrosCalidad);
     }
 }

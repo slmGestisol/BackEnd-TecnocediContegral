@@ -29,5 +29,7 @@ namespace com.ServiBarras.Infrastructure.DataAccess.Interfaces
         DataSet setDespachoLibreDocumentoCerrar(DespachoLibreCerrarDocumento parametrosDespachoLibreCerrarDocumento);
         DataSet setDespachoLibreCambiarPuerta(DespachoLibreCambioPuerta parametrosDespachoLibreCambiarPuerta);
         DataSet getDespachoLotesPuerta(long ubicacionid, long productoId);
+        DataSet getCheckFaltanteDespachos(DespachoCheckCantidadFaltanteDTO despachoCheckCantidadFaltanteDTO);
+
     }
 }

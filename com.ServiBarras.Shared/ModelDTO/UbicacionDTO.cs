@@ -7,6 +7,7 @@ namespace com.ServiBarras.Shared.ModelDTO
         public long bahiaPadreId { get; set; }
 
         public long usuarioId { get; set; }
+        public string ubicacionCapturada { get; set; }
     }
 
     public class UbicacionValidacionDTO
@@ -22,7 +23,7 @@ namespace com.ServiBarras.Shared.ModelDTO
         public long presentacionId { get; set; }
         public DateTime @FechaSaldo { get; set; }
         public long usuarioId { get; set; }
-        public long isExportacion { get; set; }
+        public bool isExportacion { get; set; }
 
     }
 

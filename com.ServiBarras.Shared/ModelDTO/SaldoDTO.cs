@@ -31,6 +31,8 @@ namespace com.ServiBarras.Shared.ModelDTO
         public long? contenedorId { get; set; }
         public long? isExportacion { get; set; }
         public string proceso { get; set; }
+        public long? reabastecimientoSolicitudId { get; set; }
+
 
     }
 
@@ -70,6 +72,8 @@ namespace com.ServiBarras.Shared.ModelDTO
         public long valorProductoLoteId { get; set; }
         public bool selected { get; set; }
         public long? usuarioId { get; set; }
+        public long? novedadId { get; set; }
+        public string nota { get; set; }
     }
 
     public class SaldoDetalleDTO

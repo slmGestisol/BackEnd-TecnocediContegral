@@ -10,7 +10,7 @@ namespace com.Servibarras.ApplicationCore.BusinessLogic.Interfaces
     {
         DataSet GetRuteoDetalle(JObject parametrosRuteod);
         Task<List<Ruteos>> GetRuteosAsync();
-        DataSet GetRuteosByInstalacionIdAsync(long instalacionId, long isExportacion);
+        DataSet GetRuteosByInstalacionIdAsync(long instalacionId);
         Task<Ruteos> GetRuteosAsync(long preRuteoId);
         Task<RuteosDetalle> GetRuteosDetalleItemAsync(long ruteoDetalleId);
         DataSet SP_Add_Ruteo(JObject ruteoJson);

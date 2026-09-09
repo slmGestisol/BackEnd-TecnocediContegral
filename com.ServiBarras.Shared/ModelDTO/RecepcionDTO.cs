@@ -11,6 +11,8 @@ namespace com.ServiBarras.Shared.ModelDTO
         [JsonProperty("recepcionId")]
         public long recepcionId { get; set; }
         public long usuarioId { get; set; }
+        public long UbicacionIdDestino { get; set; }
+        public string documentoCodigo { get; set; }
         public List<recepcionContenedoreDTO> contenedoresRecepcion { get; set; }
 
     }
@@ -29,6 +31,27 @@ namespace com.ServiBarras.Shared.ModelDTO
         [JsonProperty("recepcionId")]
         public long recepcionId { get; set; }
         public long usuarioId { get; set; }
+
+    }
+    public class ProcesarCerrarUbicacionDTO
+    {
+
+        [JsonProperty("recepcionId")]
+        public long recepcionId { get; set; }
+        public long usuarioId { get; set; }
+        public long UbicacionId { get; set; }
+        public long impresoraId { get; set; }
+
+    }
+
+    public class EliminarContenedorRecepcionDTO
+    {
+
+        [JsonProperty("recepcionId")]
+        public long recepcionId { get; set; }
+        public long usuarioId { get; set; }
+        public long contenedorId { get; set; }
+        public long ubicacionId { get; set; }
 
     }
 

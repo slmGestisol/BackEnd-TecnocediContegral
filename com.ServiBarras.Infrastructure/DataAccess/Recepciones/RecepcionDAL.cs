@@ -55,7 +55,7 @@ namespace com.ServiBarras.Infrastructure.DataAccess
                 {
                     LogEvent log = new LogEvent();
                     log.LogWrite(ex.Message);
-
+                    return null;
 
                 }
                 finally
@@ -102,7 +102,7 @@ namespace com.ServiBarras.Infrastructure.DataAccess
                 {
                     LogEvent log = new LogEvent();
                     log.LogWrite(ex.Message);
-
+                    return null;
 
                 }
                 finally
@@ -115,7 +115,7 @@ namespace com.ServiBarras.Infrastructure.DataAccess
             return dataSet;
         }
 
-        public DataSet getRecepcionesContenedoresByContenedorCodigo(long recepcionId,string contenedorCodigo)
+        public DataSet getRecepcionesContenedoresByContenedorCodigo(long recepcionId,string contenedorCodigo,bool contenedoresAsociados)
         {
 
 
@@ -134,6 +134,8 @@ namespace com.ServiBarras.Infrastructure.DataAccess
 
                         command.Parameters.AddWithValue("@recepcionId", recepcionId);
                         command.Parameters.AddWithValue("@contenedorCodigo", contenedorCodigo);
+                        command.Parameters.AddWithValue("@contenedoresAsociados", contenedoresAsociados?1:0);
+                        
 
                         command.CommandTimeout = 0;
 
@@ -150,7 +152,7 @@ namespace com.ServiBarras.Infrastructure.DataAccess
                 {
                     LogEvent log = new LogEvent();
                     log.LogWrite(ex.Message);
-
+                    return null;
 
                 }
                 finally
@@ -196,7 +198,7 @@ namespace com.ServiBarras.Infrastructure.DataAccess
                 {
                     LogEvent log = new LogEvent();
                     log.LogWrite(ex.Message);
-
+                    return null;
 
                 }
                 finally
@@ -208,6 +210,53 @@ namespace com.ServiBarras.Infrastructure.DataAccess
 
             return dataSet;
         }
+
+        public DataSet getRecepcionSerialesValidacionUbicacion(string ubicacionCodigo, long instalacionId, long usuarioId)
+        {
+            //dbcontext.Pedidos.
+            var dataSet = new DataSet();
+            using (var connection = new SqlConnection(dbcontext.Database.GetDbConnection().ConnectionString))
+            {
+                connection.Open();
+
+                try
+                {
+
+                    using (var command = new SqlCommand("[dbo].[sp_GET_RecepcionSerialesValidacionUbicacion]", connection))
+                    {
+                        command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                        command.Parameters.AddWithValue("@ubicacionCodigo", ubicacionCodigo);
+                        command.Parameters.AddWithValue("@instalacionId", instalacionId);
+                        command.Parameters.AddWithValue("@usuarioId", usuarioId);
+                        command.CommandTimeout = 0;
+
+                        var adapter = new SqlDataAdapter(command);
+
+                        adapter.Fill(dataSet);
+
+                    }
+
+
+
+                }
+                catch (System.Exception ex)
+                {
+                    LogEvent log = new LogEvent();
+                    log.LogWrite(ex.Message);
+                    return null;
+
+                }
+                finally
+                {
+                    connection.Close();
+                }
+
+            }
+
+            return dataSet;
+        }
+
         public DataSet setProcesarRecepcion(recepcionProcesarDTO recepcionProcesarDTO)
         {
 
@@ -225,7 +274,9 @@ namespace com.ServiBarras.Infrastructure.DataAccess
                         command.CommandType = System.Data.CommandType.StoredProcedure;
 
                         command.Parameters.AddWithValue("@recepcionId", recepcionProcesarDTO.recepcionId);
-                        command.Parameters.AddWithValue("@usuarioId", recepcionProcesarDTO.usuarioId);
+                        command.Parameters.AddWithValue("@usuarioId", recepcionProcesarDTO.usuarioId); 
+                        command.Parameters.AddWithValue("@UbicacionIdDestino", recepcionProcesarDTO.UbicacionIdDestino); 
+                        command.Parameters.AddWithValue("@documentoCodigo", (object)recepcionProcesarDTO.documentoCodigo ?? DBNull.Value); 
 
                         // Param: contenedores (tbl)
                         DataTable tbl = new DataTable();
@@ -255,7 +306,7 @@ namespace com.ServiBarras.Infrastructure.DataAccess
                 {
                     LogEvent log = new LogEvent();
                     log.LogWrite(ex.Message);
-
+                    return null;
 
                 }
                 finally
@@ -268,6 +319,101 @@ namespace com.ServiBarras.Infrastructure.DataAccess
             return dataSet;
         }
 
+        public DataSet setProcesarCierreUbicacion(ProcesarCerrarUbicacionDTO CerrarUbicacionDTO)
+        {
+
+            //dbcontext.Pedidos.
+            var dataSet = new DataSet();
+            using (var connection = new SqlConnection(dbcontext.Database.GetDbConnection().ConnectionString))
+            {
+                connection.Open();
+
+                try
+                {
+
+                    using (var command = new SqlCommand("[dbo].[sp_SET_Recepcion_CerrarUbicacionEstiba]", connection))
+                    {
+                        command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                        command.Parameters.AddWithValue("@recepcionId", CerrarUbicacionDTO.recepcionId);
+                        command.Parameters.AddWithValue("@usuarioId", CerrarUbicacionDTO.usuarioId);
+                        command.Parameters.AddWithValue("@UbicacionId", CerrarUbicacionDTO.UbicacionId);
+                        command.Parameters.AddWithValue("@impresoraId", CerrarUbicacionDTO.impresoraId);
+
+                        command.CommandTimeout = 0;
+
+                        var adapter = new SqlDataAdapter(command);
+
+                        adapter.Fill(dataSet);
+
+                    }
+
+
+
+                }
+                catch (System.Exception ex)
+                {
+                    LogEvent log = new LogEvent();
+                    log.LogWrite(ex.Message);
+                    return null;
+
+                }
+                finally
+                {
+                    connection.Close();
+                }
+
+            }
+
+            return dataSet;
+        }
+
+        public DataSet setRecepcionEliminarContenenedor(EliminarContenedorRecepcionDTO contenedorEliminar)
+        {
+
+            //dbcontext.Pedidos.
+            var dataSet = new DataSet();
+            using (var connection = new SqlConnection(dbcontext.Database.GetDbConnection().ConnectionString))
+            {
+                connection.Open();
+
+                try
+                {
+
+                    using (var command = new SqlCommand("[dbo].[sp_SET_RecepcionEliminarContenenedor]", connection))
+                    {
+                        command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                        command.Parameters.AddWithValue("@recepcionId", contenedorEliminar.recepcionId);
+                        command.Parameters.AddWithValue("@usuarioId", contenedorEliminar.usuarioId);
+                        command.Parameters.AddWithValue("@contenedorId", contenedorEliminar.contenedorId);
+                        command.Parameters.AddWithValue("@ubicacionId", contenedorEliminar.ubicacionId);
+
+                        command.CommandTimeout = 0;
+
+                        var adapter = new SqlDataAdapter(command);
+
+                        adapter.Fill(dataSet);
+
+                    }
+
+                }
+                catch (System.Exception ex)
+                {
+                    LogEvent log = new LogEvent();
+                    log.LogWrite(ex.Message);
+                    return null;
+
+                }
+                finally
+                {
+                    connection.Close();
+                }
+
+            }
+
+            return dataSet;
+        }
 
         public DataSet setCerrarRecepcion(recepcionCerrarDTO recepcionCerrarDTO)
         {
@@ -299,7 +445,7 @@ namespace com.ServiBarras.Infrastructure.DataAccess
                 {
                     LogEvent log = new LogEvent();
                     log.LogWrite(ex.Message);
-
+                    return null;
 
                 }
                 finally

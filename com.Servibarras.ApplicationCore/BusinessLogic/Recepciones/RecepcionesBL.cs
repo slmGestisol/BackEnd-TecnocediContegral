@@ -25,14 +25,19 @@ namespace com.Servibarras.ApplicationCore.BusinessLogic
         {
             return this._recepcionDAL.getRecepcionesDetalle(recepcionId);
         }
-        public DataSet getRecepcionesContenedoresByContenedorCodigo(long recepcionId,string contenedorCodigo)
+        public DataSet getRecepcionesContenedoresByContenedorCodigo(long recepcionId,string contenedorCodigo, bool contenedoresAsociados)
         {
-            return this._recepcionDAL.getRecepcionesContenedoresByContenedorCodigo(recepcionId,contenedorCodigo);
+            return this._recepcionDAL.getRecepcionesContenedoresByContenedorCodigo(recepcionId,contenedorCodigo, contenedoresAsociados);
         }
         public DataSet getRecepcionValidacionUbicacion(string ubicacionCodigo, long instalacionId, long usuarioId)
         {
             return this._recepcionDAL.getRecepcionValidacionUbicacion(ubicacionCodigo, instalacionId, usuarioId);
         }
+        public DataSet getRecepcionSerialesValidacionUbicacion(string ubicacionCodigo, long instalacionId, long usuarioId)
+        {
+            return this._recepcionDAL.getRecepcionSerialesValidacionUbicacion(ubicacionCodigo, instalacionId, usuarioId);
+        }
+        
         public DataSet setProcesarRecepcion(JObject recepcionProcesarDTO)
         {
             var recepcionAux = JsonConvert.DeserializeObject<recepcionProcesarDTO>(recepcionProcesarDTO.ToString());
@@ -43,7 +48,16 @@ namespace com.Servibarras.ApplicationCore.BusinessLogic
             var recepcionAux = JsonConvert.DeserializeObject<recepcionCerrarDTO>(recepcionCerrarDTO.ToString());
             return this._recepcionDAL.setCerrarRecepcion(recepcionAux);
         }
-
+        public DataSet setProcesarCierreUbicacion(JObject CerrarUbicacionDTO)
+        {
+            var recepcionAux = JsonConvert.DeserializeObject<ProcesarCerrarUbicacionDTO>(CerrarUbicacionDTO.ToString());
+            return this._recepcionDAL.setProcesarCierreUbicacion(recepcionAux);
+        }
+        public DataSet setRecepcionEliminarContenenedor(JObject contenedorEliminar)
+        {
+            var contenedorEliminarAux = JsonConvert.DeserializeObject<EliminarContenedorRecepcionDTO>(contenedorEliminar.ToString());
+            return this._recepcionDAL.setRecepcionEliminarContenenedor(contenedorEliminarAux);
+        }
 
     }
 }

@@ -5,7 +5,7 @@ namespace com.ServiBarras.Infrastructure.DataAccess.Interfaces
 {
     public interface ICalidadDAL
     {
-        DataSet GetCalidadSaldosUbicaciones();
+        DataSet GetCalidadSaldosUbicaciones(long instalacionId);
         DataSet SetCalidadUbicaciones(CalidadDTO calidadAux);
     }
 }

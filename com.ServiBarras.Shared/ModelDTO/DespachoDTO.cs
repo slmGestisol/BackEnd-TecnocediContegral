@@ -40,7 +40,7 @@ namespace com.ServiBarras.Shared.ModelDTO
         public long? ContenedorId { get; set; }
         public long? PuertaId { get; set; }
         public long? PedidoId { get; set; }
-        public bool? Incomincompleto { get; set; }
+        public bool? incompleto { get; set; }
         public Guid? uniqueProcessId { get; set; }
         
     }
@@ -66,6 +66,14 @@ namespace com.ServiBarras.Shared.ModelDTO
         public long usuarioId { get; set; }
         
         public bool cerrarDocumentosAsociados { get; set; }
+    }
+
+    public class DespachoCheckCantidadFaltanteDTO
+    {
+        public long puertaUbicacionId { get; set; }
+
+        public long usuarioId { get; set; }
+
     }
 
     public class DespachoLibreCrearDocumento

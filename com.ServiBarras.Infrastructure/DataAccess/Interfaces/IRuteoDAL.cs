@@ -10,7 +10,7 @@ namespace com.ServiBarras.Infrastructure.DataAccess.Interfaces
     {
         Task<Ruteos> GetRuteoAsync(long ruteoId);
         Task<List<Ruteos>> GetRuteosAsync();
-        DataSet GetRuteosByInstalacionIdAsync(long instalacionId, long isExportacion);
+        DataSet GetRuteosByInstalacionIdAsync(long instalacionId);
         DataSet GetRuteoDetalle(long ruteoId, long? ruteoDetalleId);
         DataSet SP_Add_Ruteo(long preRuteoId, long usuarioId,string placa);
         DataSet SP_Add_RuteoDetalle(long ruteoId, long usuarioId);

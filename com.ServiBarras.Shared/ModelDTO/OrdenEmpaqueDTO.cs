@@ -65,13 +65,14 @@ namespace com.ServiBarras.Shared.ModelDTO
 
     }
 
-    public class cerrarRecpcecionDTO
+    public class cerrarRecepcionDTO
     {
         public string estibaCodigo { get; set; }
         public long cantidad { get; set; }
         public long ubicacionId { get; set; }
         public long ordenEmpaqueId { get; set; }
         public string loteCodigo { get; set; }
+        public long bodegaLogicaId { get; set; }
         public string LoteFechaVencimiento { get; set; }
         public long usuarioId { get; set; }
         public long impresoraId { get; set; }
@@ -103,6 +104,8 @@ namespace com.ServiBarras.Shared.ModelDTO
         public long ordenEmpaqueId { get; set; }
         public long usuarioId { get; set; }
         public Boolean estado { get; set; }
+        public Boolean estadoAddEan14 { get; set; }
+        public long bodegaLogicaId { get; set; }
 
     }
 }

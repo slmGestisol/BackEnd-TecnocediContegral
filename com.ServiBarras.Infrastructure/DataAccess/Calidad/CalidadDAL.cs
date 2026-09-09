@@ -22,7 +22,7 @@ namespace com.ServiBarras.Infrastructure.DataAccess
             dbcontext = new TecnoCEDI_bdContext();
         }
 
-        public DataSet GetCalidadSaldosUbicaciones()
+        public DataSet GetCalidadSaldosUbicaciones(long instalacionId)
         {
             var dataSet = new DataSet();
             using (var connection = new SqlConnection(dbcontext.Database.GetDbConnection().ConnectionString))
@@ -33,6 +33,7 @@ namespace com.ServiBarras.Infrastructure.DataAccess
                     using (var command = new SqlCommand("[dbo].[SP_GET_CalidadSaldosUbicaciones]", connection))
                     {
                         command.CommandType = System.Data.CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@instalacionId", instalacionId);
                         command.CommandTimeout = 0;
                         var adapter = new SqlDataAdapter(command);
                         adapter.Fill(dataSet);

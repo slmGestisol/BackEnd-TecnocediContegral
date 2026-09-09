@@ -1,4 +1,6 @@
 ﻿using System.Data;
+using System.Threading.Tasks;
+using com.ServiBarras.Infrastructure.Models;
 using Newtonsoft.Json.Linq;
 
 namespace com.Servibarras.ApplicationCore.BusinessLogic.Interfaces
@@ -7,10 +9,12 @@ namespace com.Servibarras.ApplicationCore.BusinessLogic.Interfaces
     {
         DataSet GetSaldoDetalleByUbicacionId(long ubicacionId);
         DataSet GetSaldoDetalleByUbicacionUbicacionCodigo(long ubicacionId, string ubicacionCodigo);
+        DataSet GetSaldoDetalleContenedoresByUbicacionUbicacionCodigo(string ubicacionCodigo, long instalacionId);
         DataSet SetSaldoReubicacion(JObject reubicacionJson);
         DataSet ValidarSaldoCargaUsuario(long usuarioId);
         DataSet GetUbicacionesProductoSugerida(JObject reubicacionJson);
-        string SetAjustarSaldo(JArray parametrosAjusteSaldos);
+        DataSet GetUbicacionesSugeridaReintegro(long instalacionId);
+        Task<string> SetAjustarSaldo(JArray parametrosAjusteSaldos);
         DataSet GetSaldoDetalleByContenedorCodigo(JObject parametrosConsultarContenedores);
         DataSet SetDescargaSaldoParcial(object parametrosaldoParcial);
         DataSet SetSaldoReubicacionBarcode(JObject parametrosReubicacion);
@@ -20,6 +24,9 @@ namespace com.Servibarras.ApplicationCore.BusinessLogic.Interfaces
         DataSet setReubicarEstiba(JObject parametrosReubicarEstiba);
         DataSet setLimpiarEstiba(JObject parametrosLimpiarEstiba);
         DataSet setAjustarEstiba(JObject parametrosAjustarEstiba);
+        DataSet getSaldo();
+
+        
 
 
     }

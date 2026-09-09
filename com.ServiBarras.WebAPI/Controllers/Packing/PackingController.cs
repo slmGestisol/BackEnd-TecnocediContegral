@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using com.Servibarras.ApplicationCore.BusinessLogic.Interfaces;
+using com.ServiBarras.WebAPI.Filters;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
 
@@ -18,6 +19,7 @@ namespace com.ServiBarras.WebAPI.Controllers.Packing
 
         [Route("api/setpackingruteo")]
         [HttpPost]
+        [ServiceFilter(typeof(NotificarActualizacionWmsAttribute))]
         public JsonResult SetPackingRuteo([FromBody] JObject parametrosPackingRuteo)
         {
             DataSet result = new DataSet();

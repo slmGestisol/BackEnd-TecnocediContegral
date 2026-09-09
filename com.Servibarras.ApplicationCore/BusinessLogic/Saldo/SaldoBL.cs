@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Text;
+using System.Threading.Tasks;
 using com.Servibarras.ApplicationCore.BusinessLogic.Interfaces;
 using com.ServiBarras.Infrastructure.DataAccess.Interfaces;
 using com.ServiBarras.Shared.ModelDTO;
@@ -29,6 +30,10 @@ namespace com.Servibarras.ApplicationCore.BusinessLogic
             return this._saldoDAL.GetSaldoDetalleByUbicacionUbicacionCodigo(ubicacionId, ubicacionCodigo);
         }
 
+        public DataSet GetSaldoDetalleContenedoresByUbicacionUbicacionCodigo(string ubicacionCodigo, long instalacionId)
+        {
+            return this._saldoDAL.GetSaldoDetalleContenedoresByUbicacionUbicacionCodigo(ubicacionCodigo, instalacionId);
+        }
 
         public DataSet SetSaldoReubicacion(JObject reubicacionJson)
         {
@@ -46,13 +51,17 @@ namespace com.Servibarras.ApplicationCore.BusinessLogic
             var saldoReubicacionAux = JsonConvert.DeserializeObject<UbicacionProductoDTO>(reubicacionJson.ToString());
             return this._saldoDAL.GetUbicacionesProductoSugerida(saldoReubicacionAux);
         }
+        public DataSet GetUbicacionesSugeridaReintegro(long instalacionId)
+        {
+            return this._saldoDAL.GetUbicacionesSugeridaReintegro(instalacionId);
+        }
 
-        public string SetAjustarSaldo(JArray parametrosAjusteSaldos)
+        public async Task<string> SetAjustarSaldo(JArray parametrosAjusteSaldos)
         {
             var saldoAux = JsonConvert.DeserializeObject<List<SaldoAjusteDTO>>(parametrosAjusteSaldos.ToString());
             if (saldoAux == null) return null;
             
-            return this._saldoDAL.SetAjustarSaldo(saldoAux);
+            return await this._saldoDAL.SetAjustarSaldo(saldoAux);
         }
 
         public DataSet GetSaldoDetalleByContenedorCodigo(JObject parametrosConsultarContenedores)
@@ -127,6 +136,12 @@ namespace com.Servibarras.ApplicationCore.BusinessLogic
             return this._saldoDAL.setAjustarEstiba(parametrosAjustarEstibaAUX);
         }
 
+        public DataSet getSaldo()
+        {
+            return this._saldoDAL.getSaldo();
+        }
+
+        
         // public DataSet GetSaldoDetalleByContenedorCodigo(JObject parametrosConsultarContenedores)
 
     }

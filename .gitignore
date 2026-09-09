@@ -1,0 +1,65 @@
+## Archivos generados por Visual Studio / .NET
+## No deben subirse al repositorio: son cache, compilados y configuracion local.
+
+# Cache interna de Visual Studio (causa errores de "Permission denied" al hacer commit)
+.vs/
+
+# Salida de compilacion
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+# Resultados de build y publicacion
+[Dd]ebug/
+[Rr]elease/
+[Ww][Ii][Nn]32/
+[Aa][Rr][Mm]/
+[Xx]64/
+[Xx]86/
+[Bb]uild/
+[Bb]ld/
+[Oo]ut/
+publish/
+*.publishproj
+
+# Configuracion local del usuario (puede contener credenciales de publicacion)
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.userprefs
+
+# Archivos de resultados de pruebas
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+
+# Paquetes NuGet restaurados
+packages/
+*.nupkg
+*.snupkg
+
+# Archivos temporales y de sistema
+*.tmp
+*.temp
+*.cache
+*.bak
+*~
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+
+# ReSharper / Rider
+_ReSharper*/
+*.[Rr]e[Ss]harper
+.idea/
+
+# Visual Studio Code
+.vscode/
+
+# Bases de datos locales
+*.mdf
+*.ldf
+*.ndf

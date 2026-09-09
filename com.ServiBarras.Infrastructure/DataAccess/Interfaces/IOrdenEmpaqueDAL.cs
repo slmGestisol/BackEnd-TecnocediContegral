@@ -21,7 +21,7 @@ namespace com.ServiBarras.Infrastructure.DataAccess.Interfaces
         DataSet setOrdenEmpaqueFechaLote(cambioFechaLoteOrdenEmpaqueDTO parametrosOrden);
         DataSet getEstacionLoteByEstacionId(long estacionId);
         DataSet setEstacionLoteCambiarEstado(cambioEstadioEstacionLoteDTO cambioEstadioEstacionLoteDTO);
-        DataSet setRecepcion(cerrarRecpcecionDTO parametrosCerrarRecepcion);
+        DataSet setRecepcion(cerrarRecepcionDTO parametrosCerrarRecepcion);
         DataSet getOrdenesExternas(string documento);
         DataSet setGenerarOrdenEmpaqueExterna(generarOrdenEmpaqueExternaDTO generarOrdenEmpaqueDTO);
         DataSet getValidarLoteExterno(string documento,long productoId,string LoteCodigo);

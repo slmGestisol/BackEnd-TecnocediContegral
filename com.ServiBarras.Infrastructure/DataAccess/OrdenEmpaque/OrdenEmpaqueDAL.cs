@@ -899,7 +899,7 @@ namespace com.ServiBarras.Infrastructure.DataAccess
 
         }
 
-        public DataSet setRecepcion(cerrarRecpcecionDTO parametrosCerrarRecepcion)
+        public DataSet setRecepcion(cerrarRecepcionDTO parametrosCerrarRecepcion)
         {
 
             if (parametrosCerrarRecepcion == null) return null;
@@ -921,6 +921,7 @@ namespace com.ServiBarras.Infrastructure.DataAccess
                         command.Parameters.AddWithValue("@ordenEmpaqueId", parametrosCerrarRecepcion.ordenEmpaqueId);
                         command.Parameters.AddWithValue("@estibaCodigo", parametrosCerrarRecepcion.estibaCodigo);
                         command.Parameters.AddWithValue("@LoteCodigo", parametrosCerrarRecepcion.loteCodigo);
+                        command.Parameters.AddWithValue("@bodegaLogicaId", parametrosCerrarRecepcion.bodegaLogicaId);
                         command.Parameters.AddWithValue("@FechaVencimientoLote", parametrosCerrarRecepcion.LoteFechaVencimiento);
                         command.Parameters.AddWithValue("@usuarioId", parametrosCerrarRecepcion.usuarioId);
                         command.Parameters.AddWithValue("@ImpresoraId", parametrosCerrarRecepcion.impresoraId);
@@ -1336,6 +1337,8 @@ namespace com.ServiBarras.Infrastructure.DataAccess
                         command.Parameters.AddWithValue("@ordenEmpaqueId", ordenEmpaqueAddBarcodeDTO.ordenEmpaqueId);
                         command.Parameters.AddWithValue("@usuarioId", ordenEmpaqueAddBarcodeDTO.usuarioId);
                         command.Parameters.AddWithValue("@estado", ordenEmpaqueAddBarcodeDTO.estado);
+                        command.Parameters.AddWithValue("@estadoAddEan14", ordenEmpaqueAddBarcodeDTO.estadoAddEan14);
+                        command.Parameters.AddWithValue("@bodegaLogicaId", ordenEmpaqueAddBarcodeDTO.bodegaLogicaId);
 
                         command.CommandTimeout = 0;
 

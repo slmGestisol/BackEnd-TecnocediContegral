@@ -154,6 +154,7 @@ namespace com.ServiBarras.Infrastructure.Models
         public virtual DbSet<TxDevolucion> TxDevolucion { get; set; }
         public virtual DbSet<TxInventario> TxInventario { get; set; }
         public virtual DbSet<TxOrdenEmpaque> TxOrdenEmpaque { get; set; }
+        public virtual DbSet<TxRecepcion> TxRecepcion { get; set; }
         public virtual DbSet<TxReubicacion> TxReubicacion { get; set; }
         public virtual DbSet<Ubicaciones> Ubicaciones { get; set; }
         public virtual DbSet<UbicacionesCambioAutomatico> UbicacionesCambioAutomatico { get; set; }
@@ -3809,6 +3810,30 @@ namespace com.ServiBarras.Infrastructure.Models
                     .HasDefaultValueSql("((0))");
 
                 entity.Property(e => e.txOrdenEmpaqueRealManejo)
+                    .HasColumnType("decimal(18, 4)")
+                    .HasDefaultValueSql("((0))");
+            });
+
+            modelBuilder.Entity<TxRecepcion>(entity =>
+            {
+                entity.HasKey(e => e.txRecepcionId)
+                    .HasName("PK_TxRecepcion");
+
+                entity.HasIndex(e => e.contenedorId);
+
+                entity.Property(e => e.txRecepcionEstado).HasDefaultValueSql("((0))");
+
+                entity.Property(e => e.txRecepcionFechaCreacion)
+                    .HasColumnType("datetime")
+                    .HasDefaultValueSql("(getutcdate())");
+
+                entity.Property(e => e.txRecepcionFechaModificacion).HasColumnType("datetime");
+
+                entity.Property(e => e.txRecepcionRealEscalar)
+                    .HasColumnType("decimal(18, 4)")
+                    .HasDefaultValueSql("((0))");
+
+                entity.Property(e => e.txRecepcionRealManejo)
                     .HasColumnType("decimal(18, 4)")
                     .HasDefaultValueSql("((0))");
             });

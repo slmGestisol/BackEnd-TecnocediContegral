@@ -1,4 +1,5 @@
 ﻿using System.Data;
+using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
 
 namespace com.Servibarras.ApplicationCore.BusinessLogic.Interfaces
@@ -30,5 +31,6 @@ namespace com.Servibarras.ApplicationCore.BusinessLogic.Interfaces
         DataSet setDespachoLibreDocumentoCerrar(JObject parametrosDespachoLibreCerrarDocumento);
         DataSet setDespachoLibreCambiarPuerta(JObject parametrosDespachoLibreCambiarPuerta);
         DataSet getDespachoLotesPuerta(long ubicacionid, long productoId);
+        DataSet getCheckFaltanteDespachos(JObject parametrosCheckFaltanteDespachos);
     }
 }

@@ -57,11 +57,11 @@ namespace com.ServiBarras.WebAPI.Controllers.Recepciones
         }
 
         //GET contenedores de recepcion por contenedor codigo
-        [Route("api/getRecepcionesContenedoresByContenedorCodigo/{recepcionId}/{contenedorCodigo}")]
+        [Route("api/getRecepcionesContenedoresByContenedorCodigo/{recepcionId}/{contenedorCodigo}/{contenedoresAsociados}")]
         [HttpGet]
-        public JsonResult getRecepcionesContenedoresByContenedorCodigo(long recepcionId, string contenedorCodigo)
+        public JsonResult getRecepcionesContenedoresByContenedorCodigo(long recepcionId, string contenedorCodigo, bool contenedoresAsociados)
         {
-            var result = this._recepcionBL.getRecepcionesContenedoresByContenedorCodigo(recepcionId,contenedorCodigo);
+            var result = this._recepcionBL.getRecepcionesContenedoresByContenedorCodigo(recepcionId,contenedorCodigo, contenedoresAsociados);
             JsonResult json = new JsonResult(result);
             if (json.Value == null)
             {
@@ -93,7 +93,24 @@ namespace com.ServiBarras.WebAPI.Controllers.Recepciones
             return json;
 
         }
+        //GET recepciones
+        [Route("api/getRecepcionSerialesValidacionUbicacion/{ubicacionCodigo}/{instalacionId}/{usuarioId}")]
+        [HttpGet]
+        public JsonResult getRecepcionSerialesValidacionUbicacion(string ubicacionCodigo, long instalacionId, long usuarioId)
+        {
+            var result = this._recepcionBL.getRecepcionSerialesValidacionUbicacion(ubicacionCodigo, instalacionId, usuarioId);
+            JsonResult json = new JsonResult(result);
+            if (json.Value == null)
+            {
+                json.StatusCode = 500;
+                json.Value = "Error al consumir el servicio, revise el log de eventos en la carpeta (C:\\EventLogTecnoCEDI\\Utils\\)";
+            }
+            else
+                json.StatusCode = 200;
 
+            return json;
+
+        }
 
         [Route("api/setProcesarRecepcion/")]
         [HttpPost]
@@ -135,6 +152,45 @@ namespace com.ServiBarras.WebAPI.Controllers.Recepciones
 
         }
 
+        [Route("api/setProcesarCierreUbicacion/")]
+        [HttpPost]
+        public JsonResult setProcesarCierreUbicacion([FromBody] JObject CerrarUbicacionDTO)
+        {
+
+            DataSet result = new DataSet();
+            result = this._recepcionBL.setProcesarCierreUbicacion(CerrarUbicacionDTO);
+            JsonResult json = new JsonResult(result);
+            if (json.Value == null)
+            {
+                json.StatusCode = 500;
+                json.Value = "Error al consumir el servicio, revise el log de eventos en la carpeta (C:\\EventLogTecnoCEDI\\Utils\\)";
+            }
+            else
+                json.StatusCode = 200;
+
+            return json;
+
+        }
+
+        [Route("api/setRecepcionEliminarContenenedor/")]
+        [HttpPost]
+        public JsonResult setRecepcionEliminarContenenedor([FromBody] JObject contenedorEliminar)
+        {
+
+            DataSet result = new DataSet();
+            result = this._recepcionBL.setRecepcionEliminarContenenedor(contenedorEliminar);
+            JsonResult json = new JsonResult(result);
+            if (json.Value == null)
+            {
+                json.StatusCode = 500;
+                json.Value = "Error al consumir el servicio, revise el log de eventos en la carpeta (C:\\EventLogTecnoCEDI\\Utils\\)";
+            }
+            else
+                json.StatusCode = 200;
+
+            return json;
+
+        }
 
     }
 }
